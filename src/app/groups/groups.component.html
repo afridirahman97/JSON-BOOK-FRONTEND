@@ -1,0 +1,37 @@
+<div [class] ="topSection"> 
+<button>Create New Group</button>
+</div>
+
+<h1>Groups Table</h1>
+<hr>
+
+<table id="users">
+  <tr>
+    <th *ngFor = "let column of headers">
+      {{column}}
+    </th>
+  </tr>
+
+  <!-- <tr *ngFor = "let row of rows">
+    <td *ngFor = "let column of headers">
+      {{row.ID}}
+    </td>
+    
+  </tr> -->
+
+  <tr *ngFor= "let data of rows">
+
+  <td>{{data.ID}}</td>
+  <td>{{data.RequestID}}</td>
+  <td>
+    <button (click)="performEdit(data.ID)">Edit</button>
+    <button (click)="performView(data.ID)">View</button>
+    <button (click)="performDelete(data.ID)">Delete</button>
+
+</td>
+          
+</tr>
+
+
+
+</table>
