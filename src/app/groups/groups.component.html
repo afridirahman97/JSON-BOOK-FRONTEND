@@ -22,6 +22,7 @@
   <tr *ngFor= "let data of rows">
 
   <td>{{data.ID}}</td>
+  <td>{{data.GroupName}}</td>
   <td>{{data.RequestID}}</td>
   <td>
     <button (click)="performEdit(data.ID)">Edit</button>

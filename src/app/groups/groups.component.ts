@@ -14,21 +14,24 @@ export class GroupsComponent {
 
   constructor(private router: Router) {}
 
-  headers = ["ID", "RequestID", "Actions"];
+  headers = ["ID", "Group Name", "RequestID", "Actions"];
   
   rows = [
     {
       "ID" : 1,
+      "GroupName":"Frist Group",
       "RequestID": 11
      
     },
     {
       "ID" : 2,
+      "GroupName":"second Group",
       "RequestID": 12
      
     },
     {
       "ID" : 3,
+      "GroupName":"third Group",
       "RequestID": 13
      
     },
