@@ -7,6 +7,7 @@ import { RequestsComponent } from './requests/requests.component';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewComponent } from './view/view.component';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -15,12 +16,14 @@ import { ViewComponent } from './view/view.component';
     GroupsComponent,
     RequestsComponent,
     HeaderComponent,
-    ViewComponent
+    ViewComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule
 
   ],
   providers: [],

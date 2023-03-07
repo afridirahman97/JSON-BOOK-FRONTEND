@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { GroupDataService } from '../group-data.service';
+
 
 
 @Component({
@@ -10,32 +12,45 @@ import { Router } from '@angular/router';
 export class GroupsComponent {
 
    topSection: "topSection" = "topSection";
+   rows: any;
+   
+   
 
-
-  constructor(private router: Router) {}
-
-  headers = ["ID", "Group Name", "RequestID", "Actions"];
+  constructor(private router: Router, private data: GroupDataService) {
+    this.data.getData().subscribe(data =>{
+      //console.warn(data)
+      this.rows = data
+      //console.log(this.rows)
+     
+    })
+  }
   
-  rows = [
-    {
-      "ID" : 1,
-      "GroupName":"Frist Group",
-      "RequestID": 11
+  
+
+
+  headers = ["ID", "Group Name", "Actions"];
+
+  
+  
+  // rows = [
+  //   {
+  //     "groupId" : 1,
+  //     "GroupName":"Frist Group",
      
-    },
-    {
-      "ID" : 2,
-      "GroupName":"second Group",
-      "RequestID": 12
+  //   },
+  //   {
+  //     "groupId" : 2,
+  //     "GroupName":"second Group",
+
      
-    },
-    {
-      "ID" : 3,
-      "GroupName":"third Group",
-      "RequestID": 13
+  //   },
+  //   {
+  //     "groupId" : 3,
+  //     "GroupName":"third Group",
+
      
-    },
-  ]
+  //   },
+  // ]
 
 
   performEdit(id: number){

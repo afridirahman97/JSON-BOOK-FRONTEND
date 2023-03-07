@@ -2,6 +2,8 @@
 <button>Create New Group</button>
 </div>
 
+
+
 <h1>Groups Table</h1>
 <hr>
 
@@ -20,14 +22,15 @@
   </tr> -->
 
   <tr *ngFor= "let data of rows">
+   
 
-  <td>{{data.ID}}</td>
-  <td>{{data.GroupName}}</td>
-  <td>{{data.RequestID}}</td>
+  <td>{{data.groupId}}</td>
+  <td>{{data.groupName}}</td>
+
   <td>
-    <button (click)="performEdit(data.ID)">Edit</button>
-    <button (click)="performView(data.ID)">View</button>
-    <button (click)="performDelete(data.ID)">Delete</button>
+    <button (click)="performEdit(data.groupId)">Edit</button>
+    <button (click)="performView(data.groupId)">View</button>
+    <button (click)="performDelete(data.groupId)">Delete</button>
 
 </td>
           
