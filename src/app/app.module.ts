@@ -10,6 +10,7 @@ import { ViewComponent } from './view/view.component';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from "@angular/forms";
 import { GroupCreateComponent } from './group-create/group-create.component';
+import { CreateRequestComponent } from './create-request/create-request.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { GroupCreateComponent } from './group-create/group-create.component';
     HeaderComponent,
     ViewComponent,
     GroupCreateComponent,
+    CreateRequestComponent,
 
   ],
   imports: [

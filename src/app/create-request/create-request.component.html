@@ -1,0 +1,29 @@
+<div class="container">
+  <div class ="row">
+    <div class ="col-md-6 offset-md-3">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <label for="name">Request Name:</label>
+        <input type="text" id="name" formControlName="name">
+
+        <label for="url">URL</label>
+        <input type="text" id="url" formControlName="url">
+
+        <label for="header">Header Name:</label>
+        <input type="text" id="header" formControlName="header">
+
+        <label for="reqBody">Request body:</label>
+        <input type="text" id="reqBody" formControlName="reqBody">
+
+        <label for="resBody">Request body:</label>
+        <input type="text" id="resBody" formControlName="resBody">
+
+        <label for="groupEntity">Request body:</label>
+        <input type="text" id="groupEntity" formControlName="groupEntity">
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+

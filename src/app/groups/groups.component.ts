@@ -57,7 +57,7 @@ export class GroupsComponent {
     alert( id)
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        groupID: 0
+        groupID: id
       }
     };
     this.router.navigate(['/group/create'],navigationExtras)

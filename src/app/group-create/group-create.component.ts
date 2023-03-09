@@ -9,15 +9,14 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class GroupCreateComponent implements  OnInit{
   form: FormGroup;
-  groupId: number | null;
+  groupId:number| null;
   constructor(private route: ActivatedRoute,private http: HttpClient) {
-    this.groupId=null;
+    this.groupId= null;
     this.form = new FormGroup({
       groupName: new FormControl('')
     });
   }
   onSubmit() {
-
     const formData = this.form.value;
     console.log(formData)
     let url='http://localhost:8080/group_list';
@@ -34,8 +33,9 @@ export class GroupCreateComponent implements  OnInit{
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.groupId = params['groupId'];
+      this.groupId = Number(params['groupID']);
       console.log(this.groupId)
+      console.log(params)
     });
   }
 
