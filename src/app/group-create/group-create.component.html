@@ -1,0 +1,12 @@
+<div class="container">
+  <div class ="row">
+    <div class ="col-md-6 offset-md-3">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <label for="groupName">Group Name:</label>
+        <input type="text" id="groupName" formControlName="groupName">
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+</div>
