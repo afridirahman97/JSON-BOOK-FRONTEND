@@ -6,6 +6,7 @@ import { ViewComponent } from './view/view.component';
 import {GroupCreateComponent} from "./group-create/group-create.component";
 import {CreateRequestComponent} from "./create-request/create-request.component";
 import {RequestComponent} from "./request/request.component";
+import { RequestDataComponent } from './request-data/request-data.component';
 
 const routes: Routes = [
   {
@@ -35,7 +36,11 @@ const routes: Routes = [
   {
   component: CreateRequestComponent,
   path:'request/create'
-}
+  },
+  {
+    component : RequestDataComponent,
+    path:'a'
+  }
 
 ];
 

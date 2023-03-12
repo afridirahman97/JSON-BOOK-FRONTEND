@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router} from '@angular/router';
 import {Location} from '@angular/common';
+import { RequestDataService } from '../request-data.service';
 
 
 
@@ -16,7 +17,21 @@ export class ViewComponent implements OnInit {
 
   groupId : any;
   groupName: any;
-  constructor(private route: ActivatedRoute, private router: Router, private location: Location){
+  rows: any;
+  a : any;
+  b : any
+
+
+  constructor(private route: ActivatedRoute, private router: Router, private location: Location, private data: RequestDataService){
+    this.data.getData().subscribe(data =>{
+      //console.warn(data)
+      this.rows = data
+      console.log(this.rows)
+      console.log(this.rows[0].groupEntity)
+      this.a = this.rows[0].groupEntity.groupId
+      this.b = this.rows[0].groupEntity.groupName
+
+    })
 
   }
 

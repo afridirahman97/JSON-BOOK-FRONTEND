@@ -12,6 +12,7 @@ import { GroupCreateComponent } from './group-create/group-create.component';
 import { CreateRequestComponent } from './create-request/create-request.component';
 import {ReactiveFormsModule} from '@angular/forms'
 import { RequestComponent } from './request/request.component';
+import { RequestDataComponent } from './request-data/request-data.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { RequestComponent } from './request/request.component';
     ViewComponent,
     GroupCreateComponent,
     CreateRequestComponent,
+    RequestDataComponent,
    
 
   ],
