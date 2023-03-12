@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , HostListener } from '@angular/core';
 import {NavigationExtras, Router} from '@angular/router';
 import { GroupDataService } from '../group-data.service';
 import {DeleteGroupService} from "../delete-group.service";
@@ -12,8 +12,10 @@ import {DeleteGroupService} from "../delete-group.service";
 })
 export class GroupsComponent {
 
+
    topSection: "topSection" = "topSection";
    rows: any;
+
 
 
   constructor(private router: Router, private data: GroupDataService,private del:DeleteGroupService) {
@@ -26,31 +28,10 @@ export class GroupsComponent {
   }
 
 
-
-
   headers = ["ID", "Group Name", "Actions"];
 
+  
 
-
-  // rows = [
-  //   {
-  //     "groupId" : 1,
-  //     "GroupName":"Frist Group",
-
-  //   },
-  //   {
-  //     "groupId" : 2,
-  //     "GroupName":"second Group",
-
-
-  //   },
-  //   {
-  //     "groupId" : 3,
-  //     "GroupName":"third Group",
-
-
-  //   },
-  // ]
 
 
   performEdit(id: number){

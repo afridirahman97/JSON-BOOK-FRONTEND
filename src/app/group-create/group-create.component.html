@@ -1,11 +1,23 @@
-<div class="container">
-  <div class ="row">
-    <div class ="col-md-6 offset-md-3">
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <label for="groupName">Group Name:</label>
-        <input type="text" id="groupName" formControlName="groupName">
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+
+
+<div class="row">
+  <div class="col-md-6 offset-md-3 col-sm-6 offset-sm-3 p-4 border bg-light mt-5">
+    <form [formGroup]= "form" (ngSubmit)="onSubmit()">
+
+      <div class="header">
+        <h2>New Group Creation</h2>
+      </div>
+      <div class="form-group">
+        <label class="p-1" for="groupName">Group Name</label>
+        <input type="text" class="form-control" id="groupName" formControlName="groupName">
+      </div>
+<br>
+
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Create Group</button>
+      </div>
+    </form>
   </div>
 </div>
+

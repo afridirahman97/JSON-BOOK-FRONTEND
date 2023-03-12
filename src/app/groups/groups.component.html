@@ -5,22 +5,23 @@
 
 
 <h1>Groups Table</h1>
-<hr>
 
-<table id="users">
-  <tr>
-    <th *ngFor = "let column of headers">
-      {{column}}
-    </th>
-  </tr>
 
-  <!-- <tr *ngFor = "let row of rows">
-    <td *ngFor = "let column of headers">
-      {{row.ID}}
-    </td>
+<table id="users" class="table" >
 
-  </tr> -->
+  <thead>
+    <tr>
+      <th *ngFor = "let column of headers">
+        {{column}}
+      </th>
 
+    </tr>
+</thead>
+
+  
+
+
+<tbody>
   <tr *ngFor= "let data of rows">
 
 
@@ -35,6 +36,8 @@
 </td>
 
 </tr>
+
+</tbody>
 
 
 
