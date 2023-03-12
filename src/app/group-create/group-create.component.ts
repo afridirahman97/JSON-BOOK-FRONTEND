@@ -27,7 +27,7 @@ export class GroupCreateComponent implements  OnInit{
     console.log(formData)
     let url='http://localhost:8080/group_list';
     this.http.post(url, formData).subscribe(
-      () => {
+      () => { 
         console.log('Form data posted successfully!');
         this.form.reset();
         Swal.fire('Success', 'New Group has been created', 'success').then(() =>{
