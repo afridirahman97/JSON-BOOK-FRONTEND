@@ -8,10 +8,9 @@ import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewComponent } from './view/view.component';
 import {HttpClientModule} from '@angular/common/http';
-import {ReactiveFormsModule} from "@angular/forms";
 import { GroupCreateComponent } from './group-create/group-create.component';
 import { CreateRequestComponent } from './create-request/create-request.component';
-
+import {ReactiveFormsModule} from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -22,6 +21,7 @@ import { CreateRequestComponent } from './create-request/create-request.componen
     ViewComponent,
     GroupCreateComponent,
     CreateRequestComponent,
+   
 
   ],
   imports: [
@@ -29,7 +29,7 @@ import { CreateRequestComponent } from './create-request/create-request.componen
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
 
   ],
   providers: [],
