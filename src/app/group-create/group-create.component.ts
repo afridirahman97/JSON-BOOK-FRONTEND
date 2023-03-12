@@ -2,15 +2,21 @@ import {Component, OnInit} from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute} from "@angular/router";
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-group-create',
   templateUrl: './group-create.component.html',
   styleUrls: ['./group-create.component.css']
 })
 export class GroupCreateComponent implements  OnInit{
+
+  
   form: FormGroup;
   groupId:number| null;
-  constructor(private route: ActivatedRoute,private http: HttpClient) {
+
+  constructor(private route: ActivatedRoute,private http: HttpClient, private router: Router) {
     this.groupId= null;
     this.form = new FormGroup({
       groupName: new FormControl('')
@@ -24,6 +30,10 @@ export class GroupCreateComponent implements  OnInit{
       () => {
         console.log('Form data posted successfully!');
         this.form.reset();
+        Swal.fire('Success', 'New Group has been created', 'success').then(() =>{
+          this.router.navigateByUrl('/groups');;
+
+        });
       },
       error => {
         console.error('Error posting form data:', error);
