@@ -63,8 +63,15 @@ export class GroupsComponent {
     this.router.navigate(['/group/create'],navigationExtras)
   }
 
-  performView(id: number){
-    this.router.navigate(['/groups/'+id])
+  performView(id: number,name:String){
+    // this.router.navigate(['/groups/'+id])
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        groupID: id,
+        groupName:name
+      }
+    };
+    this.router.navigate(['group/requests'],navigationExtras)
   }
 
   performDelete(id: number,name:String){
