@@ -28,6 +28,15 @@ export class GroupCreateComponent implements  OnInit{
   onSubmit() {
     const formData = this.form.value;
     console.log(formData)
+    if( formData.groupName === "" ){
+      Swal.fire({
+        title:'Error',
+        text : 'New group must have a name',
+        icon : 'error',
+        confirmButtonColor: '#9DC08B',
+      })
+    } else {
+
     let url='http://localhost:8080/group_list';
     this.http.post(url, formData).subscribe(
       () => { 
@@ -48,6 +57,7 @@ export class GroupCreateComponent implements  OnInit{
         console.error('Error posting form data:', error);
       }
     );
+    }
   }
 
   ngOnInit(): void {

@@ -11,7 +11,7 @@
       </div>
       <div class="form-group">
         <label class="p-1" for="groupName">Group Name</label>
-        <input type="text" class="form-control" id="groupName" formControlName="groupName">
+        <input type="text" class="form-control" id="groupName" formControlName="groupName" (keydown.space)="$event.preventDefault();" required >
       </div>
 <br>
 
