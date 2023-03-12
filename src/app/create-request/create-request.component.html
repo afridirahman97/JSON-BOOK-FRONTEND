@@ -1,26 +1,55 @@
-<div class="container">
-  <div class ="row">
-    <div class ="col-md-6 offset-md-3">
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+<!-- Input form for request -->
+<div class="row">
+  <div class="col-md-6 offset-md-3 col-sm-6 offset-sm-3 p-4 border bg-light mt-5">
+    <form [formGroup]= "form" (ngSubmit)="onSubmit()">
 
-        <label for="name">Request Name:</label>
-        <input type="text" id="name" formControlName="name">
+      <div class="header">
+        <header>
+        <h2>New Request Creation</h2> 
+      </header>
+      </div>
 
-        <label for="url">URL</label>
-        <input type="text" id="url" formControlName="url">
+      <!-- request name -->
+      <div class="form-group">
+        <label class="p-1" for="requestName">Request Name</label>
+        <input type="text" class="form-control" id="requestName" formControlName="requestName">
+      </div>
 
-        <label for="header">Header Name:</label>
-        <input type="text" id="header" formControlName="header">
+      <!-- url -->
+      <div class="form-group">
+        <label class="p-1" for="urlString">URL</label>
+        <input type="text" class="form-control" id="urlString" formControlName="urlString">
+      </div>
 
-        <label for="reqBody">Request body:</label>
-        <input type="text" id="reqBody" formControlName="reqBody">
+      <!-- header -->
+      <div class="form-group">
+        <label class="p-1" for="header">Header</label>
+        <input type="text" class="form-control" id="header" formControlName="header">
+      </div>
 
-        <label for="resBody">Response body:</label>
-        <input type="text" id="resBody" formControlName="resBody">
+      <!-- rerquest body -->
+      <div class="form-group">
+        <label class="p-1" for="requestBody">Request Body</label>
+        <input type="text" class="form-control" id="requestBody" formControlName="requestBody">
+      </div>
 
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+      <!-- response body -->
+      <div class="form-group">
+        <label class="p-1" for="responseBody">Response Body</label>
+        <input type="text" class="form-control" id="responseBody" formControlName="responseBody">
+      </div>
+
+      <!-- group id  -->
+      <div class="form-group">
+        <label class="p-1" for="gropupId">Group ID</label>
+        <input type="text" class="form-control" id="gropupId" formControlName="gropupId">
+      </div>
+<br>
+
+      <!-- submit -->
+      <div class="form-group">
+        <button type="submit" class="cButton btn btn-primary">Create Group</button>
+      </div>
+    </form>
   </div>
 </div>
-
