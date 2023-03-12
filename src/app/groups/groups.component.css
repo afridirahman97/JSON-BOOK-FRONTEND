@@ -20,4 +20,10 @@ table {
     
 }
 
+/* padding for button inside the table */
+.tabButtonPadding{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 

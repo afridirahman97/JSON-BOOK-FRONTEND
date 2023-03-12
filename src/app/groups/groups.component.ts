@@ -13,6 +13,7 @@ import {DeleteGroupService} from "../delete-group.service";
 export class GroupsComponent {
 
    topSection: "topSection" = "topSection";
+   tabButtonPadding: "tabButtonPadding" = "tabButtonPadding";
    rows: any;
 
 
