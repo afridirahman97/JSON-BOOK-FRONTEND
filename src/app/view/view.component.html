@@ -1,8 +1,43 @@
-<div [class] ="topSection">
 
-<h1>Showing information for : </h1>
-<button>Create New Group</button>
+    <br>
+<!-- heading for table name and create button -->
+<div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col md-10">
+        <header>
+            <h2>Viewing Group Information :</h2>
+        </header>
+       
+     </div>
+      <div class="col-6 md col-md-2 text-right">
+        <button (click) = "performCreate()" class="btn btn-info">Create New Group</button>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-sm-6 offset-sm-3 p-4 border bg-light mt-5">
+         
+      
+            <div>
+              <h2>Name of the Group :</h2> 
+            </div>
+            <div class="form-group">
+             <h3>{{groupName}}</h3>
+            </div>
+      <br>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" (click)="backClicked()">Go Back</button>
+      </div>
+      
+      
+         
+       
+        </div>
+      </div>
+
+    
+  </div>
 
 
-</div>
-<h3>Group ID : {{groupId}}</h3>
+
