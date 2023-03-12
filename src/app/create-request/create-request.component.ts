@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
@@ -8,25 +8,42 @@ import {HttpClient} from "@angular/common/http";
   templateUrl: './create-request.component.html',
   styleUrls: ['./create-request.component.css']
 })
-export class CreateRequestComponent {
+export class CreateRequestComponent implements OnInit{
   form: FormGroup;
+  private group: any;
   constructor(private route: ActivatedRoute,private http: HttpClient) {
+
     this.form = new FormGroup({
-      id: new FormControl(),
+      name: new FormControl(),
       url: new FormControl(''),
       header: new FormControl(''),
       reqBody: new FormControl(''),
       resBody: new FormControl(''),
-      groupEntity: new FormControl()
     });
+    //this.form.addControl("groupEntity",new FormControl());
+
   }
   onSubmit() {
     const formData = this.form.value;
-    formData.groupEntity=JSON.parse(formData.groupEntity);
-    console.log(formData)
+
+    let request = {
+      name: formData.name,
+      header:formData.header,
+      url: formData.url,
+      reqBody:formData.reqBody,
+      resBody:formData.resBody,
+      groupEntity:this.group
+    };
+    console.log(formData);
+    console.log(request);
+    console.log(this.group.groupID);
+    //formData.groupEntity=JSON.parse(formData.groupEntity);
+    //console.log(formData)
     //'{"groupId": 1,"groupName": "with request2"}'
+    //formData.groupEntity=this.group;
     let url='http://localhost:8080/request';
-    this.http.post(url, formData).subscribe(
+
+    this.http.post(url,request).subscribe(
       () => {
         console.log('Form data posted successfully!');
         this.form.reset();
@@ -35,5 +52,13 @@ export class CreateRequestComponent {
         console.error('Error posting form data:', error);
       }
     );
+  }
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.group = params;
+      //this.group["groupID"]=Number(this.group["groupID"]);
+      //this.group.control['groupEntity'].setValue(this.group);
+    });
   }
 }

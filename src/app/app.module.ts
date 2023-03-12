@@ -11,6 +11,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { GroupCreateComponent } from './group-create/group-create.component';
 import { CreateRequestComponent } from './create-request/create-request.component';
 import {ReactiveFormsModule} from '@angular/forms'
+import { RequestComponent } from './request/request.component';
+
 
 @NgModule({
   declarations: [
