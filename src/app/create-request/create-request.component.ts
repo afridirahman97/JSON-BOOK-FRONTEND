@@ -34,9 +34,11 @@ export class CreateRequestComponent implements OnInit{
       resBody:formData.resBody,
       groupEntity:this.group
     };
+    console.log("here")
     console.log(formData);
     console.log(request);
     console.log(this.group.groupID);
+    console.log("here")
     //formData.groupEntity=JSON.parse(formData.groupEntity);
     //console.log(formData)
     //'{"groupId": 1,"groupName": "with request2"}'
@@ -57,6 +59,7 @@ export class CreateRequestComponent implements OnInit{
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.group = params;
+      console.log(this.group);
       //this.group["groupID"]=Number(this.group["groupID"]);
       //this.group.control['groupEntity'].setValue(this.group);
     });
