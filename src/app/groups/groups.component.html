@@ -2,7 +2,11 @@
 <!-- heading for table name and create button -->
 <div class="container htmlBody">
   <div class="row justify-content-md-center">
-    <div class="col md-10"><h2>Groups Table</h2></div>
+    <div class="col md-10">
+      <header>
+      <h2>Groups Table</h2>
+    </header>
+    </div>
     <div class="col-6 md col-md-2 text-right">
       <button (click) = "performCreate()" class="navButton btn btn-info">Create New Group</button>
     </div>
@@ -20,12 +24,12 @@
         </th>
       </tr>
       <tr *ngFor= "let data of rows">
-        <td>{{data.groupId}}</td>
+        <!-- <td>{{data.groupId}}</td> -->
         <td>{{data.groupName}}</td>
       
         <td>
           <button (click)="performEdit(data.groupId)" class="btn btn-warning tabButtonPadding">Edit</button>
-          <button (click)="performView(data.groupId)" class="btn btn-outline-success tabButtonPadding">View</button>
+          <button (click)="performView(data.groupId,data.groupName)" class="btn btn-outline-success tabButtonPadding">View</button>
           <button (click)="performDelete(data.groupId,data.groupName)" class="btn btn-outline-danger tabButtonPadding">Delete</button>     
         </td> 
       </tr>

@@ -1,8 +1,8 @@
-import { Component , HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 import {NavigationExtras, Router} from '@angular/router';
 import { GroupDataService } from '../group-data.service';
 import {DeleteGroupService} from "../delete-group.service";
-
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -30,7 +30,7 @@ export class GroupsComponent {
     })
   }
 
-  headers = ["ID", "Group Name", "Actions"];
+  headers = ["Group Name", "Actions"];
 
   
 
@@ -40,22 +40,54 @@ export class GroupsComponent {
     alert( id)
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        groupID: id
+        groupID: id,
+        
       }
     };
     this.router.navigate(['/group/create'],navigationExtras)
   }
 
-  performView(id: number){
-    this.router.navigate(['/groups/'+id])
+  performView(id: number, name: string){
+    //this.router.navigate(['/groups/'+id])
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        groupID: id,
+        groupName: name
+        
+      }
+    };
+    this.router.navigate(['/groups/'+id],navigationExtras)
   }
+  
 
   performDelete(id: number,name:String){
-    alert(name)
-    this.del.deleteData(id)
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Are you sure, you want to delete this group ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, go ahead.',
+      cancelButtonText: 'No, let me think',
+      confirmButtonColor: '#9DC08B',
+    }).then((result) => {
+      if (result.value) {
+        this.del.deleteData(id)
+        Swal.fire({
+          title:'Removed',
+          text:'This has been deleted successfully',
+          confirmButtonColor: '#9DC08B',
+          icon : 'success',
+        }).then(()=>{
+          location.reload();
+        });
+
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire('Cancelled', 'Group is still in the database', 'error');
+      }
+    });
   }
 
-
+  
   performCreate() {
     this.router.navigate(['/group/create'])
   }

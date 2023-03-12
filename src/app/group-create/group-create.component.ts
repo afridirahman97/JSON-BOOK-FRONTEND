@@ -33,7 +33,13 @@ export class GroupCreateComponent implements  OnInit{
       () => { 
         console.log('Form data posted successfully!');
         this.form.reset();
-        Swal.fire('Success', 'New Group has been created', 'success').then(() =>{
+        Swal.fire({
+          title:'Success',
+          text:'New Group has been created',
+          confirmButtonColor: '#9DC08B',
+          icon : 'success',
+          
+      }).then(() =>{
           this.router.navigateByUrl('/groups');;
 
         });
