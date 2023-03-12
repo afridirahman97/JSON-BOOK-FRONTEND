@@ -21,7 +21,7 @@ export class RequestComponent implements OnInit{
   performCreateRequest() {
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        groupID: this.group.groupID,
+        groupId: this.group.groupId,
         groupName:this.group.groupName
       }
     };
@@ -35,7 +35,7 @@ export class RequestComponent implements OnInit{
       console.log(this.group);
       console.log("param")
       console.log(params["groupId"])
-      this.data.getRequestById(Number(this.group["groupID"])).subscribe(data =>{
+      this.data.getRequestById(Number(this.group["groupId"])).subscribe(data =>{
         //console.warn(data)
         this.rows = data;
         console.log(this.rows);
