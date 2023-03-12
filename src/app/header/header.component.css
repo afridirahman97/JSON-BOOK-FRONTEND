@@ -23,3 +23,16 @@ li a {
     text-decoration: none;
     cursor: pointer;
 }
+
+.navButton{
+    background-color: #9DC08B;
+    margin: .15rem;
+    border-color: #9DC08B;
+}
+
+.navButton:active{
+
+    background-color: #40513B;
+    border-color: #40513B;
+    
+    }

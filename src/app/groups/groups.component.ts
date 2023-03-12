@@ -15,6 +15,8 @@ export class GroupsComponent {
 
    topSection: "topSection" = "topSection";
    tabButtonPadding: "tabButtonPadding" = "tabButtonPadding";
+   navButton: "navButton" = "navButton";
+   htmlBody: "htmlBody" = "htmlBody";
    rows: any;
 
 
@@ -27,7 +29,6 @@ export class GroupsComponent {
 
     })
   }
-
 
   headers = ["ID", "Group Name", "Actions"];
 
@@ -59,3 +60,4 @@ export class GroupsComponent {
     this.router.navigate(['/group/create'])
   }
 }
+

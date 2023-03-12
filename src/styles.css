@@ -1,1 +1,20 @@
-@import "~bootstrap/dist/css/bootstrap.css"
+@import "~bootstrap/dist/css/bootstrap.css";
+body {
+    background-color: #EDF1D6;
+  }
+
+.cButton{
+    background-color: #9DC08B;
+    margin: .15rem;
+    border-color: #9DC08B;
+}
+.cButton:active{
+    background-color: rgb(103, 104, 100);
+    border-color: rgb(103, 104, 100);
+    }
+
+.cButton:hover{
+    background-color: rgb(103, 104, 100);
+    border-color: rgb(103, 104, 100);
+}
+

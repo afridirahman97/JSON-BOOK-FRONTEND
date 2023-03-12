@@ -11,8 +11,8 @@ table {
     word-wrap: break-word;
   }
   
-  tr:nth-child(even) {
-    background-color: #dddddd;
+  tr:nth-child(odd) {
+    background-color: #9DC08B;
   }
 
   .topSection{
@@ -26,5 +26,21 @@ table {
   margin-left: 10px;
   margin-right: 10px;
 }
+
+/* custom button */
+.navButton{
+  background-color: #9DC08B;
+  margin: .15rem;
+  border-color: #9DC08B;
+}
+
+/* customize button color when active */
+.navButton:active{
+
+  background-color: rgb(103, 104, 100);
+  border-color: rgb(103, 104, 100);;
+  }
+
+
 
 
