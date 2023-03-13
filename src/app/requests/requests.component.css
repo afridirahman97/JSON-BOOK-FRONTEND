@@ -5,24 +5,40 @@ table {
 }
 
 td, th {
-  border: 1px solid #dddddd;
+  border: 1px solid #9DC08B;
   text-align: left;
   padding: 8px;
+  word-wrap: break-word;
 }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
+tr:nth-child(odd) {
+  background-color: #9DC08B;
 }
 
 .topSection{
   padding: 10px;
   float: right
-
+  
 }
 
-.MyTOP{
-
+header h2 {
+    
+  font-weight: 600;
+  background-image: linear-gradient(to left, #40513B, #609966);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
 }
 
+.crtReqButton{
+  background-color: #9DC08B;
+  margin: .15rem;
+  border-color: #9DC08B;
+}
 
+/* customize button color when active */
+.crtReqButton:active{
 
+  background-color: rgb(103, 104, 100);
+  border-color: rgb(103, 104, 100);;
+  }

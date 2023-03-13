@@ -1,6 +1,5 @@
-<br>
 <!-- heading for table name and create button -->
-<div class="container htmlBody">
+<div class="container htmlBody" style="padding-top: 18px; padding-bottom: 5px;">
   <div class="row justify-content-md-center">
     <div class="col md-10">
       <header>
@@ -17,17 +16,19 @@
 <!-- table body -->
 <div class="container htmlBody">
   <div class="row justify-content-md-center">
-    <table class="table table-sm table-striped">
+    <table class="table table-sm table-striped hover">
       <tr>
-        <th *ngFor = "let column of headers">
+        <!-- <th *ngFor = "let column of headers">
           {{column}}
-        </th>
+        </th> -->
+        <th>Group Name</th>
+        <th style="text-align: right;">Actions</th>
       </tr>
       <tr *ngFor= "let data of rows">
         <!-- <td>{{data.groupId}}</td> -->
         <td>{{data.groupName}}</td>
       
-        <td>
+        <td style="text-align: right;">
           <button (click)="performEdit(data.groupId)" class="btn btn-warning tabButtonPadding">Edit</button>
           <button (click)="performView(data.groupId,data.groupName)" class="btn btn-outline-success tabButtonPadding">View</button>
           <button (click)="performDelete(data.groupId,data.groupName)" class="btn btn-outline-danger tabButtonPadding">Delete</button>     
