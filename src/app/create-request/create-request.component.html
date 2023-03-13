@@ -45,18 +45,27 @@
         <input type="text" class="form-control" id="gropupId" formControlName="gropupId">
       </div> -->
 <br>
-<label class="p-1" for="gropupId">Group ID</label>
+<div>
+  <label class="p-1" for="gropupId" style="color: #609966; font-weight: bold;">Group ID</label>
 
-<select #abc id= "selectedColor" (change)="onSelected(abc.value)">
-  <option *ngFor= "let id of ids"  [value]= "id.groupId" >{{id.groupId}}</option>
-</select>
+  <select #abc id= "selectedColor" (change)="onSelected(abc.value)">
+    <option *ngFor= "let id of ids"  [value]= "id.groupId" >{{id.groupId}}</option>
+  </select>
+</div>
+
+<!-- drop-down -->
+<!-- <div class="dropdown">
+  <button type="button" class="cButton btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+    Group ID
+  </button>
+   
+</div> -->
 
 <br>
-
-      <!-- submit -->
-      <div class="form-group">
-        <button type="submit" class="cButton btn btn-primary">Create Group</button>
-      </div>
+<!-- submit -->
+<div class="form-group">
+  <button type="submit" class="cButton btn btn-primary">Create Request</button>
+</div>
     </form>
   </div>
 </div>

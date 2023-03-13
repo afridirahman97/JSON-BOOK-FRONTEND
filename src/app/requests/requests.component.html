@@ -1,31 +1,37 @@
-<br>
-<!-- heading for table name and create button -->
-<div class="container htmlBody">
-  <div class="row justify-content-md-center">
+<!-- heading for request table name and create request button -->
+<div class="container htmlBody" style="padding-top: 18px;">
+  <div class="row justify-content-md-center" style="padding-bottom: 5px;">
     <div class="col md-10">
       <header>
-      <h2>Requests Table</h2>
+      <h2>Request Table</h2>
     </header>
     </div>
     <div class="col-6 md col-md-2 text-right">
-      <button (click) = "performCreate()" class="navButton btn btn-info">Create New Group</button>
+      <button (click) = "performCreate()" class="crtReqButton btn btn-info">Create Request</button>
+      <!-- <button class="crtReqButton btn btn-info">Create Request</button> -->
     </div>
   </div>
 </div>
-<hr>
-<table id="users">
-  <tr>
-    <th *ngFor ="let column of headers">
-      {{column}}
-    </th>
-  </tr>
 
-  <tr *ngFor="let data of rows">
-    <td>{{data.gr}}</td>
-    <td>{{data.url}}</td>
-    <td>{{data.header}}</td>
-    <td>{{data.reqBody}}</td>
-    <td>{{data.resBody}}</td>
-  </tr>
-
-</table>
+<!-- viewing request information into a table -->
+<div class="container">
+  <!-- fetching table data -->
+  <div class="row justify-content-md-center">
+    <table class="table table-sm table-striped">
+      <!-- table header -->
+      <tr>
+        <th *ngFor ="let column of headers">
+          {{column}}
+        </th>
+      </tr>
+      <!-- data -->
+      <tr *ngFor="let data of rows">
+        <td>{{data.name}}</td>
+        <td>{{data.url}}</td>
+        <td>{{data.header}}</td>
+        <td>{{data.reqBody}}</td>
+        <td>{{data.resBody}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
