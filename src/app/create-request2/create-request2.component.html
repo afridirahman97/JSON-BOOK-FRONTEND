@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3 col-sm-6 offset-sm-3 p-4 border bg-light mt-5">
+    <form [formGroup]= "form" (ngSubmit)="onSubmit()">
+
+      <div class="header">
+        <header>
+          <h2>New Request Creation</h2>
+        </header>
+      </div>
+
+      <!-- request name -->
+      <div class="form-group">
+        <label class="p-1" for="name">Request Name</label>
+        <input type="text" class="form-control" id="name" formControlName="name">
+      </div>
+
+      <!-- url -->
+      <div class="form-group">
+        <label class="p-1" for="url">URL</label>
+        <input type="text" class="form-control" id="url" formControlName="url">
+      </div>
+
+      <!-- header -->
+      <div class="form-group">
+        <label class="p-1" for="header">Header</label>
+        <input type="text" class="form-control" id="header" formControlName="header">
+      </div>
+
+      <!-- rerquest body -->
+      <div class="form-group">
+        <label class="p-1" for="reqBody">Request Body</label>
+        <input type="text" class="form-control" id="reqBody" formControlName="reqBody">
+      </div>
+
+      <!-- response body -->
+      <div class="form-group">
+        <label class="p-1" for="resBody">Response Body</label>
+        <input type="text" class="form-control" id="resBody" formControlName="resBody">
+      </div>
+
+      <br>
+      <!-- submit -->
+      <div class="form-group">
+        <button type="submit" class="cButton btn btn-primary">Create Group</button>
+      </div>
+    </form>
+  </div>
+</div>

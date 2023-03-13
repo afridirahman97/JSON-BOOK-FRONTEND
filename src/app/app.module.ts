@@ -12,6 +12,8 @@ import { GroupCreateComponent } from './group-create/group-create.component';
 import { CreateRequestComponent } from './create-request/create-request.component';
 import {ReactiveFormsModule} from '@angular/forms'
 import { RequestDataComponent } from './request-data/request-data.component';
+import { GroupEditComponent } from './group-edit/group-edit.component';
+import { CreateRequest2Component } from './create-request2/create-request2.component';
 
 
 
@@ -25,7 +27,8 @@ import { RequestDataComponent } from './request-data/request-data.component';
     GroupCreateComponent,
     CreateRequestComponent,
     RequestDataComponent,
-    
+    GroupEditComponent,
+    CreateRequest2Component,
    
 
   ],

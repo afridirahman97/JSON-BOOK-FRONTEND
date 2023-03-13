@@ -1,48 +1,68 @@
+<br>
 <!-- heading for table name and create button -->
-<div class="container htmlBody" style="padding-top: 18px;">
+<div class="container">
   <div class="row justify-content-md-center">
     <div class="col md-10">
       <header>
-      <h2>Group Information</h2>
-    </header>
+        <h2>Viewing Group Information :</h2>
+      </header>
     </div>
     <div class="col-6 md col-md-2 text-right">
-      <button (click) = "performCreate()" class="cButton btn btn-info">Create New Group</button>
-    </div>
-  </div>
-</div>
+      <button (click) = "performCreate()" class="cButton btn btn-info">Create New Request</button>
 
-<!-- viewing group information into a table -->
-
-<div class="container">
-  <!-- group name and heading -->
-  <div class="row justify-content-md-center">
-    <div>
-      <h2>Name: {{groupName}}</h2>
-      <h2>All requests for {{groupName}}</h2>
-      <hr>
     </div>
   </div>
 
-  <!-- table -->
-  <table class="table table-sm table-striped">
-    <!-- table header -->
-    <tr>
-      <th *ngFor = "let column of headers">
-        {{column}}
-      </th>
-    </tr>
-    <!-- table data -->
-    <tr *ngFor= "let data of rows">
-      <td>{{data.header}}</td>
-      <td>{{data.name}}</td>
-      <td>{{data.reqBody}}</td>
-      <td>{{data.resBody}}</td>
-      <td>{{data.url}}</td>
-    </tr>
-  </table>
-  <!-- end table and go back button -->
-  <div class="form-group">
-    <button type="submit" class="cButton btn btn-primary" (click)="backClicked()">Go Back</button>
-  </div> 
-</div>
+  <div class="row">
+    <div class="col-md-6 offset-md-3 col-sm-6 offset-sm-3 p-4 border bg-light mt-5">
+
+
+      <div>
+        <h2>Name of the Group :</h2>
+      </div>
+      <div class="form-group">
+        <h3>{{groupName}}</h3>
+      </div>
+      <div>
+        <h2>Requests for this group :</h2>
+      </div>
+
+
+      <div class="container htmlBody">
+        <div class="row justify-content-md-center">
+          <table class="table table-sm table-striped">
+            <tr>
+              <th *ngFor = "let column of headers">
+                {{column}}
+              </th>
+            </tr>
+            <tr *ngFor= "let data of rows">
+              <!-- <td>{{data.groupId}}</td> -->
+              <td>{{data.header}}</td>
+              <td>{{data.name}}</td>
+              <td>{{data.reqBody}}</td>
+              <td>{{data.resBody}}</td>
+              <td>{{data.url}}</td>
+
+              <!-- <td>
+                <button (click)="performEdit(data.groupId)" class="btn btn-warning tabButtonPadding">Edit</button>
+                <button (click)="performView(data.groupId,data.groupName)" class="btn btn-outline-success tabButtonPadding">View</button>
+                <button (click)="performDelete(data.groupId,data.groupName)" class="btn btn-outline-danger tabButtonPadding">Delete</button>
+              </td>  -->
+            </tr>
+
+          </table>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="cButton btn btn-primary" (click)="backClicked()">Go Back</button>
+        </div>
+
+
+
+
+      </div>
+    </div>
+
+
+  </div>

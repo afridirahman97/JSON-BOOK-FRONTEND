@@ -32,32 +32,32 @@ export class GroupsComponent {
 
   headers = ["Group Name", "Actions"];
 
-  
+
 
 
 
   performEdit(id: number){
-    alert( id)
+    /*alert( id)
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        groupID: id,
-        
+        groupID: id
       }
     };
-    this.router.navigate(['/group/create'],navigationExtras)
+    this.router.navigate(['/group/create'],navigationExtras)*/
+    this.router.navigate(['group/edit/'+id]);
   }
 
   performView(id: number, name: string){
     //this.router.navigate(['/groups/'+id])
-    let navigationExtras: NavigationExtras = {
+    /*let navigationExtras: NavigationExtras = {
       queryParams: {
         groupId: id,
         groupName:name
       }
-    };
-    this.router.navigate(['/groups/'+id],navigationExtras)
+    };*/
+    this.router.navigate(['/groups/view/'+id])
   }
-  
+
 
   performDelete(id: number,name:String){
     Swal.fire({
@@ -86,7 +86,7 @@ export class GroupsComponent {
     });
   }
 
-  
+
   performCreate() {
     this.router.navigate(['/group/create'])
   }
