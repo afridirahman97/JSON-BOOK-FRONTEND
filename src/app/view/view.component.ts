@@ -24,15 +24,7 @@ export class ViewComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute, private router: Router, private location: Location, private data: RequestDataService){
-    this.data.getData().subscribe(data =>{
-      //console.warn(data)
-      this.rows = data
-      console.log(this.rows)
-      console.log(this.rows[0].groupEntity)
-      this.a = this.rows[0].groupEntity.groupId
-      this.b = this.rows[0].groupEntity.groupName
 
-    })
 
   }
 
@@ -42,16 +34,26 @@ export class ViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.groupId = this.route.snapshot.paramMap.get('id');
-    this.route.queryParams.subscribe(params => {
+    console.log(this.groupId);
+    this.data.getRequestById(this.groupId).subscribe(data =>{
+      //console.warn(data)
+      this.rows = data;
+      console.log(this.rows);
+      console.log(this.rows[0].groupEntity);
+      this.a = this.rows[0].groupEntity.groupId;
+      this.b = this.rows[0].groupEntity.groupName;
+
+    })
+    /*this.route.queryParams.subscribe(params => {
       this.groupId = params['groupID']
       this.groupName = params['groupName'];
-     
-    });
+
+    });*/
    // console.log(this.groupId,this.groupName)
-    
+
   }
   performCreate() {
-    this.router.navigate(['/group/create'])
+    this.router.navigate([`/groups/view/${this.groupId}/create-request`]);
   }
 
   backClicked() {
@@ -59,7 +61,7 @@ export class ViewComponent implements OnInit {
     //console.log('asdas')
   }
 
- 
+
 
 
 

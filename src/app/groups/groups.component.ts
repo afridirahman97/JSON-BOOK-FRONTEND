@@ -49,13 +49,13 @@ export class GroupsComponent {
 
   performView(id: number, name: string){
     //this.router.navigate(['/groups/'+id])
-    let navigationExtras: NavigationExtras = {
+    /*let navigationExtras: NavigationExtras = {
       queryParams: {
         groupId: id,
         groupName:name
       }
-    };
-    this.router.navigate(['/groups/'+id],navigationExtras)
+    };*/
+    this.router.navigate(['/groups/view/'+id])
   }
 
 

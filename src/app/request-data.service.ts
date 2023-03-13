@@ -11,7 +11,10 @@ export class RequestDataService {
     getData(){
       let url="http://localhost:8080/request/1"
       return this.http.get(url);
-
-    
    }
+  getRequestById(groupId:number){
+    let url="http://localhost:8080/request/"+groupId.toString();
+    return this.http.get(url);
+
+  }
 }
