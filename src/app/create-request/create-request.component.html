@@ -11,39 +11,46 @@
 
       <!-- request name -->
       <div class="form-group">
-        <label class="p-1" for="requestName">Request Name</label>
-        <input type="text" class="form-control" id="requestName" formControlName="requestName">
+        <label class="p-1" for="name">Request Name</label>
+        <input type="text" class="form-control" id="name" formControlName="name">
       </div>
 
       <!-- url -->
       <div class="form-group">
-        <label class="p-1" for="urlString">URL</label>
-        <input type="text" class="form-control" id="urlString" formControlName="urlString">
+        <label class="p-1" for="url">URL</label>
+        <input type="text" class="form-control" id="url" formControlName="url">
       </div>
 
       <!-- header -->
       <div class="form-group">
         <label class="p-1" for="header">Header</label>
-        <input type="text" class="form-control" id="header" formControlName="header">
+        <textarea type="text" class="form-control" id="header" formControlName="header"></textarea> 
       </div>
 
       <!-- rerquest body -->
       <div class="form-group">
-        <label class="p-1" for="requestBody">Request Body</label>
-        <input type="text" class="form-control" id="requestBody" formControlName="requestBody">
+        <label class="p-1" for="reqBody">Request Body</label>
+        <textarea type="text" class="form-control" id="reqBody" formControlName="reqBody"> </textarea>
       </div>
 
       <!-- response body -->
       <div class="form-group">
-        <label class="p-1" for="responseBody">Response Body</label>
-        <input type="text" class="form-control" id="responseBody" formControlName="responseBody">
+        <label class="p-1" for="resBody">Response Body</label>
+        <textarea type="text" class="form-control" id="resBody" formControlName="resBody"> </textarea>
       </div>
 
       <!-- group id  -->
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label class="p-1" for="gropupId">Group ID</label>
         <input type="text" class="form-control" id="gropupId" formControlName="gropupId">
-      </div>
+      </div> -->
+<br>
+<label class="p-1" for="gropupId">Group ID</label>
+
+<select #abc id= "selectedColor" (change)="onSelected(abc.value)">
+  <option *ngFor= "let id of ids"  [value]= "id.groupId" >{{id.groupId}}</option>
+</select>
+
 <br>
 
       <!-- submit -->

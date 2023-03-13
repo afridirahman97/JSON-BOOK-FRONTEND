@@ -21,5 +21,9 @@ export class RequestsComponent {
     })
   }
 
+  performCreate() {
+    this.router.navigate(['/request/create'])
+  }
+
 
 }
