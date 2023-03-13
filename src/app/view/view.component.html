@@ -1,3 +1,22 @@
+
+
+<ng-template #showThis> 
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col md-10">
+        <header>
+          <h2>This group has no requests yet !</h2>
+        </header>
+      </div>
+      <div class="col-6 md col-md-2 text-right">
+        <button (click) = "performCreate()" class="cButton btn btn-info">Create New Request</button>
+  
+      </div>
+    </div>
+    </div>
+</ng-template> 
+
+<div *ngIf="displayElement; else showThis">
 <br>
 <!-- heading for table name and create button -->
 <div class="container">
@@ -21,10 +40,10 @@
         <h2>Name of the Group :</h2>
       </div>
       <div class="form-group">
-        <h3>{{groupName}}</h3>
+        <h3>{{b}}</h3>
       </div>
       <div>
-        <h2>Requests for this group :</h2>
+        <h2>Request lists for this group :</h2>
       </div>
 
 
@@ -65,4 +84,8 @@
     </div>
 
 
-  </div>
+   </div>
+</div>
+</div>
+
+

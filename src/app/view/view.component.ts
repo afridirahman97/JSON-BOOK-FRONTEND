@@ -15,12 +15,13 @@ import { RequestComponent } from '../request/request.component';
 export class ViewComponent implements OnInit {
 
   topSection: "topSection" = "topSection";
-
   groupId : any;
   groupName: any;
   rows: any;
-  a : any;
-  b : any
+  // a : any;
+   b : any
+
+  displayElement = false;
 
 
   constructor(private route: ActivatedRoute, private router: Router, private location: Location, private data: RequestDataService){
@@ -30,26 +31,43 @@ export class ViewComponent implements OnInit {
 
   headers = ["Header", "Request Name", "Request Body", "Response Body", "URL"];
 
-
+ 
 
   ngOnInit(): void {
     this.groupId = this.route.snapshot.paramMap.get('id');
     console.log(this.groupId);
     this.data.getRequestById(this.groupId).subscribe(data =>{
-      //console.warn(data)
+      
+      if( Object.keys(data).length === 0 ){
+        //do nothing
+      } else{
+        this.displayElement=true
+      }
+      console.log(this.displayElement)
       this.rows = data;
+    
       console.log(this.rows);
       console.log(this.rows[0].groupEntity);
-      this.a = this.rows[0].groupEntity.groupId;
-      this.b = this.rows[0].groupEntity.groupName;
+      // this.a = this.rows[0].groupEntity.groupId;
+     this.b = this.rows[0].groupEntity.groupName;
+     // console.log(this.b)
+
+     
 
     })
-    /*this.route.queryParams.subscribe(params => {
-      this.groupId = params['groupID']
-      this.groupName = params['groupName'];
 
-    });*/
-   // console.log(this.groupId,this.groupName)
+    // if( this.rows === null ){
+    //   this.displayElement = false
+      
+    // }else{
+    //   //do nothing
+    //   console.log('coming here');
+    //   console.log(this.rows)
+    // }
+
+    // console.log(this.displayElement)
+    
+    
 
   }
   performCreate() {
