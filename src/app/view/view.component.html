@@ -10,6 +10,7 @@
      </div>
       <div class="col-6 md col-md-2 text-right">
         <button (click) = "performCreate()" class="cButton btn btn-info">Create New Group</button>
+
       </div>
     </div>
 
@@ -24,11 +25,35 @@
              <h3>{{groupName}}</h3>
             </div>
             <div>
-              <h2>Requests for Group :</h2> 
+              <h2>Requests for this group :</h2> 
             </div>
           
-            <p>Request Name : {{b}}</p>
-      <br>
+
+      <div class="container htmlBody">
+        <div class="row justify-content-md-center">
+          <table class="table table-sm table-striped">
+            <tr>
+              <th *ngFor = "let column of headers">
+                {{column}}
+              </th>
+            </tr>
+            <tr *ngFor= "let data of rows">
+              <!-- <td>{{data.groupId}}</td> -->
+              <td>{{data.header}}</td>
+              <td>{{data.name}}</td>
+              <td>{{data.reqBody}}</td>
+              <td>{{data.resBody}}</td>
+              <td>{{data.url}}</td>
+            
+              <!-- <td>
+                <button (click)="performEdit(data.groupId)" class="btn btn-warning tabButtonPadding">Edit</button>
+                <button (click)="performView(data.groupId,data.groupName)" class="btn btn-outline-success tabButtonPadding">View</button>
+                <button (click)="performDelete(data.groupId,data.groupName)" class="btn btn-outline-danger tabButtonPadding">Delete</button>     
+              </td>  -->
+            </tr>
+       
+          </table>
+        </div>
 
       <div class="form-group">
         <button type="submit" class="cButton btn btn-primary" (click)="backClicked()">Go Back</button>

@@ -13,3 +13,32 @@ header h2 {
     background-clip: text;
     -webkit-background-clip: text;
   }
+
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    word-wrap: break-word;
+  }
+  
+  tr:nth-child(odd) {
+    background-color: #9DC08B;
+  }
+
+  .topSection{
+    padding: 10px;
+    float: right
+    
+}
+
+/* padding for button inside the table */
+.tabButtonPadding{
+  margin-left: 10px;
+  margin-right: 10px;
+}

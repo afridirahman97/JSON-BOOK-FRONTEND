@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router} from '@angular/router';
 import {Location} from '@angular/common';
 import { RequestDataService } from '../request-data.service';
+import { RequestComponent } from '../request/request.component';
 
 
 
@@ -34,6 +35,9 @@ export class ViewComponent implements OnInit {
     })
 
   }
+
+  headers = ["Header", "Request Name", "Request Body", "Response Body", "URL"];
+
 
 
   ngOnInit(): void {

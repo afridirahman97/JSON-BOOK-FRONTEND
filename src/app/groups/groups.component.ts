@@ -77,7 +77,7 @@ export class GroupsComponent {
           confirmButtonColor: '#9DC08B',
           icon : 'success',
         }).then(()=>{
-          location.reload();
+          //location.reload();
         });
 
       } else if (result.dismiss === Swal.DismissReason.cancel) {
