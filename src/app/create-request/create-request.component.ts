@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
+import { GroupDataService } from '../group-data.service';
+
+
 
 @Component({
   selector: 'app-create-request',
@@ -11,7 +14,10 @@ import {HttpClient} from "@angular/common/http";
 export class CreateRequestComponent implements OnInit{
   form: FormGroup;
   private group: any;
-  constructor(private route: ActivatedRoute,private http: HttpClient) {
+  ids: any;
+
+
+  constructor(private route: ActivatedRoute,private http: HttpClient, private groupID: GroupDataService) {
 
     this.form = new FormGroup({
       name: new FormControl(),
@@ -20,11 +26,20 @@ export class CreateRequestComponent implements OnInit{
       reqBody: new FormControl(''),
       resBody: new FormControl(''),
     });
+
+
+
+    
     //this.form.addControl("groupEntity",new FormControl());
 
   }
   onSubmit() {
     const formData = this.form.value;
+  
+    
+    let groupEntity = {
+      groupId : +(this.selectedTeam)
+    }
 
     let request = {
       name: formData.name,
@@ -32,12 +47,13 @@ export class CreateRequestComponent implements OnInit{
       url: formData.url,
       reqBody:formData.reqBody,
       resBody:formData.resBody,
-      groupEntity:this.group
+      id: formData.id,
+      groupEntity:groupEntity
     };
     console.log("here")
-    console.log(formData);
-    console.log(request);
-    console.log(this.group.groupID);
+   // console.log(formData);
+   // console.log(request);
+    console.log(this.group);
     console.log("here")
     //formData.groupEntity=JSON.parse(formData.groupEntity);
     //console.log(formData)
@@ -55,13 +71,21 @@ export class CreateRequestComponent implements OnInit{
       }
     );
   }
+ 
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.group = params;
-      console.log(this.group);
-      //this.group["groupID"]=Number(this.group["groupID"]);
-      //this.group.control['groupEntity'].setValue(this.group);
+    });
+
+    this.groupID.getData().subscribe(ids => {
+      this.ids = ids;
     });
   }
+
+  selectedTeam = '';
+	onSelected(value:string): void {
+		this.selectedTeam = value;
+    console.log(this.selectedTeam)
+	}
 }

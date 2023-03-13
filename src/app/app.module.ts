@@ -11,8 +11,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { GroupCreateComponent } from './group-create/group-create.component';
 import { CreateRequestComponent } from './create-request/create-request.component';
 import {ReactiveFormsModule} from '@angular/forms'
-import { RequestComponent } from './request/request.component';
 import { RequestDataComponent } from './request-data/request-data.component';
+
 
 
 @NgModule({
@@ -25,6 +25,7 @@ import { RequestDataComponent } from './request-data/request-data.component';
     GroupCreateComponent,
     CreateRequestComponent,
     RequestDataComponent,
+    
    
 
   ],
@@ -34,6 +35,7 @@ import { RequestDataComponent } from './request-data/request-data.component';
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    
 
   ],
   providers: [],
