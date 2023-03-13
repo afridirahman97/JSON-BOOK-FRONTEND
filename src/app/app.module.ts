@@ -13,6 +13,7 @@ import { CreateRequestComponent } from './create-request/create-request.componen
 import {ReactiveFormsModule} from '@angular/forms'
 import { RequestComponent } from './request/request.component';
 import { RequestDataComponent } from './request-data/request-data.component';
+import { GroupEditComponent } from './group-edit/group-edit.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { RequestDataComponent } from './request-data/request-data.component';
     GroupCreateComponent,
     CreateRequestComponent,
     RequestDataComponent,
+    GroupEditComponent,
    
 
   ],

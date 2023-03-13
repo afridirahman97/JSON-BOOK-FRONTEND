@@ -10,7 +10,7 @@ export class DeleteGroupService {
     let url='http://localhost:8080/group_list/delete/'+id.toString();
     ///api/items/${itemId}
      // console.log(this.http.delete(url));
-    //console.log(url);
+    console.log(url);
     this.http.delete(url)
        .subscribe(() => console.log( 'Delete successful'));
   }
