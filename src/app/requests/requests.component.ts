@@ -11,7 +11,7 @@ import {DeleteGroupService} from "../delete-group.service";
 })
 export class RequestsComponent {
   topSection: "topSection" = "topSection";
-  headers = ["Name", "Url", "Header", "Req", "Res"];
+  headers = ["Name", "URL", "Header", "Request Body", "Response Body"];
   rows:any;
   constructor(private router:Router,private route: ActivatedRoute,private http: HttpClient, private data: GroupDataService, private del:DeleteGroupService) {
     this.data.getRequest().subscribe(data =>{
