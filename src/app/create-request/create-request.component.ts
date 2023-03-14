@@ -3,7 +3,8 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import { GroupDataService } from '../group-data.service';
-
+// importing font-awesome emoji
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons'; 
 
 
 @Component({
@@ -15,7 +16,7 @@ export class CreateRequestComponent implements OnInit{
   form: FormGroup;
   private group: any;
   ids: any;
-
+  faPlusSquare = faPlusSquare;
 
   constructor(private route: ActivatedRoute,private http: HttpClient, private groupID: GroupDataService) {
 

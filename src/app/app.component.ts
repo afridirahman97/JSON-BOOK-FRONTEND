@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-
-
+//importing font awesome
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +9,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'JSON-BOOK'; 
+  faCoffee = faCoffee;
 }

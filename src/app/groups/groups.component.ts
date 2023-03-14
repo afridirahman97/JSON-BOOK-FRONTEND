@@ -3,6 +3,9 @@ import {NavigationExtras, Router} from '@angular/router';
 import { GroupDataService } from '../group-data.service';
 import {DeleteGroupService} from "../delete-group.service";
 import Swal from 'sweetalert2';
+//importing necessary font awesome emojis for group component
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'; 
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons'; 
 
 
 @Component({
@@ -18,6 +21,8 @@ export class GroupsComponent {
    navButton: "navButton" = "navButton";
    htmlBody: "htmlBody" = "htmlBody";
    rows: any;
+   faCoffee = faCoffee;
+   faPlusSquare = faPlusSquare;
 
 
 

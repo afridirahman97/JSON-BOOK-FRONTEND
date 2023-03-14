@@ -1,13 +1,13 @@
 <!-- heading for request table name and create request button -->
 <div class="container htmlBody" style="padding-top: 18px;">
-  <div class="row justify-content-md-center" style="padding-bottom: 5px;">
-    <div class="col md-10">
+  <div class="row d-flex justify-content-" style="padding-bottom: 5px;">
+    <div class="col md-10 nopadding" style="margin: 0 rem;">
       <header>
       <h2>Request Table</h2>
     </header>
     </div>
-    <div class="col-6 md col-md-2 text-right">
-      <button (click) = "performCreate()" class="crtReqButton btn btn-info">Create Request</button>
+    <div class="col-1 md col-md-2 d-flex justify-content-end" style="margin-right: 0.5rem;">
+      <button (click) = "performCreate()" class="crtReqButton btn btn-info"> <fa-icon [icon]="faPlusSquare"></fa-icon> Request </button>
       <!-- <button class="crtReqButton btn btn-info">Create Request</button> -->
     </div>
   </div>
@@ -16,7 +16,7 @@
 <!-- viewing request information into a table -->
 <div class="container">
   <!-- fetching table data -->
-  <div class="row justify-content-md-center">
+  <div class="row col-md-12 justify-content-md-center">
     <table class="table table-sm table-striped">
       <!-- table header -->
       <tr>

@@ -4,8 +4,8 @@ import { Router} from '@angular/router';
 import {Location} from '@angular/common';
 import { RequestDataService } from '../request-data.service';
 import { RequestComponent } from '../request/request.component';
-
-
+// importing font-awesome emoji
+import {faPlusSquare} from '@fortawesome/free-solid-svg-icons'; 
 
 @Component({
   selector: 'app-view',
@@ -22,6 +22,8 @@ export class ViewComponent implements OnInit {
    b : any
 
   displayElement = false;
+
+  faPlusSquare= faPlusSquare;
 
 
   constructor(private route: ActivatedRoute, private router: Router, private location: Location, private data: RequestDataService){

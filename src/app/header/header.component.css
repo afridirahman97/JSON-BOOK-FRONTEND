@@ -33,13 +33,13 @@ li a {
 .navButton:active{
 
     background-color: #40513B;
-    border-color: #40513B;
+    border-color: #50644a;
     
     }
 
 
 
- /* Add a black background color to the top navigation */
+ /* Add a background color to the top navigation */
  .topnav {
     background-color: #609966;
     overflow: hidden;
@@ -49,7 +49,7 @@ li a {
   .topnav a {
     float: left;
     display: block;
-    color:m black;
+    color: black;
     text-align: center;
     padding: 6px 8px;
     text-decoration: none;
@@ -58,8 +58,8 @@ li a {
   
   /* Change the color of links on hover */
   .topnav a:hover {
-    background-color: #ddd;
-    color: #609966;
+    background-color: #b7e7bfe0;
+    color: black;
   }
   
   /* Add an active class to highlight the current page */

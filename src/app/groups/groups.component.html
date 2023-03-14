@@ -1,21 +1,24 @@
 <!-- heading for table name and create button -->
 <div class="container htmlBody" style="padding-top: 18px; padding-bottom: 5px;">
-  <div class="row justify-content-md-center">
-    <div class="col md-10">
-      <header>
+  <div class="d-flex  row justify-content-md-center" style="margin-right: 1px;">
+    <div class="col-sm-10 d-flex justify-content-start nopadding">
       <h2>Groups Table</h2>
-    </header>
+       <!-- <h2><fa-icon [icon]="faPlusSquare"></fa-icon></h2>  -->
     </div>
-    <div class="col-6 md col-md-2 text-right">
-      <button (click) = "performCreate()" class="navButton btn btn-info">Create New Group</button>
+
+
+
+    <div class="col-sm-2 d-flex justify-content-end">
+      <button (click) = "performCreate()" class="navButton btn btn-info"> <fa-icon [icon]="faPlusSquare"></fa-icon> Group </button>
     </div>
   </div>
 </div>
+<!-- test -->
 <!-- <hr> -->
 
 <!-- table body -->
 <div class="container htmlBody">
-  <div class="row justify-content-md-center">
+  <div class="col-sm-12 row justify-content-md-center">
     <table class="table table-sm table-striped hover">
       <tr>
         <!-- <th *ngFor = "let column of headers">
@@ -29,7 +32,7 @@
         <td>{{data.groupName}}</td>
       
         <td style="text-align: right;">
-          <button (click)="performEdit(data.groupId)" class="btn btn-warning tabButtonPadding">Edit</button>
+          <button (click)="performEdit(data.groupId)" class="btn btn-outline-warning tabButtonPadding ">Edit</button>
           <button (click)="performView(data.groupId,data.groupName)" class="btn btn-outline-success tabButtonPadding">View</button>
           <button (click)="performDelete(data.groupId,data.groupName)" class="btn btn-outline-danger tabButtonPadding">Delete</button>     
         </td> 

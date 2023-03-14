@@ -42,3 +42,7 @@ header h2 {
   background-color: rgb(103, 104, 100);
   border-color: rgb(103, 104, 100);;
   }
+  .nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
