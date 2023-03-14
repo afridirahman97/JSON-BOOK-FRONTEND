@@ -51,7 +51,7 @@ export class CreateRequest2Component implements OnInit{
         this.form.reset();
         Swal.fire({
           title:'Success',
-          text:'New Group has been created',
+          text:'New Request has been created',
           confirmButtonColor: '#9DC08B',
           icon : 'success',
 

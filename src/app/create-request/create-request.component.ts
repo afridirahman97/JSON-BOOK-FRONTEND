@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router } from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import { GroupDataService } from '../group-data.service';
-
+import Swal from "sweetalert2";
 
 
 @Component({
@@ -17,7 +17,7 @@ export class CreateRequestComponent implements OnInit{
   ids: any;
 
 
-  constructor(private route: ActivatedRoute,private http: HttpClient, private groupID: GroupDataService) {
+  constructor(private route: ActivatedRoute,private http: HttpClient, private groupID: GroupDataService, private router: Router) {
 
     this.form = new FormGroup({
       name: new FormControl(),
@@ -61,13 +61,31 @@ export class CreateRequestComponent implements OnInit{
     //formData.groupEntity=this.group;
     let url='http://localhost:8080/request';
 
+    
+
     this.http.post(url,request).subscribe(
       () => {
         console.log('Form data posted successfully!');
         this.form.reset();
+        Swal.fire({
+          title:'Success',
+          text:'New Request has been created',
+          confirmButtonColor: '#9DC08B',
+          icon : 'success',
+
+        }).then(() =>{
+        this.router.navigateByUrl('/requests');
+        });
       },
       error => {
         console.error('Error posting form data:', error);
+        Swal.fire({
+          title:'Error',
+          text:'Something went wrong',
+          confirmButtonColor: '#9DC08B',
+          icon : 'error',
+
+        })
       }
     );
   }
