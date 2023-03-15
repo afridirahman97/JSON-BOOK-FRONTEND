@@ -64,6 +64,36 @@
       </div>
 
 
+
+           <!-- params -->
+           <div class="form-group">
+            <label class="p-1" for="params">Params</label>
+            <div formArrayName="params">
+              <div *ngFor= "let userFormGroup of userFormParams.controls; let i = index"
+                    formGroupName= "{{i}}" class="margin-top">
+                    <div class="row-pt-2">
+                      <div class="col-md-5">
+                          <input type="text" placeholder="type" class="form-control" formControlName="key" />
+                      </div>
+                      <div class="col-md-5">
+                        <input type="text" placeholder="value" class="form-control" formControlName="value" />
+                        
+                      </div>
+                      <div class="col-md-2 remove-padding right">
+                        <a (click)= "removeParams(i)"><span>Remove</span></a>
+      
+                     </div>
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <a class="btn btn-sm btn-success" (click)= "addParams()">add</a>
+      
+              </div>
+      
+            </div>
+          </div>
+
+
   
       
 
