@@ -28,6 +28,7 @@ header h2 {
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
+
 }
 
 .crtReqButton{
@@ -42,3 +43,13 @@ header h2 {
   background-color: rgb(103, 104, 100);
   border-color: rgb(103, 104, 100);;
   }
+  .nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  
+  
+  .table {
+    table-layout: fixed;
+}

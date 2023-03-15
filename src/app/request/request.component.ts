@@ -3,6 +3,8 @@ import {ActivatedRoute, NavigationExtras, Router} from "@angular/router";
 import {GroupDataService} from "../group-data.service";
 import {DeleteGroupService} from "../delete-group.service";
 import {HttpClient} from "@angular/common/http";
+// importing font-awesome emoji
+import {faPlusSquare} from '@fortawesome/free-solid-svg-icons'; 
 
 @Component({
   selector: 'app-request',
@@ -14,6 +16,8 @@ export class RequestComponent implements OnInit{
   headers = ["Name", "Url", "Header", "Req", "Res"];
   group:any;
   rows:any;
+  faPlusSquare = faPlusSquare;
+
   constructor(private router:Router,private route: ActivatedRoute,private http: HttpClient, private data: GroupDataService, private del:DeleteGroupService) {
     this.rows=[];
   }

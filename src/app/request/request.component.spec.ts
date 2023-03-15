@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RequestComponent } from './request.component';
+import {faPlusSquare} from '@fortawesome/free-solid-svg-icons'; 
 
 describe('RequestComponent', () => {
   let component: RequestComponent;
