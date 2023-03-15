@@ -13,7 +13,7 @@ import {faPlusSquare} from '@fortawesome/free-solid-svg-icons';
 })
 export class RequestsComponent {
   topSection: "topSection" = "topSection";
-  headers = ["Name", "URL", "Header", "Request Body", "Response Body"];
+  headers = ["Name", "URL", "Header", "Request Body", "Actions"];
   rows:any;
   faPlusSquare= faPlusSquare;
   

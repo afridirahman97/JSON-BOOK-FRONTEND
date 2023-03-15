@@ -14,6 +14,7 @@
 </div>
 
 <!-- viewing request information into a table -->
+<table>
 <div class="container">
   <!-- fetching table data -->
   <div class="row col-md-12 justify-content-md-center">
@@ -29,11 +30,18 @@
         <td>{{data.name}}</td>
         <td>{{data.url}}</td>
         <td>{{data.header}}</td>
-        <td>{{data.reqBody}}</td>
-        <td>{{data.resBody}}</td>
+        <ng-template #tipContent>Hello, <b>asd</b>!</ng-template>
+        <td class="text-truncate" title="{{data.reqBody}}">{{data.reqBody}}</td>
+        <td style="text-align: center;">
+         
+          <button class="btn btn-outline-success tabButtonPadding">View Responses</button>
+    
+        </td> 
       </tr>
     </table>
   </div>
 </div>
+
+</table>
 
  

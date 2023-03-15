@@ -27,6 +27,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@syncfusion/ej2-angular-dropdowns": "^20.4.53",
     "bootstrap": "^5.2.3",
+    "native-json-editor": "^0.3.0",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.7.3",
     "tslib": "^2.3.0",
