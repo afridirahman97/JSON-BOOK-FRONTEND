@@ -16,6 +16,7 @@ import { GroupEditComponent } from './group-edit/group-edit.component';
 import { CreateRequest2Component } from './create-request2/create-request2.component';
 // importing font awesome 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ViewResponseComponent } from './view-response/view-response.component';
 
 
 
@@ -32,6 +33,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     RequestDataComponent,
     GroupEditComponent,
     CreateRequest2Component,
+    ViewResponseComponent,
   ],
   imports: [
     BrowserModule,

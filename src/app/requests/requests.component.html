@@ -34,7 +34,7 @@
         <td class="text-truncate" title="{{data.reqBody}}">{{data.reqBody}}</td>
         <td style="text-align: center;">
          
-          <button class="btn btn-outline-success tabButtonPadding">View Responses</button>
+          <button (click)="viewResponses(data.id)" class="btn btn-outline-success tabButtonPadding">View Responses</button>
     
         </td> 
       </tr>

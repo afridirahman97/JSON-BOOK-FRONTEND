@@ -29,5 +29,9 @@ export class RequestsComponent {
     this.router.navigate(['/request/create'])
   }
 
+  viewResponses(id : number ){
+    this.router.navigate(['requests/responses/'+id])
+  }
+
 
 }

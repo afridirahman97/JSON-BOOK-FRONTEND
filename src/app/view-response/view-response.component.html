@@ -1,0 +1,60 @@
+<ng-template #showThis> 
+    <div class="container">
+      <div class="row justify-content-md-center">
+        <div class="col md-12">
+          <header>
+            <h2>This resquest has no responses!!</h2>
+          </header>
+        </div>
+      </div>
+      </div>
+  </ng-template>
+
+<!-- responses table -->
+<br>
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col md-11 nopadding">
+            <header>
+              <h2>Viewing Group Information : {{b}}</h2>
+            </header>
+          </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 justify-content-center border bg-light mt-5">
+        <!-- table title -->
+        <div><h3><b>Request details:</b> request for {{b}}</h3></div>
+        <!-- table body -->
+        <div class="container htmlBody">
+            <div class="row justify-content-md-center">
+                <table class="table table-sm table-striped">
+                    <tr>
+                        <th *ngFor ="let column of table_header">
+                            {{column}}
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>200 ok</td>
+                        <td>jkjkjkguijerijljkjsdfiwejrgfklsjadfqiowgjerjkv</td>
+                        <td>2023-4-3:4:10:09</td>
+                        <td>2023-4-3:4:10:11</td>
+                        <td>203 ms</td>
+                    </tr>
+                    <tr *ngFor="let data of rows">
+                        <td>{{data.responseStatus}}</td>
+                        <td>{{data.responseBody}}</td>
+                        <td>{{data.requestedAt}}</td>
+                        <td>{{data.respondedAt}}</td>
+                        <td>{{data.timeInMils}}</td>
+                      </tr>
+                </table>
+            </div>
+        </div>
+
+      </div> 
+
+    </div>
+
+</div>
