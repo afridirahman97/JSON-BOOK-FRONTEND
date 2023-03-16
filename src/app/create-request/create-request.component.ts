@@ -42,6 +42,8 @@ export class CreateRequestComponent implements OnInit{
     private router: Router, 
     private formBuilder: FormBuilder) {
 
+    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';  
+
     this.form = new FormGroup({
       name: new FormControl(),
       url: new FormControl(''),
@@ -74,6 +76,10 @@ export class CreateRequestComponent implements OnInit{
     return this.form.get('header') as FormArray
   }
 
+  get f(){
+    return this.form.controls;
+  }
+
   addHeader(){
     const control = <FormArray>this.form.controls['header'];
     control.push(
@@ -85,8 +91,19 @@ export class CreateRequestComponent implements OnInit{
   }
 
   removeHeader(index: number){
+    if(index > 0 ){
     const control = <FormArray>this.form.controls['header'];
-    control.removeAt(index);    
+    control.removeAt(index);
+    }else{
+      Swal.fire({
+        title:'Stop',
+        text:'Must have atleast one Header',
+        confirmButtonColor: '#9DC08B',
+        icon : 'warning',
+
+      })
+    } 
+    //console.log(index)   
   }
 
 
@@ -141,8 +158,8 @@ export class CreateRequestComponent implements OnInit{
 
     let request = {
       name: formData.name,
-      header:this.myMap,
-      params:this.myMap2,
+      header: JSON.stringify(this.myMap),
+      params:JSON.stringify(this.myMap2),
       url: formData.url,
       reqBody:formData.reqBody,
       resBody:formData.resBody,
