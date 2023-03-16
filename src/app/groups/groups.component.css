@@ -11,9 +11,9 @@ table {
     word-wrap: break-word;
   }
 
-  tr{
+  /* tr{
     font-size: 10px;
-  }
+  } */
   
   tr:nth-child(odd) {
     background-color: #9DC08B;
