@@ -1,0 +1,14 @@
+
+<textarea #editor></textarea>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="ngx-codemirror mb-2">
+      <ngx-codemirror
+        [options]="options"
+        [ngModel]="defaults[mode]"
+        [disabled]="readOnly"
+        [autoFocus]="true"
+        
+        
+      ></ngx-codemirror>
+    </div>

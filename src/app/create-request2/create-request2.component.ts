@@ -44,7 +44,7 @@ export class CreateRequest2Component implements OnInit{
     console.log(formData);
     console.log(request);
     console.log("here")
-    let url='http://localhost:8080/request';
+    let url='http://localhost:8080/requests';
     this.http.post(url,request).subscribe(
       () => {
         console.log('Form data posted successfully!');

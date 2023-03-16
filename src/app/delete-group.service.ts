@@ -7,7 +7,7 @@ import {HttpClient} from "@angular/common/http";
 export class DeleteGroupService {
   constructor(private http:HttpClient) { }
    deleteData(id:number){
-    let url='http://localhost:8080/group_list/delete/'+id.toString();
+    let url='http://localhost:8080/groups/delete/'+id.toString();
     ///api/items/${itemId}
      // console.log(this.http.delete(url));
     console.log(url);

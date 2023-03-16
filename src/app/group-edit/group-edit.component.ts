@@ -41,7 +41,7 @@ export class GroupEditComponent implements  OnInit{
       })
     }
     else {
-      let url='http://localhost:8080/group_list';
+      let url='http://localhost:8080/groups';
       this.http.put(url, group).subscribe(
         () => {
           console.log('Form data posted successfully!');

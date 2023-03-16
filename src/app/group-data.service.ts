@@ -9,17 +9,17 @@ export class GroupDataService {
 
   constructor(private http:HttpClient) { }
     getData(){
-      let url="http://localhost:8080/group_list"
+      let url="http://localhost:8080/groups"
       return this.http.get(url);
 
     }
   getRequest(){
-    let url="http://localhost:8080/request"
+    let url="http://localhost:8080/requests"
     return this.http.get(url);
 
   }
   getRequestById(groupId:number){
-    let url="http://localhost:8080/request/"+groupId.toString();
+    let url="http://localhost:8080/requests/"+groupId.toString();
     return this.http.get(url);
 
   }

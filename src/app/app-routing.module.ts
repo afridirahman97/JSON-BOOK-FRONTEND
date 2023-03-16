@@ -9,6 +9,7 @@ import {RequestComponent} from "./request/request.component";
 import { RequestDataComponent } from './request-data/request-data.component';
 import {GroupEditComponent} from "./group-edit/group-edit.component";
 import {CreateRequest2Component} from "./create-request2/create-request2.component";
+import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
   {
@@ -48,8 +49,14 @@ const routes: Routes = [
     component : RequestDataComponent,
     path:'a'
   },
-  {component:GroupEditComponent,
+  {
+    component:GroupEditComponent,
     path:'group/edit/:id'
+  },
+  {
+    component: TestComponent,
+    path:'test'
+
   }
 
 ];

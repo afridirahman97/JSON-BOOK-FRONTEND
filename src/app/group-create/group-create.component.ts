@@ -37,7 +37,7 @@ export class GroupCreateComponent implements  OnInit{
       })
     } else {
 
-    let url='http://localhost:8080/group_list';
+    let url='http://localhost:8080/groups';
     this.http.post(url, formData).subscribe(
       () => { 
         console.log('Form data posted successfully!');

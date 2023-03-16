@@ -16,7 +16,9 @@ import { GroupEditComponent } from './group-edit/group-edit.component';
 import { CreateRequest2Component } from './create-request2/create-request2.component';
 // importing font awesome 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { TestComponent } from './test/test.component';
+import { FormsModule } from '@angular/forms';
+import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 
 
 
@@ -32,6 +34,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     RequestDataComponent,
     GroupEditComponent,
     CreateRequest2Component,
+    TestComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HttpClientModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    FormsModule,
+    CodemirrorModule,
     
 
   ],
