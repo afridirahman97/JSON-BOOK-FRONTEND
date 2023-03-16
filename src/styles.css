@@ -7,17 +7,43 @@ body {
   }
 
 .cButton{
-    background-color: #9DC08B;
+    background-color: rgb(89, 150, 71);
     margin: .15rem;
-    border-color: #9DC08B;
+    border-color: rgb(89, 150, 71);
 }
 .cButton:active{
-    background-color: rgb(103, 104, 100);
-    border-color: rgb(103, 104, 100);
+    background-color: rgb(25, 90, 52);
+    border-color: rgb(25, 90, 52);
     }
 
 .cButton:hover{
-    background-color: rgb(103, 104, 100);
-    border-color: rgb(103, 104, 100);
+    background-color: rgb(25, 90, 52);
+    border-color: rgb(25, 90, 52);
 }
 
+.fButton{
+    background-color: rgb(89, 150, 71);
+    border-color: rgb(89, 150, 71);
+    color: white;
+    width: 60px;
+    height: 35px;
+    font-size: 14px;
+    margin: 0.35rem;
+    padding: 0.25rem;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+}
+.fButton:active{
+    background-color: #06814e;
+    border-color: #06814e;
+    color: rgb(65, 61, 61);
+    
+    }
+
+.fButton:hover{
+    background-color: #06814e;
+    border-color: #06814e;
+    color: white;
+}

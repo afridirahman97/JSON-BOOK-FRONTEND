@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import { GroupDataService } from '../group-data.service';
 // importing font-awesome emoji
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons'; 
+import {faSquareMinus} from '@fortawesome/free-solid-svg-icons'; 
 import Swal from "sweetalert2";
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 
@@ -26,6 +27,7 @@ export class CreateRequestComponent implements OnInit{
   private group: any;
   ids: any;
   faPlusSquare = faPlusSquare;
+  faSquareMinus = faSquareMinus;
   mappedHeader : any;
   headerFormatted : any;
   paramsFormatted : any;
