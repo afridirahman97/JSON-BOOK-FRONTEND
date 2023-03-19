@@ -13,7 +13,7 @@ import {faPlusSquare} from '@fortawesome/free-solid-svg-icons';
 })
 export class RequestsComponent {
   topSection: "topSection" = "topSection";
-  headers = ["Name", "URL", "Header", "Request Body", "Actions"];
+  headers = ["Name", "URL", "Header", "Request Method","Request Params", "Request Body",  "Actions"];
   rows:any;
   faPlusSquare= faPlusSquare;
   
@@ -27,6 +27,10 @@ export class RequestsComponent {
 
   performCreate() {
     this.router.navigate(['/request/create'])
+  }
+
+  viewResponses(id : number ){
+    this.router.navigate(['requests/responses/'+id])
   }
 
 

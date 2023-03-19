@@ -19,8 +19,8 @@ export class RequestDataComponent {
       this.rows = data
       //console.log(this.rows)
       console.log(this.rows[0].groupEntity)
-      this.a = this.rows[0].groupEntity.groupId
-      this.b = this.rows[0].groupEntity.groupName
+      this.a = this.rows[0].requestEntity.id
+      this.b = this.rows[0].requestEntity.name
 
     })
 

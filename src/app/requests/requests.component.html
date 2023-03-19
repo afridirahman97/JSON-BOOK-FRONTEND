@@ -27,14 +27,17 @@
       </tr>
       <!-- data -->
       <tr *ngFor="let data of rows">
-        <td>{{data.name}}</td>
+        <td>{{data.requestName}}</td>
         <td>{{data.url}}</td>
-        <td>{{data.header}}</td>
-        <ng-template #tipContent>Hello, <b>asd</b>!</ng-template>
-        <td class="text-truncate" title="{{data.reqBody}}">{{data.reqBody}}</td>
+        <td>{{data.requestHeader}}</td>
+        <td>{{data.requestMethod}}</td>
+        <td>{{data.requestParam}}</td>
+        <td class="text-truncate" title="{{data.reqBody}}">{{data.requestBodyRaw}}</td>
+       
+        <!-- <td >{{data.reqBody}}</td> -->
         <td style="text-align: center;">
          
-          <button class="btn btn-outline-success tabButtonPadding">View Responses</button>
+          <button (click)="viewResponses(data.id)" class="btn btn-outline-success tabButtonPadding">View Responses</button>
     
         </td> 
       </tr>

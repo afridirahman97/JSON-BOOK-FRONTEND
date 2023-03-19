@@ -10,6 +10,7 @@ import { RequestDataComponent } from './request-data/request-data.component';
 import {GroupEditComponent} from "./group-edit/group-edit.component";
 import {CreateRequest2Component} from "./create-request2/create-request2.component";
 import { TestComponent } from './test/test.component';
+import {ViewResponseComponent} from "./view-response/view-response.component";
 
 const routes: Routes = [
   {
@@ -52,6 +53,11 @@ const routes: Routes = [
   {
     component:GroupEditComponent,
     path:'group/edit/:id'
+  },
+  {
+    component: ViewResponseComponent,
+    path:'requests/responses/:id'
+
   },
   {
     component: TestComponent,

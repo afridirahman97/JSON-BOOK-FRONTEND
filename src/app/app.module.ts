@@ -19,6 +19,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TestComponent } from './test/test.component';
 import { FormsModule } from '@angular/forms';
 import { CodemirrorModule } from '@ctrl/ngx-codemirror';
+import { ViewResponseComponent } from './view-response/view-response.component';
+
 
 
 
@@ -35,6 +37,7 @@ import { CodemirrorModule } from '@ctrl/ngx-codemirror';
     GroupEditComponent,
     CreateRequest2Component,
     TestComponent,
+    ViewResponseComponent,
   ],
   imports: [
     BrowserModule,
