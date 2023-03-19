@@ -10,11 +10,11 @@ export class RequestDataService {
   constructor(private http:HttpClient) {}
 
     getData(){
-      let url="http://localhost:8080/requests/1"
+      let url="http://localhost:8080/requests/"
       return this.http.get(url);
    }
   getRequestById(groupId:number){
-    let url="http://localhost:8080/requests/"+groupId.toString();
+    let url="http://localhost:8080/requests/group/"+groupId.toString();
     return this.http.get(url);
 
   }

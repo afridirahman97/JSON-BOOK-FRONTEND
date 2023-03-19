@@ -33,10 +33,10 @@
   <div class="row">
     <div class="col-md-12 justify-content-center border bg-light mt-5">
       <div>
-        <h2>Group Name: {{b}}</h2>
+        <h2>Group Name: {{groupName}}</h2>
       </div>
       <div>
-        <h2>All Requests for {{b}}</h2>
+        <h2>All Requests for {{groupName}}</h2>
       </div>
 
       <div class="container htmlBody">
@@ -49,9 +49,11 @@
             </tr>
             <tr *ngFor= "let data of rows">
               <!-- <td>{{data.groupId}}</td> -->
-              <td>{{data.header}}</td>
-              <td>{{data.name}}</td>
-              <td>{{data.reqBody}}</td>
+              <td>{{data.requestName}}</td>
+              <td class="text-truncate" title="{{data.requestHeader}}"><pre>{{ stringifyHeader(data.requestHeader)}} </pre></td>
+
+             <td class="text-truncate" title="{{data.requestBodyRaw}}" >{{data.requestBodyRaw}}</td>
+              <!-- <td><pre>{{ stringifyBody(data.requestBodyRaw) }}</pre></td> -->
               <td>{{data.resBody}}</td>
               <td>{{data.url}}</td>
 

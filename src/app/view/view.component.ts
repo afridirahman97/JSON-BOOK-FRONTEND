@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Router} from '@angular/router';
-import {Location} from '@angular/common';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { RequestDataService } from '../request-data.service';
 import { RequestComponent } from '../request/request.component';
 // importing font-awesome emoji
-import {faPlusSquare} from '@fortawesome/free-solid-svg-icons'; 
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-view',
@@ -14,62 +14,49 @@ import {faPlusSquare} from '@fortawesome/free-solid-svg-icons';
 })
 export class ViewComponent implements OnInit {
 
+  stringifyBody(requestBody: any) {
+    let body = JSON.stringify(JSON.parse(requestBody), null, 4)
+    console.log(body)
+    return body;
+  }
+
+  stringifyHeader(requestParam: any) {
+    let params = JSON.stringify(JSON.parse(requestParam), null, 4)
+    return params;
+  }
+
   topSection: "topSection" = "topSection";
-  groupId : any;
+  groupId: any;
   groupName: any;
   rows: any;
-  // a : any;
-   b : any
-
   displayElement = false;
+  faPlusSquare = faPlusSquare;
 
-  faPlusSquare= faPlusSquare;
 
-
-  constructor(private route: ActivatedRoute, private router: Router, private location: Location, private data: RequestDataService){
+  constructor(private route: ActivatedRoute, private router: Router, private location: Location, private data: RequestDataService) {
 
 
   }
 
-  headers = ["Header", "Request Name", "Request Body", "Response Body", "URL"];
+  headers = ["Request Name", "Header", "Request Body", "Response Body", "URL"];
 
- 
+
 
   ngOnInit(): void {
     this.groupId = this.route.snapshot.paramMap.get('id');
     console.log(this.groupId);
-    this.data.getRequestById(this.groupId).subscribe(data =>{
-      
-      if( Object.keys(data).length === 0 ){
+    this.data.getRequestById(this.groupId).subscribe(data => {
+
+      if (Object.keys(data).length === 0) {
         //do nothing
-      } else{
-        this.displayElement=true
+      } else {
+        this.displayElement = true
       }
       console.log(this.displayElement)
       this.rows = data;
-    
-      console.log(this.rows);
-      console.log(this.rows[0].groupEntity);
-      // this.a = this.rows[0].groupEntity.groupId;
-     this.b = this.rows[0].groupEntity.groupName;
-     // console.log(this.b)
-
-     
+      this.groupName = this.rows[0].groups.groupName
 
     })
-
-    // if( this.rows === null ){
-    //   this.displayElement = false
-      
-    // }else{
-    //   //do nothing
-    //   console.log('coming here');
-    //   console.log(this.rows)
-    // }
-
-    // console.log(this.displayElement)
-    
-    
 
   }
   performCreate() {
@@ -78,11 +65,7 @@ export class ViewComponent implements OnInit {
 
   backClicked() {
     this.location.back(); // <-- go back to previous location on cancel
-    //console.log('asdas')
   }
-
-
-
 
 
 }

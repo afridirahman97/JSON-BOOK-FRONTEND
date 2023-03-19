@@ -3,11 +3,12 @@
   <div class="row d-flex justify-content-" style="padding-bottom: 5px;">
     <div class="col md-10 nopadding" style="margin: 0 rem;">
       <header>
-      <h2>Request Table</h2>
-    </header>
+        <h2>Request Table</h2>
+      </header>
     </div>
     <div class="col-1 md col-md-2 d-flex justify-content-end" style="margin-right: 0.5rem;">
-      <button (click) = "performCreate()" class="crtReqButton btn btn-info"> <fa-icon [icon]="faPlusSquare"></fa-icon> Request </button>
+      <button (click)="performCreate()" class="crtReqButton btn btn-info"> <fa-icon [icon]="faPlusSquare"></fa-icon>
+        Request </button>
       <!-- <button class="crtReqButton btn btn-info">Create Request</button> -->
     </div>
   </div>
@@ -15,36 +16,38 @@
 
 <!-- viewing request information into a table -->
 <table>
-<div class="container">
-  <!-- fetching table data -->
-  <div class="row col-md-12 justify-content-md-center">
-    <table class="table table-sm table-striped">
-      <!-- table header -->
-      <tr>
-        <th *ngFor ="let column of headers">
-          {{column}}
-        </th>
-      </tr>
-      <!-- data -->
-      <tr *ngFor="let data of rows">
-        <td>{{data.requestName}}</td>
-        <td>{{data.url}}</td>
-        <td>{{data.requestHeader}}</td>
-        <td>{{data.requestMethod}}</td>
-        <td>{{data.requestParam}}</td>
-        <td class="text-truncate" title="{{data.reqBody}}">{{data.requestBodyRaw}}</td>
-       
-        <!-- <td >{{data.reqBody}}</td> -->
-        <td style="text-align: center;">
-         
-          <button (click)="viewResponses(data.id)" class="btn btn-outline-success tabButtonPadding">View Responses</button>
-    
-        </td> 
-      </tr>
-    </table>
+  <div class="container">
+    <!-- fetching table data -->
+    <div class="row col-md-12 justify-content-md-center">
+      <table class="table table-sm table-striped">
+        <!-- table header -->
+        <tr>
+          <th *ngFor="let column of headers">
+            {{column}}
+          </th>
+        </tr>
+        <!-- data -->
+        <tr *ngFor="let data of rows">
+          <td>{{data.requestName}}</td>
+          <td>{{data.url}}</td>
+          <td><pre>{{ stringifyHeader(data.requestHeader)}}</pre></td>
+          <td style="text-align: center;">{{data.requestMethod}}</td>
+          <td> <pre>{{ stringifyParam(data.requestParam) }}</pre></td>
+          <!-- <td> {{ stringify(data.requestParam) }}</td> -->
+          <td class="text-truncate" title="{{data.requestBodyRaw}}">{{data.requestBodyRaw}}</td>
+
+          <!-- <td >{{data.reqBody}}</td> -->
+          <td style="text-align: center;">
+
+            <button (click)="viewResponses(data.requestId)" class="btn btn-outline-success tabButtonPadding">View
+              Responses</button>
+
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
-</div>
 
 </table>
 
- 
+
