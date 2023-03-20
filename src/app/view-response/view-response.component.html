@@ -17,7 +17,7 @@
     <div class="row justify-content-md-center">
         <div class="col md-11 nopadding">
             <header>
-              <h2>Viewing Group Information : {{b}}</h2>
+              <h2>Viewing Responses : {{b}}</h2>
             </header>
           </div>
     </div>
@@ -35,17 +35,10 @@
                             {{column}}
                         </th>
                     </tr>
-                    <tr>
-                        <td>200 ok</td>
-                        <td>jkjkjkguijerijljkjsdfiwejrgfklsjadfqiowgjerjkv</td>
-                        <td>2023-4-3:4:10:09</td>
-                        <td>2023-4-3:4:10:11</td>
-                        <td>203 ms</td>
-                    </tr>
                     <tr *ngFor="let data of rows">
                         <td>{{data.responseStatus}}</td>
                         <ng-template #tipContent>Hello, <b>asd</b>!</ng-template>
-                        <td  class="text-truncate" title="{{data.responseBody}}">{{data.responseBody}}</td>
+                        <td  class="text-truncate" title="{{data.responseBody}}"><pre>{{ stringifyBody(data.responseBody)}} </pre></td>
                         <td>{{data.requestedAt}}</td>
                         <td>{{data.respondedAt}}</td>
                         <td>{{data.timeInMils}}</td>

@@ -9,7 +9,6 @@ import { faSquareMinus } from '@fortawesome/free-solid-svg-icons';
 import Swal from "sweetalert2";
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ZonedDateTime, DateTimeFormatter } from '@js-joda/core';
-//import 'codemirror/theme/abbott.css'
 
 
 const defaults = {
@@ -41,8 +40,6 @@ export class CreateRequestComponent implements OnInit {
     smartIndent: true,
   };
   defaults = defaults
-
-
   form: FormGroup;
   private group: any;
   ids: any;
@@ -159,14 +156,13 @@ export class CreateRequestComponent implements OnInit {
     const formattedDateTime = now.format(formatter);
 
     let groupEntity = {
-      groupId: +(this.selectedTeam)
+      groupId: +(this.selectedId)
     }
 
 
     //formatting params
     var collectParams = this.form.get('params') as FormArray;
     this.paramsFormatted = collectParams.value;
-    //console.log(this.headerFormatted)
     const paramsFormattedString: string = JSON.stringify(this.paramsFormatted);
     const forParams: { key: string, value: string }[] = JSON.parse(paramsFormattedString);
     forParams.forEach(item => {
@@ -177,8 +173,6 @@ export class CreateRequestComponent implements OnInit {
     //formatting params
     var collectHeader = this.form.get('header') as FormArray;
     this.headerFormatted = collectHeader.value;
-    //console.log(this.headerFormatted)
-
     const headerFormattedString: string = JSON.stringify(this.headerFormatted);
     const forHeader: { key: string, value: string }[] = JSON.parse(headerFormattedString);
     forHeader.forEach(item => {
@@ -197,7 +191,6 @@ export class CreateRequestComponent implements OnInit {
       updatedAt : formattedDateTime.toString(),
       requestBodyType: formData.requestBodyType,
       requestBodyRaw: formData.reqBody,
-      //resBody: formData.resBody,
       id: formData.id,
       groups: groupEntity
     };
@@ -246,10 +239,10 @@ export class CreateRequestComponent implements OnInit {
 
   }
 
-  selectedTeam = '';
+  selectedId = '';
   onSelected(value: string): void {
-    this.selectedTeam = value;
-    console.log(this.selectedTeam)
+    this.selectedId = value;
+    console.log(this.selectedId)
   }
 
 

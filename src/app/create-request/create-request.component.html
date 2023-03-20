@@ -165,7 +165,8 @@
       <br>
       <label class="p-1" for="gropupId"><b>Group ID</b></label>
 
-      <select #abc id="selectedColor" (change)="onSelected(abc.value)">
+      <select #abc id="selectedId" (change)="onSelected(abc.value)">
+        <option value=""><b>Select ID</b></option>
         <option *ngFor="let id of ids" [value]="id.groupId">{{id.groupId}}</option>
       </select>
 
