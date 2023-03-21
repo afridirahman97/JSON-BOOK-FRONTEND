@@ -10,14 +10,15 @@ import { ViewComponent } from './view/view.component';
 import {HttpClientModule} from '@angular/common/http';
 import { GroupCreateComponent } from './group-create/group-create.component';
 import { CreateRequestComponent } from './create-request/create-request.component';
-import {ReactiveFormsModule} from '@angular/forms'
+// import {ReactiveFormsModule} from '@angular/forms'
 import { RequestDataComponent } from './request-data/request-data.component';
 import { GroupEditComponent } from './group-edit/group-edit.component';
 import { CreateRequest2Component } from './create-request2/create-request2.component';
 // importing font awesome 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TestComponent } from './test/test.component';
-import { FormsModule } from '@angular/forms';
+// Reactive form module for validation
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 import { ViewResponseComponent } from './view-response/view-response.component';
 
