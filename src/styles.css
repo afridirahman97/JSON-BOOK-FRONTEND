@@ -67,3 +67,23 @@ header h2 {
     background-clip: text;
     -webkit-background-clip: text;
   }
+
+.crtReqButton{
+    background-color: #9DC08B;
+    margin: .15rem;
+    border-color: #9DC08B;
+  }
+  
+  /* customize button color when active */
+.crtReqButton:active{
+  
+    background-color:#06814e;
+    border-color:#06814e;
+    }
+.crtReqButton:hover{
+        background-color: #06814e;
+        border-color: #06814e;
+        color: white;
+    }
+
+  
