@@ -44,8 +44,6 @@ export class CreateRequestComponent implements OnInit {
     smartIndent: true,
   };
   defaults = defaults
-
-
   form: FormGroup;
   public myForm: FormGroup;
   private group: any;
@@ -214,7 +212,7 @@ export class CreateRequestComponent implements OnInit {
 
 
     let groupEntity = {
-      groupId: +(this.selectedTeam)
+      groupId: +(this.selectedId)
     }
 
     
@@ -223,7 +221,6 @@ export class CreateRequestComponent implements OnInit {
     //formatting params
     var collectParams = this.form.get('params') as FormArray;
     this.paramsFormatted = collectParams.value;
-    //console.log(this.headerFormatted)
     const paramsFormattedString: string = JSON.stringify(this.paramsFormatted);
     const forParams: { key: string, value: string }[] = JSON.parse(paramsFormattedString);
     forParams.forEach(item => {
@@ -234,8 +231,6 @@ export class CreateRequestComponent implements OnInit {
     //formatting params
     var collectHeader = this.form.get('header') as FormArray;
     this.headerFormatted = collectHeader.value;
-    //console.log(this.headerFormatted)
-
     const headerFormattedString: string = JSON.stringify(this.headerFormatted);
     const forHeader: { key: string, value: string }[] = JSON.parse(headerFormattedString);
     forHeader.forEach(item => {
@@ -254,7 +249,6 @@ export class CreateRequestComponent implements OnInit {
       updatedAt: formattedDateTime.toString(),
       requestBodyType: formData.requestBodyType,
       requestBodyRaw: formData.reqBody,
-      //resBody: formData.resBody,
       id: formData.id,
       groups: groupEntity
     };
@@ -283,8 +277,9 @@ export class CreateRequestComponent implements OnInit {
     const jsonString = JSON.stringify(formHeader);
     // const isValid = ajv.validate(headerSchema, formHeader);
     // console.log(formHeader);
-    const headerRegex = /^\\s*(\\{[\\s\\S]*\\}|\\[[\\s\\S]*\\])\\s*$/;
-    // const isValid = headerRegex.test(jsonString);
+    const headerRegex = /^\s*(\{.*\}|\[.*\])\s*$/;
+    const isValid = headerRegex.test(jsonString);
+    console.log(isValid);
 
     if (myRegex.test(myString)) {
       this.http.post(url, request).subscribe(
@@ -312,15 +307,6 @@ export class CreateRequestComponent implements OnInit {
           })
         }
       );
-    }else (!myRegex.test(myString))
-    {
-      Swal.fire({
-        title: 'Error',
-        text: 'Please Enter a Valid URL',
-        confirmButtonColor: '#9DC08B',
-        icon: 'error',
-
-      })
     }
     // else if((!myRegex.test(myString)) && (!isValid)){
     //   Swal.fire({
@@ -331,6 +317,16 @@ export class CreateRequestComponent implements OnInit {
 
     //   })
     // } 
+    else if (!myRegex.test(myString))
+    {
+      Swal.fire({
+        title: 'Error',
+        text: 'Please Enter a Valid URL',
+        confirmButtonColor: '#9DC08B',
+        icon: 'error',
+
+      })
+    }
     // else if(!isValid){
     //   Swal.fire({
     //     title: 'Error',
@@ -340,10 +336,6 @@ export class CreateRequestComponent implements OnInit {
 
     //   })
     // }
-
-
-    //
-     //
   }
 
 
@@ -358,10 +350,10 @@ export class CreateRequestComponent implements OnInit {
 
   }
 
-  selectedTeam = '';
+  selectedId = '';
   onSelected(value: string): void {
-    this.selectedTeam = value;
-    console.log(this.selectedTeam)
+    this.selectedId = value;
+    console.log(this.selectedId)
   }
 
 

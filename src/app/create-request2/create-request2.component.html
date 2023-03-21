@@ -1,6 +1,7 @@
+<!-- Input form for request -->
 <div class="row">
   <div class="col-md-6 offset-md-3 col-sm-6 offset-sm-3 p-4 border bg-light mt-5">
-    <form [formGroup]= "form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
       <div class="header">
         <header>
@@ -10,38 +11,169 @@
 
       <!-- request name -->
       <div class="form-group">
-        <label class="p-1" for="name">Request Name</label>
+        <label class="p-1" for="name"><b>Request Name</b></label>
         <input type="text" class="form-control" id="name" formControlName="name">
       </div>
 
+      <!-- Method -->
+      <div class="form-group">
+        <label class="p-1" for="method"><b>Method</b></label>
+        <div>
+          <select class="form-control" formControlName="method">
+            <option value=""><b>Select Method</b></option>
+            <option value="GET">GET</option>
+            <option value="HEAD">HEAD</option>
+            <option value="POST">POST</option>
+            <option value="PUT">PUT</option>
+
+            <option value="PATCH">PATCH</option>
+            <option value="DELETE">DELETE</option>
+            <option value="OPTIONS">OPTIONS</option>
+            <option value="TRACE">TRACE</option>
+
+          </select>
+        </div>
+      </div>
+
+
       <!-- url -->
       <div class="form-group">
-        <label class="p-1" for="url">URL</label>
+        <label class="p-1" for="url"><b>URL</b></label>
         <input type="text" class="form-control" id="url" formControlName="url">
       </div>
 
-      <!-- header -->
-      <div class="form-group">
-        <label class="p-1" for="header">Header</label>
-        <textarea type="text" class="form-control" id="header" formControlName="header"> </textarea>
+      <!-- header re-design -->
+      <div class="form-group" style="padding-bottom: 0.5rem;">
+        <label class="p-1" for="header"><b>Header</b></label>
+        <div formArrayName="header">
+          <div *ngFor="let userFormGroup of userFormGroups.controls; let i = index" formGroupName="{{i}}"
+            class="margin-top">
+            <div class="row" style="padding-bottom: 0.25rem; padding-top: .25rem;">
+              <div class="col-md-6">
+                <select class="form-control" formControlName="key">
+                  <option value=""><b>Select Type</b></option>
+                  <option value="Accept">Accept</option>
+                  <option value="Accept-Encoding">Accept-Encoding</option>
+                  <option value="Accept-Language">Accept-Language</option>
+                  <option value="Connection">Connection</option>
+
+                  <option value="Host">Host</option>
+                  <option value="Origin">Origin</option>
+                  <option value="Referer">Referer</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <input type="text" placeholder="value" class="form-control" formControlName="value" />
+              </div>
+            </div>
+
+            <div role="group" style="padding-bottom: 0.15rem; padding-top: .15rem;">
+              <a class="fButton" (click)="addHeader()"><fa-icon [icon]="faPlusSquare"></fa-icon>Add</a>
+              <a (click)="removeHeader(i)" class="fButton"><fa-icon [icon]="faSquareMinus"></fa-icon>Remove</a>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- params -->
+      <div class="form-group">
+        <label class="p-1" for="params"><b>Params</b></label>
+        <div formArrayName="params">
+          <div *ngFor="let userFormGroup of userFormParams.controls; let i = index" formGroupName="{{i}}"
+            class="margin-top" style="padding-bottom: 0.25rem; padding-top: .25rem;">
+            <div class="row" style="padding-bottom: 0.25rem;">
+              <div class="col-md-6">
+                <input type="text" placeholder="type" class="form-control" formControlName="key" />
+              </div>
+              <div class="col-md-6">
+                <input type="text" placeholder="value" class="form-control" formControlName="value" />
+              </div>
+            </div>
+            <!-- add and remove buttons -->
+            <div role="group" style="padding-bottom: 0.15rem; padding-top: .15rem;">
+              <a class="fButton" (click)="addParams()"><fa-icon [icon]="faPlusSquare"></fa-icon> Add</a>
+              <a (click)="removeParams(i)" class="fButton"><fa-icon [icon]="faSquareMinus"></fa-icon> Remove</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Authentication Type -->
+      <div class="form-group">
+        <label class="p-1" for="authenticationType"><b>Authentication Type</b></label>
+        <div>
+          <select class="form-control" formControlName="authenticationType">
+            <option value=""><b>Select Authentication Type</b></option>
+            <option value="NO_AUTH">NO_AUTH</option>
+            <option value="API_KEY">API_KEY</option>
+            <option value="BEARER_TOKEN">BEARER_TOKEN</option>
+            <option value="JWT_BEARER">JWT_BEARER</option>
+            <option value="BASIC_AUTH">BASIC_AUTH</option>
+
+          </select>
+        </div>
+      </div>
+
+
+      <!-- Request Body Type -->
+      <div class="form-group">
+        <label class="p-1" for="requestBodyType"><b>Request Body Type</b></label>
+        <div>
+          <select class="form-control" formControlName="requestBodyType">
+            <option value=""><b>Select Request Body Type</b></option>
+            <option value="NONE">NONE</option>
+            <option value="RAW">RAW</option>
+            <option value="FORM_DATA">FORM_DATA</option>
+            <option value="FORM_ENCODED">FORM_ENCODED</option>
+            <option value="BASIC_AUTH">BASIC_AUTH</option>
+          </select>
+        </div>
+      </div>
+
+
+
+
+
 
       <!-- rerquest body -->
-      <div class="form-group">
-        <label class="p-1" for="reqBody">Request Body</label>
+      <!-- <div class="form-group">
+        <label class="p-1" for="reqBody"><b>Request Body</b></label>
         <textarea type="text" class="form-control" id="reqBody" formControlName="reqBody"> </textarea>
-      </div>
+      </div> -->
 
-      <!-- response body -->
+
+      <br>
+
       <div class="form-group">
-        <label class="p-1" for="resBody">Response Body</label>
-        <textarea type="text" class="form-control" id="resBody" formControlName="resBody"> </textarea>
+        <label class="p-1" for="params"><b>Header Body</b></label>
+        <div>
+          <div class="ngx-codemirror mb-2">
+
+            <ngx-codemirror class="form-control" id="reqBody" [options]="options" [autoFocus]="true" id="myInputField"
+              formControlName="reqBody">
+            </ngx-codemirror>
+
+            <!-- formControlName="reqBody"
+          [disabled]="readOnly" -->
+
+          </div>
+        </div>
       </div>
 
       <br>
+      <!-- <label class="p-1" for="gropupId"><b>Group ID</b></label>
+
+      <select #abc id="selectedColor" (change)="onSelected(abc.value)">
+        <option *ngFor="let id of ids" [value]="id.groupId">{{id.groupId}}</option>
+      </select> -->
+
+      <br>
+
       <!-- submit -->
       <div class="form-group">
-        <button type="submit" class="cButton btn btn-primary">Create Group</button>
+        <button type="submit" class="cButton btn btn-primary">Create Request</button>
       </div>
     </form>
   </div>

@@ -7,6 +7,14 @@ import { ViewResponsesService } from '../view-responses.service';
   styleUrls: ['./view-response.component.css']
 })
 export class ViewResponseComponent {
+
+  stringifyBody(requestBody: any) {
+    let body = JSON.stringify(JSON.parse(requestBody), null, 4)
+    console.log(body)
+    return body;
+  }
+
+  
   rows: any;
   a: any;
   b: any;
