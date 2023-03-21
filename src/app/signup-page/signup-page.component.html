@@ -1,0 +1,38 @@
+<div>
+    <h1>Hello Welcome </h1>
+    <h3>Create An Account</h3>
+    <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+        <div>
+            <label for="email">Email</label>
+            <input formControlName="email" required type="text">
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input formControlName="password" type="password">
+        </div>
+        <div>
+            <label for="firstName">First Name</label>
+            <input formControlName="firstName" type="text">
+        </div>
+        <div>
+            <label for="middleName">Middle Name</label>
+            <input formControlName="middleName" type="text">
+        </div>
+        <div>
+            <label for="lastName">Last Name</label>
+            <input formControlName="lastName" type="text">
+        </div>
+        <div>
+            <label for="mobile">Mobile</label>
+            <input formControlName="mobile" type="number">
+        </div>
+        <div>
+            <label for="address">Address</label>
+            <input formControlName="address" type="text">
+        </div>
+
+        <button>Submit</button>
+        <span>Already have an account?
+            <a routerLink="/login">Login</a></span>
+    </form>
+</div>
