@@ -48,10 +48,12 @@ export class CreateRequestComponent implements OnInit {
   mappedHeader: any;
   headerFormatted: any;
   paramsFormatted: any;
+  private formsFormatted: any;
 
-  //for maping header values 
+  //for maping header values
   myMap: MyMap = {};
   myMap2: MyMap2 = {};
+  myMap3: MyMap = {};
 
 
 
@@ -73,8 +75,14 @@ export class CreateRequestComponent implements OnInit {
           value: new FormControl('')
         })
       ]),
-    
+
       params: new FormArray([
+        new FormGroup({
+          key: new FormControl(''),
+          value: new FormControl('')
+        })
+      ]),
+      forms: new FormArray([
         new FormGroup({
           key: new FormControl(''),
           value: new FormControl('')
@@ -92,6 +100,9 @@ export class CreateRequestComponent implements OnInit {
 
   get userFormParams() {
     return this.form.get('params') as FormArray
+  }
+  get userFormForms() {
+    return this.form.get('forms') as FormArray
   }
 
   get userFormGroups() {
@@ -146,6 +157,20 @@ export class CreateRequestComponent implements OnInit {
     const control = <FormArray>this.form.controls['params'];
     control.removeAt(index);
   }
+  addForms() {
+    const control = <FormArray>this.form.controls['forms'];
+    control.push(
+      new FormGroup({
+        key: new FormControl(''),
+        value: new FormControl('')
+      })
+    );
+  }
+
+  removeForms(index: number) {
+    const control = <FormArray>this.form.controls['forms'];
+    control.removeAt(index);
+  }
 
 
 
@@ -170,7 +195,18 @@ export class CreateRequestComponent implements OnInit {
     });
 
 
-    //formatting params
+    //formatting forms
+    var collectForms = this.form.get('forms') as FormArray;
+    this.formsFormatted = collectForms.value;
+    //console.log(this.headerFormatted)
+    const formsFormattedString: string = JSON.stringify(this.formsFormatted);
+    const forForms: { key: string, value: string }[] = JSON.parse(formsFormattedString);
+    forForms.forEach(item => {
+      this.myMap3[item.key] = item.value;
+    });
+
+
+    //formatting headers
     var collectHeader = this.form.get('header') as FormArray;
     this.headerFormatted = collectHeader.value;
     const headerFormattedString: string = JSON.stringify(this.headerFormatted);
@@ -194,13 +230,18 @@ export class CreateRequestComponent implements OnInit {
       id: formData.id,
       groups: groupEntity
     };
+    let requestFormDto={
+      requests:request,
+      forms:JSON.stringify(this.myMap3)
+    }
+    console.log(requestFormDto);
 
     console.log(this.group);
-    let url = 'http://localhost:8080/requests';
+    let url = 'http://localhost:8080/requests/dto';
 
 
 
-    this.http.post(url, request).subscribe(
+    this.http.post(url, requestFormDto).subscribe(
       () => {
         console.log('Form data posted successfully!');
         this.form.reset();
