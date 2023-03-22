@@ -1,1 +1,26 @@
-<p>home works!</p>
+<div class="card card-custom-wide">
+  <div class="card-custom-wide-img" style="background-image: url(https://i.ibb.co/41fdmwQ/trianglify-lowres.png);">
+  </div>
+  <h1 class="initial">{{userDetails.firstName.charAt(0)}}{{userDetails.lastName.charAt(0)}}</h1>
+ 
+  <!-- <div class="card-custom-avatar">
+      <img class="img-fluid" src="http://res.cloudinary.com/d3/image/upload/c_pad,g_center,h_200,q_auto:eco,w_200/bootstrap-logo_u3c8dx.jpg" alt="Avatar" />
+    </div> -->
+  <div class="card-body">
+    <header style="display: flex; flex-direction: row;">
+      <h2>Welcome, </h2>
+      <h2 style="color: #000; margin-left: 5px;"> {{userDetails.firstName}}</h2>
+    </header>
+
+    <ul>
+      <li>Full Name : {{userDetails.firstName}} {{userDetails.middleName}} {{userDetails.lastName}}</li>
+      <li>Email : {{userDetails.email}}</li>
+      <li>Address : {{userDetails.address}} </li>
+      <li>Phone : {{userDetails.mobile}}</li>
+      <li>Number of Groups Created : </li>
+    </ul>
+
+
+
+  </div>
+</div>

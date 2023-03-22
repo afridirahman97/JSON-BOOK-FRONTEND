@@ -94,11 +94,11 @@ const routes: Routes = [
     component:SignupPageComponent,
     path:'signup'
   },
-  // { 
-  //   path: '', 
-  //   component: HomeComponent, 
-  //   canActivate: [AuthGuard] 
-  // },
+  { 
+    path: '', 
+    redirectTo:'home',
+    pathMatch:'full' 
+  },
 
 ];
 
