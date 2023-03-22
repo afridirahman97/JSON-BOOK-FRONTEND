@@ -28,7 +28,6 @@ export class ViewResponseComponent {
       console.log(this.rows[0].requestEntity)
       this.a = this.rows[0].requestEntity.id
       this.b = this.rows[0].requestEntity.name
-
     })
 
   }
