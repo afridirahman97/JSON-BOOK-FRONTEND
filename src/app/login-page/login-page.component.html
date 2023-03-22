@@ -1,0 +1,30 @@
+<section class="Form my-4 mx-5">
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="col-lg-5">
+
+      </div>
+      <div class="col-lg-7 px-5 pt-5" >
+        <h2 class="font-weight-bold">Sign into your account</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <div class="form-row">
+            <!-- email -->
+            <div class="col-lg-7">
+              <input type="email" placeholder="Email Address" class="form-control my-3 p-2" formControlName="email">
+            </div>
+            <!-- password -->
+            <div class="col-lg-7">
+              <input type="password" placeholder="*******" class="form-control my-3 p-2" formControlName="password">
+            </div>
+            <!-- login button -->
+            <div class="col-lg-7">
+              <button type="button" class="btn1 mt-3 mb-4">Sign in</button>
+            </div>
+          </div>
+          <!-- <a href="#">Forget password !</a> -->
+          <p>Don't have an account? <a routerLink="/signup" style="color: green">Sign up</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

@@ -11,59 +11,94 @@ import {GroupEditComponent} from "./group-edit/group-edit.component";
 import {CreateRequest2Component} from "./create-request2/create-request2.component";
 import { TestComponent } from './test/test.component';
 import {ViewResponseComponent} from "./view-response/view-response.component";
+import { LoginPageComponent } from './login-page/login-page.component';
+import { SignupPageComponent } from './signup-page/signup-page.component';
+import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
     component: GroupsComponent,
     path:'groups',
+    canActivate: [AuthGuard] 
   },
   {
     component: RequestsComponent,
-    path:'requests'
+    path:'requests',
+    // canActivate: [AuthGuard] 
+    
 
   },
   {
     component: ViewComponent,
-    path:'groups/view/:id'
+    path:'groups/view/:id',
+    canActivate: [AuthGuard] 
   },
   {
     component: CreateRequest2Component,
-    path:'groups/view/:id/create-request'
+    path:'groups/view/:id/create-request',
+    canActivate: [AuthGuard] 
   },
 
   {
     component: GroupCreateComponent,
-    path:'group/create'
+    path:'group/create',
+    canActivate: [AuthGuard] 
   },
 
   {
     component: RequestComponent,
-    path:'group/requests'
+    path:'group/requests',
+    // canActivate: [AuthGuard] 
 
   },
 
   {
   component: CreateRequestComponent,
-  path:'request/create'
+  path:'request/create',
+  canActivate: [AuthGuard] 
   },
   {
     component : RequestDataComponent,
-    path:'a'
+    path:'a',
+    canActivate: [AuthGuard] 
   },
   {
     component:GroupEditComponent,
-    path:'group/edit/:id'
+    path:'group/edit/:id',
+    canActivate: [AuthGuard] 
   },
   {
     component: ViewResponseComponent,
-    path:'requests/responses/:id'
+    path:'requests/responses/:id',
+    // canActivate: [AuthGuard] 
 
   },
   {
     component: TestComponent,
     path:'test'
 
-  }
+  },
+  {
+    component : HomeComponent,
+    path:'home',
+    canActivate: [AuthGuard] 
+  },
+  {
+    component: LoginPageComponent,
+    path:'login',
+   // redirectTo:'login',
+   // pathMatch:'full'
+  },
+  {
+    component:SignupPageComponent,
+    path:'signup'
+  },
+  // { 
+  //   path: '', 
+  //   component: HomeComponent, 
+  //   canActivate: [AuthGuard] 
+  // },
 
 ];
 

@@ -21,6 +21,9 @@ import { TestComponent } from './test/test.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 import { ViewResponseComponent } from './view-response/view-response.component';
+import { SignupPageComponent } from './signup-page/signup-page.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -39,6 +42,9 @@ import { ViewResponseComponent } from './view-response/view-response.component';
     CreateRequest2Component,
     TestComponent,
     ViewResponseComponent,
+    SignupPageComponent,
+    LoginPageComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
