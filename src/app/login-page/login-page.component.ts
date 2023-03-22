@@ -27,6 +27,7 @@ export class LoginPageComponent {
       console.log(res)
       alert('SIGNIN SUCCESFUL');
       localStorage.setItem('accessToken',res.accessToken);
+      localStorage.setItem('userEmail',res.email);
       this.loginForm.reset()
       this.router.navigate(["home"])
     },err=>{

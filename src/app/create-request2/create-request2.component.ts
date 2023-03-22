@@ -24,6 +24,7 @@ interface MyMap2 {
   [key: string]: string;
 }
 
+
 @Component({
   selector: 'app-create-request2',
   templateUrl: './create-request2.component.html',
@@ -48,13 +49,16 @@ export class CreateRequest2Component implements OnInit{
   mappedHeader: any;
   headerFormatted: any;
   paramsFormatted: any;
+  formsFormatted: any;
 
-
-    //for maping header values 
+    //for maping header values
     myMap: MyMap = {};
     myMap2: MyMap2 = {};
+    myMap3: MyMap = {};
 
-    
+
+
+
     constructor(
       private route: ActivatedRoute,
       private http: HttpClient,
@@ -72,8 +76,14 @@ export class CreateRequest2Component implements OnInit{
               value: new FormControl('')
             })
           ]),
-        
+
           params: new FormArray([
+            new FormGroup({
+              key: new FormControl(''),
+              value: new FormControl('')
+            })
+          ]),
+          forms: new FormArray([
             new FormGroup({
               key: new FormControl(''),
               value: new FormControl('')
@@ -103,6 +113,9 @@ export class CreateRequest2Component implements OnInit{
 
   get userFormParams() {
     return this.form.get('params') as FormArray
+  }
+  get userFormForms() {
+    return this.form.get('forms') as FormArray
   }
 
   get userFormGroups() {
@@ -156,8 +169,22 @@ export class CreateRequest2Component implements OnInit{
     const control = <FormArray>this.form.controls['params'];
     control.removeAt(index);
   }
+  addForms() {
+    const control = <FormArray>this.form.controls['forms'];
+    control.push(
+      new FormGroup({
+        key: new FormControl(''),
+        value: new FormControl('')
+      })
+    );
+  }
 
-  
+  removeForms(index: number) {
+    const control = <FormArray>this.form.controls['forms'];
+    control.removeAt(index);
+  }
+
+
   onSubmit() {
     const formData = this.form.value;
     const now = ZonedDateTime.now();
@@ -177,6 +204,16 @@ export class CreateRequest2Component implements OnInit{
     const forParams: { key: string, value: string }[] = JSON.parse(paramsFormattedString);
     forParams.forEach(item => {
       this.myMap2[item.key] = item.value;
+    });
+
+    //formatting forms
+    var collectForms = this.form.get('forms') as FormArray;
+    this.formsFormatted = collectForms.value;
+    //console.log(this.headerFormatted)
+    const formsFormattedString: string = JSON.stringify(this.formsFormatted);
+    const forForms: { key: string, value: string }[] = JSON.parse(formsFormattedString);
+    forForms.forEach(item => {
+      this.myMap3[item.key] = item.value;
     });
 
 
@@ -207,13 +244,18 @@ export class CreateRequest2Component implements OnInit{
       id: formData.id,
       groups: groupEntity
     };
+    let requestFormDto={
+      requests:request,
+      forms:JSON.stringify(this.myMap3)
+    }
+    console.log(requestFormDto);
 
     console.log(this.group);
-    let url = 'http://localhost:8080/requests';
+    let url = 'http://localhost:8080/requests/dto';
 
 
 
-    this.http.post(url, request).subscribe(
+    this.http.post(url, requestFormDto).subscribe(
       () => {
         console.log('Form data posted successfully!');
         this.form.reset();

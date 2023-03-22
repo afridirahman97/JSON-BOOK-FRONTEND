@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import { FormControl, FormGroup } from "@angular/forms";
+import { FormControl, FormGroup } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { GroupDataService } from '../group-data.service';
@@ -7,8 +7,7 @@ import { GroupDataService } from '../group-data.service';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { faSquareMinus } from '@fortawesome/free-solid-svg-icons';
 import Swal from "sweetalert2";
-// import { FormArray, FormBuilder, Validators } from '@angular/forms';
-import { FormArray, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ZonedDateTime, DateTimeFormatter } from '@js-joda/core';
 //import 'codemirror/theme/abbott.css'
 // importing ajv to validate JSON Schema
@@ -45,7 +44,6 @@ export class CreateRequestComponent implements OnInit {
   };
   defaults = defaults
   form: FormGroup;
-  public myForm: FormGroup;
   private group: any;
   ids: any;
   faPlusSquare = faPlusSquare;
@@ -53,11 +51,12 @@ export class CreateRequestComponent implements OnInit {
   mappedHeader: any;
   headerFormatted: any;
   paramsFormatted: any;
-  
-  
-  //for maping header values 
+  private formsFormatted: any;
+
+  //for maping header values
   myMap: MyMap = {};
   myMap2: MyMap2 = {};
+  myMap3: MyMap = {};
 
 
 
@@ -68,54 +67,11 @@ export class CreateRequestComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder) {
 
-    const reg = '(https?://)?([\da-z.-]+)\.([a-z.]{2,6})[/\w .-]*/?';
-
-    const a = /^[a-z]+$/i;
-    
-    
-
-    // const schema = {
-    //   type: "object",
-    //   properties:{
-    //     requestName: {type: "string"},
-    //     requestMethod: {type: "string"},
-    //     url: {type: "string"},
-    //     requestHeade: {type: },
-    //     requestParam: {type: },
-    //     authenticationType: {type: "string"},
-    //     requestBearerToken: {type: ""},
-    //     requestBodyType: {type: "string"},
-    //     requestBodyRaw: {type: ""},
-    //     createdAt: {type: ""},
-    //     updatedAt: {type: ""},
-    //     groups:{
-    //       type: "object",
-    //       properties:{
-    //         groupId: {type: "number"},
-    //         groupName: {type: "string"}
-    //       },
-    //       required:[groupID],
-    //     }
-    //   },
-    //   required: [],
-    // };
-
-
-
-    // if (demoJson.test(myString)) {
-    //   console.log('The string matches the regex.');
-    // } else {
-    //   console.log('The string does not match the regex.');
-    // }
-
-    this.myForm = formBuilder.group({
-      url: ['', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]]
-    })
 
     this.form = new FormGroup({
       name: new FormControl(),
       method: new FormControl(''),
-      url: new FormControl(),
+      url: new FormControl(''),
       header: new FormArray([
         new FormGroup({
           key: new FormControl(''),
@@ -129,10 +85,16 @@ export class CreateRequestComponent implements OnInit {
           value: new FormControl('')
         })
       ]),
-      createdAt: new FormControl(''),
-      updatedAt: new FormControl(''),
-      authenticationType: new FormControl(''),
-      requestBodyType: new FormControl(''),
+      forms: new FormArray([
+        new FormGroup({
+          key: new FormControl(''),
+          value: new FormControl('')
+        })
+      ]),
+      createdAt : new FormControl(''),
+      updatedAt : new FormControl(''),
+      authenticationType : new FormControl(''),
+      requestBodyType : new FormControl(''),
       reqBody: new FormControl(''),
       resBody: new FormControl(''),
     });
@@ -142,6 +104,9 @@ export class CreateRequestComponent implements OnInit {
   get userFormParams() {
     return this.form.get('params') as FormArray
   }
+  get userFormForms() {
+    return this.form.get('forms') as FormArray
+  }
 
   get userFormGroups() {
     return this.form.get('header') as FormArray
@@ -149,10 +114,6 @@ export class CreateRequestComponent implements OnInit {
 
   get f() {
     return this.form.controls;
-  }
-
-  get m() {
-    return this.myForm.controls;
   }
 
 
@@ -199,7 +160,20 @@ export class CreateRequestComponent implements OnInit {
     const control = <FormArray>this.form.controls['params'];
     control.removeAt(index);
   }
+  addForms() {
+    const control = <FormArray>this.form.controls['forms'];
+    control.push(
+      new FormGroup({
+        key: new FormControl(''),
+        value: new FormControl('')
+      })
+    );
+  }
 
+  removeForms(index: number) {
+    const control = <FormArray>this.form.controls['forms'];
+    control.removeAt(index);
+  }
 
 
 
@@ -209,13 +183,9 @@ export class CreateRequestComponent implements OnInit {
     const formatter = DateTimeFormatter.ofPattern('yyyy-MM-dd\'T\'HH:mm:ssXXX');
     const formattedDateTime = now.format(formatter);
 
-
-
     let groupEntity = {
       groupId: +(this.selectedId)
     }
-
-    
 
 
     //formatting params
@@ -228,7 +198,18 @@ export class CreateRequestComponent implements OnInit {
     });
 
 
-    //formatting params
+    //formatting forms
+    var collectForms = this.form.get('forms') as FormArray;
+    this.formsFormatted = collectForms.value;
+    //console.log(this.headerFormatted)
+    const formsFormattedString: string = JSON.stringify(this.formsFormatted);
+    const forForms: { key: string, value: string }[] = JSON.parse(formsFormattedString);
+    forForms.forEach(item => {
+      this.myMap3[item.key] = item.value;
+    });
+
+
+    //formatting headers
     var collectHeader = this.form.get('header') as FormArray;
     this.headerFormatted = collectHeader.value;
     const headerFormattedString: string = JSON.stringify(this.headerFormatted);
@@ -245,97 +226,49 @@ export class CreateRequestComponent implements OnInit {
       requestMethod: formData.method,
       url: formData.url,
       authenticationType: formData.authenticationType,
-      createdAt: formattedDateTime.toString(),
-      updatedAt: formattedDateTime.toString(),
+      createdAt : formattedDateTime.toString(),
+      updatedAt : formattedDateTime.toString(),
       requestBodyType: formData.requestBodyType,
       requestBodyRaw: formData.reqBody,
       id: formData.id,
       groups: groupEntity
     };
+    let requestFormDto={
+      requests:request,
+      forms:JSON.stringify(this.myMap3)
+    }
+    console.log(requestFormDto);
 
     console.log(this.group);
-    let url = 'http://localhost:8080/requests';
+    let url = 'http://localhost:8080/requests/dto';
 
 
-    //url validation part 
 
-    const myString = formData.url;
-    console.log(myString);
-    const myRegex = /^(ftp|http|https):\/\/[^ "]+$/; // a regular expression that matches only letters
+    this.http.post(url, requestFormDto).subscribe(
+      () => {
+        console.log('Form data posted successfully!');
+        this.form.reset();
+        Swal.fire({
+          title: 'Success',
+          text: 'New Request has been created',
+          confirmButtonColor: '#9DC08B',
+          icon: 'success',
 
-    // validate a JSON object 
-    const ajv = new Ajv();
-    // defining JSON Schema
-    // const headerSchema = {
-    //   type: "object",
-    //   properties: {
+        }).then(() => {
+          this.router.navigateByUrl('/requests');
+        });
+      },
+      error => {
+        console.error('Error posting form data:', error);
+        Swal.fire({
+          title: 'Error',
+          text: 'Something went wrong',
+          confirmButtonColor: '#9DC08B',
+          icon: 'error',
 
-    //   },
-    //   required: [],
-    // };
-    const formHeader = formData.requestHeader;
-    const jsonString = JSON.stringify(formHeader);
-    // const isValid = ajv.validate(headerSchema, formHeader);
-    // console.log(formHeader);
-    const headerRegex = /^\s*(\{.*\}|\[.*\])\s*$/;
-    const isValid = headerRegex.test(jsonString);
-    console.log(isValid);
-
-    if (myRegex.test(myString)) {
-      this.http.post(url, request).subscribe(
-        () => {
-          console.log('Form data posted successfully!');
-          this.form.reset();
-          Swal.fire({
-            title: 'Success',
-            text: 'New Request has been created',
-            confirmButtonColor: '#9DC08B',
-            icon: 'success',
-  
-          }).then(() => {
-            this.router.navigateByUrl('/requests');
-          });
-        },
-        error => {
-          console.error('Error posting form data:', error);
-          Swal.fire({
-            title: 'Error',
-            text: 'Something went wrong',
-            confirmButtonColor: '#9DC08B',
-            icon: 'error',
-  
-          })
-        }
-      );
-    }
-    // else if((!myRegex.test(myString)) && (!isValid)){
-    //   Swal.fire({
-    //     title: 'Error',
-    //     text: 'Please Enter a Valid URL and a JSON Object',
-    //     confirmButtonColor: '#9DC08B',
-    //     icon: 'error',
-
-    //   })
-    // } 
-    else if (!myRegex.test(myString))
-    {
-      Swal.fire({
-        title: 'Error',
-        text: 'Please Enter a Valid URL',
-        confirmButtonColor: '#9DC08B',
-        icon: 'error',
-
-      })
-    }
-    // else if(!isValid){
-    //   Swal.fire({
-    //     title: 'Error',
-    //     text: 'Please Enter a Valid JSON Object',
-    //     confirmButtonColor: '#9DC08B',
-    //     icon: 'error',
-
-    //   })
-    // }
+        })
+      }
+    );
   }
 
 

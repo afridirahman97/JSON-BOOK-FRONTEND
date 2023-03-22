@@ -162,8 +162,32 @@
           </div>
         </div>
       </div>
-
       <br>
+      <div class="form-group">
+        <label class="p-1" for="forms"><b>Form</b></label>
+        <div formArrayName="forms">
+          <div *ngFor="let userFormGroup of userFormForms.controls; let i = index" formGroupName="{{i}}"
+               class="margin-top" style="padding-bottom: 0.25rem; padding-top: .25rem;">
+            <div class="row" style="padding-bottom: 0.25rem;">
+              <div class="col-md-6">
+                <input type="text" placeholder="Key" class="form-control" formControlName="key" />
+              </div>
+              <div class="col-md-6">
+                <input type="text" placeholder="value" class="form-control" formControlName="value" />
+              </div>
+            </div>
+            <!-- add and remove buttons -->
+            <div role="group" style="padding-bottom: 0.15rem; padding-top: .15rem;">
+              <a class="fButton" (click)="addForms()"><fa-icon [icon]="faPlusSquare"></fa-icon> Add</a>
+              <a (click)="removeForms(i)" class="fButton"><fa-icon [icon]="faSquareMinus"></fa-icon> Remove</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <br>
+
+
       <label class="p-1" for="gropupId"><b>Group ID</b></label>
 
       <select #abc id="selectedId" (change)="onSelected(abc.value)">
