@@ -35,6 +35,8 @@ export class HomeComponent {
 
         });
         this.userDetails = user;
+       // console.log(this.userDetails);
+        localStorage.setItem('id', this.userDetails.id)
       })
   }
 
