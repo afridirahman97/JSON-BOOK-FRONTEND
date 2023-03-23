@@ -6,9 +6,9 @@
           <img src="https://firebasestorage.googleapis.com/v0/b/githubs-30fab.appspot.com/o/logo.png?alt=media&token=1740ce8b-9b10-4cc6-aca0-80f595ff8b42" class="img-fluid" alt="" style="height: 100%; width: 100%;">
         </div>
         <div class="col-lg-7 px-5 pt-5 ">
-          <h2 class="font-weight-bold">Sign into your account</h2>
+          <h2 class="font-weight-bold">Sign up your account</h2>
           <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
-            <div class="form-row">
+            <div class="form-row ">
               <!-- email -->
               <div class="col-lg-7">
                 <input type="email" placeholder="Email Address" class="form-control my-3 p-2" formControlName="email" required>
@@ -35,6 +35,7 @@
               </div>
               <!-- address -->
               <div class="col-lg-7">
+                <input type="text" placeholder="Address" class="form-control my-3 p-2" formControlName="address">
                 <input type="text" placeholder="Address" class="form-control my-3 p-2" formControlName="address" required>
               </div>
               <!-- login button -->

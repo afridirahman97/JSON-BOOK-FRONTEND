@@ -8,9 +8,11 @@ export class GroupDataService {
 
   constructor(private http:HttpClient) { }
 
-    getData(){
+  getData(searchKeyword: string= ""){
       let id =  localStorage.getItem('id')
-      let url=`http://localhost:8080/groups/${id}`
+      let url=`http://localhost:8080/groups/${id}`;
+      // ?searchKey= + searchKeyword
+      // + " ?searchKey=" + searchKeyword;  it can be used if we search from backend 
       return this.http.get(url);
 
     }
