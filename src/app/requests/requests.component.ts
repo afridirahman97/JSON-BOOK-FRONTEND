@@ -4,7 +4,8 @@ import { HttpClient } from "@angular/common/http";
 import { GroupDataService } from "../group-data.service";
 import { DeleteGroupService } from "../delete-group.service";
 // importing font-awesome emoji
-import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPlusSquare,faEye } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-requests',
@@ -31,6 +32,7 @@ export class RequestsComponent {
   headers = ["Name", "URL", "Header", "Request Method", "Request Params", "Request Body", "Actions"];
   rows: any;
   faPlusSquare = faPlusSquare;
+  faeye=faEye;
 
   test: any;
 
@@ -40,10 +42,8 @@ export class RequestsComponent {
       //console.warn(data)
       this.rows = data
       console.log(this.rows)
-
       //this.test = Object.assign({}, ...this.rows);
       //this.test = JSON.stringify(this.rows.requestParam, null, 4)
-
       //console.log(this.test)
       //console.log(this.rows)
     })
@@ -60,6 +60,11 @@ export class RequestsComponent {
 
   viewResponses(id: number) {
     this.router.navigate(['requests/responses/' + id])
+  }
+  createRequest(id:number){
+    this.data.createResponse(id).subscribe(data=>{
+      console.log(data);
+    })
   }
 
 

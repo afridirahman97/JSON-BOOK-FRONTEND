@@ -39,8 +39,10 @@
           <!-- <td >{{data.reqBody}}</td> -->
           <td style="text-align: center;">
 
-            <button (click)="viewResponses(data.requestId)" class="btn btn-outline-success tabButtonPadding">View
+            <button (click)="viewResponses(data.requestId)" class="btn btn-outline-success tabButtonPadding"><fa-icon [icon]="faeye"></fa-icon>
               Responses</button>
+
+            <button   (click)="createRequest(data.requestId)" class="btn btn-outline-success tabButtonPadding"><fa-icon [icon]="faPlusSquare"></fa-icon> Responses</button>
 
           </td>
         </tr>
