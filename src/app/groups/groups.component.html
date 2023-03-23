@@ -10,9 +10,9 @@
     </div>
     <div class="col-sm-8 d-flex">
       <div class="input-group mb-1 justify-content-center nopadding" style="height:4px;">
-        <input type="text" placeholder="Search group.." name="search">
+        <input type="text" placeholder="Search group.." name="groupNameSearch" class="form-control" id="groupNameSearch" [(ngModel)]="groupNameSearch">
         <div class="input-group-append">
-          <button (click) = "performCreate()" class="navButton btn btn-info" style="margin-left:5px;"> <fa-icon [icon]="faMagnifyingGlass"></fa-icon> Group </button>
+          <button (click) = "performSearch()" class="navButton btn btn-info" style="margin-left:5px;"> <fa-icon [icon]="faMagnifyingGlass"></fa-icon> Group </button>
         </div>
       </div>
        <!-- <h2><fa-icon [icon]="faPlusSquare"></fa-icon></h2>  -->
