@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import {HttpClient} from "@angular/common/http";
-import {ActivatedRoute} from "@angular/router";
+import { HttpClient } from "@angular/common/http";
+import { ActivatedRoute } from "@angular/router";
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
@@ -13,14 +13,14 @@ import { Router } from '@angular/router';
 })
 
 
-export class GroupCreateComponent implements  OnInit{
+export class GroupCreateComponent implements OnInit {
 
-  
+
   form: FormGroup;
-  groupId:number| null;
+  groupId: number | null;
 
-  constructor(private route: ActivatedRoute,private http: HttpClient, private router: Router) {
-    this.groupId= null;
+  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {
+    this.groupId = null;
     this.form = new FormGroup({
       groupName: new FormControl('')
     });
@@ -28,35 +28,36 @@ export class GroupCreateComponent implements  OnInit{
   onSubmit() {
     const formData = this.form.value;
     console.log(formData)
-    if( formData.groupName === "" ){
+    if (formData.groupName === "") {
       Swal.fire({
-        title:'Error',
-        text : 'New group must have a name',
-        icon : 'error',
+        title: 'Error',
+        text: 'New group must have a name',
+        icon: 'error',
         confirmButtonColor: '#9DC08B',
       })
     } else {
 
-    let url='http://localhost:8080/groups';
-    this.http.post(url, formData).subscribe(
-      () => { 
-        console.log('Form data posted successfully!');
-        this.form.reset();
-        Swal.fire({
-          title:'Success',
-          text:'New Group has been created',
-          confirmButtonColor: '#9DC08B',
-          icon : 'success',
-          
-      }).then(() =>{
-          this.router.navigateByUrl('/groups');;
+      let id = localStorage.getItem('id')
+      let url = `http://localhost:8080/groups/${id}`;
+      this.http.post(url, formData).subscribe(
+        () => {
+          console.log('Form data posted successfully!');
+          this.form.reset();
+          Swal.fire({
+            title: 'Success',
+            text: 'New Group has been created',
+            confirmButtonColor: '#9DC08B',
+            icon: 'success',
 
-        });
-      },
-      error => {
-        console.error('Error posting form data:', error);
-      }
-    );
+          }).then(() => {
+            this.router.navigateByUrl('/groups');;
+
+          });
+        },
+        error => {
+          console.error('Error posting form data:', error);
+        }
+      );
     }
   }
 
