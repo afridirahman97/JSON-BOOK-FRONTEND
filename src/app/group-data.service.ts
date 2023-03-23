@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class GroupDataService {
 
   constructor(private http:HttpClient) { }
-  
+
     getData(){
       let id =  localStorage.getItem('id')
       let url=`http://localhost:8080/groups/${id}`
@@ -15,7 +15,8 @@ export class GroupDataService {
 
     }
   getRequest(){
-    let url="http://localhost:8080/requests"
+    let id =  localStorage.getItem('id')
+    let url="http://localhost:8080/groups/requests/"+id;
     return this.http.get(url);
 
   }
@@ -24,6 +25,11 @@ export class GroupDataService {
     return this.http.get(url);
 
   }
-  
+  createResponse(requestId:number){
+    let url="localhost:8080/requests/create-response/"+requestId.toString();
+
+    return this.http.get(url);
+  }
+
 
 }

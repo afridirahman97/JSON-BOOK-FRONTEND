@@ -15,6 +15,7 @@ export class RequestDataService {
    }
   getRequestById(groupId:number){
     let url="http://localhost:8080/requests/group/"+groupId.toString();
+
     return this.http.get(url);
 
   }
