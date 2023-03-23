@@ -38,10 +38,11 @@
                     <tr *ngFor="let data of rows">
                         <td>{{data.responseStatus}}</td>
                         <ng-template #tipContent>Hello, <b>asd</b>!</ng-template>
-                        <td  class="text-truncate" title="{{data.responseBody}}"><pre>{{ stringifyBody(data.responseBody)}} </pre></td>
+                        <!-- <td  class="text-truncate" title="{{data.responseBody}}"><pre>{{ stringifyBody(data.responseBody)}} </pre></td> -->
                         <td>{{data.requestedAt}}</td>
                         <td>{{data.respondedAt}}</td>
                         <td>{{data.timeInMils}}</td>
+                        <td><button (click)="showDiv(data.id)">View Response</button></td>
                       </tr>
                 </table>
             </div>
@@ -50,5 +51,18 @@
       </div> 
 
     </div>
+
+
+    <!-- <div *ngFor="let data of rows" [id]="data.id" >
+      {{ data.content }}
+    </div> -->
+
+    <ng-container *ngFor="let data of rows">
+      <div [id]="data.id" *ngIf="selectedOption === data.id">
+       
+        <ngx-json-viewer [json]= data.responseBody></ngx-json-viewer>
+      </div>
+    </ng-container>
+    
 
 </div>

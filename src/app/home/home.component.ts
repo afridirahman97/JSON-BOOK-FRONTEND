@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { faSignOut } from '@fortawesome/free-solid-svg-icons'; 
+import { faSignOut } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-home',
@@ -10,33 +11,34 @@ import Swal from 'sweetalert2';
 })
 export class HomeComponent {
 
-  loggedInUser : any;
-  userDetails : any;
-  firstInitial : any;
-  secondInitial : any;
-  lastInitial : any;
+  loggedInUser: any;
+  userDetails: any;
+  firstInitial: any;
+  secondInitial: any;
+  lastInitial: any;
   faSignOut = faSignOut;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private appComponent: AppComponent) { }
 
   ngOnInit(): void {
 
+    this.appComponent.showHeader = true;
     this.loggedInUser = localStorage.getItem('userEmail');
     this.http.get<any>("http://localhost:8080/api/v2/users")
       .subscribe(res => {
         const user = res.find((a: any) => {
-         // return a.email === this.loginForm.value.email && a.password === this.loginForm.value.password
-         if (this.loggedInUser === a.email){
-          console.log(res)
-          return a.email, a.firstName,a.middleName, a.lastName, a.mobile, a.address;
-         }
-          
+          // return a.email === this.loginForm.value.email && a.password === this.loginForm.value.password
+          if (this.loggedInUser === a.email) {
+            console.log(res)
+            return a.email, a.firstName, a.middleName, a.lastName, a.mobile, a.address;
+          }
+
         });
         this.userDetails = user;
       })
   }
 
-  logout(){
+  logout() {
     Swal.fire({
       title: 'Are you sure?',
       text: 'Are you sure, you want to logout ?',
@@ -47,13 +49,13 @@ export class HomeComponent {
       confirmButtonColor: '#9DC08B',
     }).then((result) => {
       if (result.value) {
-       
+
         Swal.fire({
-          title:'Logout',
-          text:'You have logged out',
+          title: 'Logout',
+          text: 'You have logged out',
           confirmButtonColor: '#9DC08B',
-          icon : 'success',
-        }).then(()=>{
+          icon: 'success',
+        }).then(() => {
           localStorage.removeItem('accessToken');
           localStorage.removeItem('userEmail');
           location.reload();

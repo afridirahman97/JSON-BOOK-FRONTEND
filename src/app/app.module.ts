@@ -7,7 +7,7 @@ import { RequestsComponent } from './requests/requests.component';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewComponent } from './view/view.component';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { GroupCreateComponent } from './group-create/group-create.component';
 import { CreateRequestComponent } from './create-request/create-request.component';
 // import {ReactiveFormsModule} from '@angular/forms'
@@ -24,6 +24,7 @@ import { ViewResponseComponent } from './view-response/view-response.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { HomeComponent } from './home/home.component';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 
 
@@ -55,10 +56,11 @@ import { HomeComponent } from './home/home.component';
     FontAwesomeModule,
     FormsModule,
     CodemirrorModule,
-    
+    NgxJsonViewerModule
+
 
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
