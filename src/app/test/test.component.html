@@ -1,14 +1,17 @@
+<table>
+  <tr *ngFor="let option of options">
+    <td (click)="showDiv(option.id)">{{ option.name }}</td>
+  </tr>
+</table>
 
-<textarea #editor></textarea>
+<!-- <ng-container *ngFor="let option of options">
+  <div *ngFor="let option of options" [id]="option.id" *ngIf="selectedOption === option.id">
+    {{ option.content }}
+  </div>
+</ng-container> -->
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="ngx-codemirror mb-2">
-      <ngx-codemirror
-        [options]="options"
-        [ngModel]="defaults[mode]"
-        [disabled]="readOnly"
-        [autoFocus]="true"
-        
-        
-      ></ngx-codemirror>
-    </div>
+<ng-container *ngFor="let option of options">
+  <div [id]="option.id" *ngIf="selectedOption === option.id">
+    {{ option.content }}
+  </div>
+</ng-container>

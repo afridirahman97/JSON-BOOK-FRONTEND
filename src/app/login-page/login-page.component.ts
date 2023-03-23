@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-login-page',
@@ -10,10 +11,14 @@ import { Router } from '@angular/router';
 })
 export class LoginPageComponent {
   public loginForm!: FormGroup
+  showHeader = false;
 
-  constructor(private formbuilder: FormBuilder, private http: HttpClient, private router: Router) { }
+  constructor(private formbuilder: FormBuilder, private http: HttpClient, private router: Router, private appComponent: AppComponent) { }
 
   ngOnInit(): void {
+
+    this.appComponent.showHeader = false;
+
     this.loginForm = this.formbuilder.group({
       email: [''],
       password: ['', Validators.required]
