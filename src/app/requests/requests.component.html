@@ -22,15 +22,15 @@
       <table class="table table-sm table-striped">
         <!-- table header -->
         <tr>
-          <th *ngFor="let column of headers">
+          <th style="text-align: center;" *ngFor="let column of headers">
             {{column}}
           </th>
         </tr>
         <!-- data -->
         <tr *ngFor="let data of rows">
-          <td>{{data.requestName}}</td>
-          <td>{{data.url}}</td>
-          <td><pre>{{ stringifyHeader(data.requestHeader)}}</pre></td>
+          <td style="text-align: center;">{{data.requestName}}</td>
+          <td style="text-align: center;">{{data.url}}</td>
+          <td ><pre>{{ stringifyHeader(data.requestHeader)}}</pre></td>
           <td style="text-align: center;">{{data.requestMethod}}</td>
           <td> <pre>{{ stringifyParam(data.requestParam) }}</pre></td>
           <!-- <td> {{ stringify(data.requestParam) }}</td> -->
