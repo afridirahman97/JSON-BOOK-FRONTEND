@@ -5,7 +5,7 @@ import {DeleteGroupService} from "../delete-group.service";
 import Swal from 'sweetalert2';
 //importing necessary font awesome emojis for group component
 import { faCoffee } from '@fortawesome/free-solid-svg-icons'; 
-import { faPlusSquare } from '@fortawesome/free-solid-svg-icons'; 
+import { faPlusSquare, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'; 
 
 
 @Component({
@@ -23,7 +23,7 @@ export class GroupsComponent {
    rows: any;
    faCoffee = faCoffee;
    faPlusSquare = faPlusSquare;
-
+   faMagnifyingGlass = faMagnifyingGlass;
 
 
   constructor(private router: Router, private data: GroupDataService,private del:DeleteGroupService) {
