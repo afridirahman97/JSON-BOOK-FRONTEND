@@ -15,24 +15,6 @@ interface Option {
 })
 export class ViewResponseComponent {
 
-  
-  dataTest = {
-    'simple key': 'simple value',
-    'numbers': 1234567,
-    'simple list': ['value1', 22222, 'value3'],
-    'special value': undefined,
-    'owner': null,
-    'simple obect': {
-      'simple key': 'simple value',
-      'numbers': 1234567,
-      'simple list': ['value1', 22222, 'value3'],
-      'simple obect': {
-        'key1': 'value1',
-        'key2': 22222,
-        'key3': 'value3'
-      }
-    }
-  };
 
   get code () {
     return JSON.stringify(this.data, null, 2);
@@ -74,5 +56,6 @@ export class ViewResponseComponent {
 
   showDiv(optionId: string): void {
     this.selectedOption = optionId;
+    console.log(optionId)
   }
 }

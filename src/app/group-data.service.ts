@@ -26,7 +26,7 @@ export class GroupDataService {
 
   }
   createResponse(requestId:number){
-    let url="localhost:8080/requests/create-response/"+requestId.toString();
+    let url="http://localhost:8080/requests/create-response/"+requestId.toString();
 
     return this.http.get(url);
   }

@@ -18,6 +18,9 @@
 <!-- test -->
 <!-- <hr> -->
 
+<input type="text" [(ngModel)]="searchQuery" placeholder="Search" (input)="filterTable()">
+
+
 <!-- table body -->
 <div class="container htmlBody">
   <div class="col-sm-12 row justify-content-md-center">
@@ -29,7 +32,7 @@
         <th>Group Name</th>
         <th style="text-align: right;">Actions</th>
       </tr>
-      <tr *ngFor= "let data of rows">
+      <tr *ngFor= "let data of filteredTableData">
         <!-- <td>{{data.groupId}}</td> -->
         <td>{{data.groupName}}</td>
       

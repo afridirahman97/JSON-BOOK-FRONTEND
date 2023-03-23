@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import {NavigationExtras, Router} from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { GroupDataService } from '../group-data.service';
-import {DeleteGroupService} from "../delete-group.service";
+import { DeleteGroupService } from "../delete-group.service";
 import Swal from 'sweetalert2';
 //importing necessary font awesome emojis for group component
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'; 
-import { faPlusSquare } from '@fortawesome/free-solid-svg-icons'; 
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -15,21 +15,23 @@ import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 })
 export class GroupsComponent {
 
+  searchQuery: string = "";
+  filteredTableData: any;
+  topSection: "topSection" = "topSection";
+  tabButtonPadding: "tabButtonPadding" = "tabButtonPadding";
+  navButton: "navButton" = "navButton";
+  htmlBody: "htmlBody" = "htmlBody";
+  rows: any;
+  faCoffee = faCoffee;
+  faPlusSquare = faPlusSquare;
 
-   topSection: "topSection" = "topSection";
-   tabButtonPadding: "tabButtonPadding" = "tabButtonPadding";
-   navButton: "navButton" = "navButton";
-   htmlBody: "htmlBody" = "htmlBody";
-   rows: any;
-   faCoffee = faCoffee;
-   faPlusSquare = faPlusSquare;
 
 
-
-  constructor(private router: Router, private data: GroupDataService,private del:DeleteGroupService) {
-    this.data.getData().subscribe(data =>{
+  constructor(private router: Router, private data: GroupDataService, private del: DeleteGroupService) {
+    this.data.getData().subscribe(data => {
       //console.warn(data)
       this.rows = data
+      this.filteredTableData = data
       //console.log(this.rows)
 
     })
@@ -41,7 +43,7 @@ export class GroupsComponent {
 
 
 
-  performEdit(id: number){
+  performEdit(id: number) {
     /*alert( id)
     let navigationExtras: NavigationExtras = {
       queryParams: {
@@ -49,10 +51,10 @@ export class GroupsComponent {
       }
     };
     this.router.navigate(['/group/create'],navigationExtras)*/
-    this.router.navigate(['group/edit/'+id]);
+    this.router.navigate(['group/edit/' + id]);
   }
 
-  performView(id: number, name: string){
+  performView(id: number, name: string) {
     //this.router.navigate(['/groups/'+id])
     /*let navigationExtras: NavigationExtras = {
       queryParams: {
@@ -60,11 +62,11 @@ export class GroupsComponent {
         groupName:name
       }
     };*/
-    this.router.navigate(['/groups/view/'+id])
+    this.router.navigate(['/groups/view/' + id])
   }
 
 
-  performDelete(id: number,name:String){
+  performDelete(id: number, name: String) {
     Swal.fire({
       title: 'Are you sure?',
       text: 'Are you sure, you want to delete this group ?',
@@ -77,11 +79,11 @@ export class GroupsComponent {
       if (result.value) {
         this.del.deleteData(id)
         Swal.fire({
-          title:'Removed',
-          text:'This has been deleted successfully',
+          title: 'Removed',
+          text: 'This has been deleted successfully',
           confirmButtonColor: '#9DC08B',
-          icon : 'success',
-        }).then(()=>{
+          icon: 'success',
+        }).then(() => {
           location.reload();
         });
 
@@ -94,6 +96,14 @@ export class GroupsComponent {
 
   performCreate() {
     this.router.navigate(['/group/create'])
+  }
+
+  filterTable() {
+    this.filteredTableData = this.rows.filter((row: { groupName: string; }) =>
+      row.groupName.toLowerCase().includes(this.searchQuery.toLowerCase())
+
+    );
+    // console.log(this.filteredTableData)
   }
 }
 

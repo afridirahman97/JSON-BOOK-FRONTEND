@@ -5,6 +5,7 @@ import { GroupDataService } from "../group-data.service";
 import { DeleteGroupService } from "../delete-group.service";
 // importing font-awesome emoji
 import { faPlusSquare,faEye } from '@fortawesome/free-solid-svg-icons';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -63,6 +64,22 @@ export class RequestsComponent {
   }
   createRequest(id:number){
     this.data.createResponse(id).subscribe(data=>{
+      console.log(data);
+      let response=JSON.stringify(data, (key, value) => {
+        if (typeof value === 'string' && value.length > 50) {
+          return value.slice(0, 50) + '...';
+        }
+        return value;
+      });
+      Swal.fire({
+        title: 'Success',
+        text:"Completed",
+        confirmButtonColor: '#9DC08B',
+        icon: 'success',
+
+      }).then(() => {
+        this.router.navigate(['requests/responses/' + id]);
+      });
       console.log(data);
     })
   }

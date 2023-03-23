@@ -30,19 +30,25 @@
         <tr *ngFor="let data of rows">
           <td style="text-align: center;">{{data.requestName}}</td>
           <td style="text-align: center;">{{data.url}}</td>
-          <td ><pre>{{ stringifyHeader(data.requestHeader)}}</pre></td>
+          <td>
+            <pre>{{ stringifyHeader(data.requestHeader)}}</pre>
+          </td>
           <td style="text-align: center;">{{data.requestMethod}}</td>
-          <td> <pre>{{ stringifyParam(data.requestParam) }}</pre></td>
+          <td>
+            <pre>{{ stringifyParam(data.requestParam) }}</pre>
+          </td>
           <!-- <td> {{ stringify(data.requestParam) }}</td> -->
           <td class="text-truncate" title="{{data.requestBodyRaw}}">{{data.requestBodyRaw}}</td>
 
           <!-- <td >{{data.reqBody}}</td> -->
           <td style="text-align: center;">
 
-            <button (click)="viewResponses(data.requestId)" class="btn btn-outline-success tabButtonPadding"><fa-icon [icon]="faeye"></fa-icon>
-              Responses</button>
-
-            <button   (click)="createRequest(data.requestId)" class="btn btn-outline-success tabButtonPadding"><fa-icon [icon]="faPlusSquare"></fa-icon> Responses</button>
+            <button (click)="viewResponses(data.requestId)" class="btn btn-outline-success tabButtonPadding"><fa-icon
+                [icon]="faeye"></fa-icon>
+              View Responses</button>
+            <br>
+            <button (click)="createRequest(data.requestId)" class="btn btn-outline-success tabButtonPadding"><fa-icon
+                [icon]="faPlusSquare"></fa-icon>Create New Response</button>
 
           </td>
         </tr>
@@ -51,5 +57,3 @@
   </div>
 
 </table>
-
-

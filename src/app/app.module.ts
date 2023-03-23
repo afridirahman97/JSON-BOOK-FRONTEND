@@ -25,6 +25,7 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { HomeComponent } from './home/home.component';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -56,7 +57,8 @@ import { NgxJsonViewerModule } from 'ngx-json-viewer';
     FontAwesomeModule,
     FormsModule,
     CodemirrorModule,
-    NgxJsonViewerModule
+    NgxJsonViewerModule,
+    ToastrModule.forRoot(), // ToastrModule added
 
 
   ],

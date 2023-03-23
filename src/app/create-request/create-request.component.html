@@ -22,14 +22,10 @@
           <select class="form-control" formControlName="method">
             <option value=""><b>Select Method</b></option>
             <option value="GET">GET</option>
-            <option value="HEAD">HEAD</option>
             <option value="POST">POST</option>
             <option value="PUT">PUT</option>
-
-            <option value="PATCH">PATCH</option>
             <option value="DELETE">DELETE</option>
-            <option value="OPTIONS">OPTIONS</option>
-            <option value="TRACE">TRACE</option>
+
 
           </select>
         </div>
@@ -40,7 +36,7 @@
       <div class="form-group">
         <label class="p-1" for="url"><b>URL</b></label>
         <input type="text" class="form-control" id="url" formControlName="url">
-        
+
       </div>
 
       <!-- header re-design -->
@@ -105,8 +101,8 @@
       <div class="form-group">
         <label class="p-1" for="authenticationType"><b>Authentication Type</b></label>
         <div>
-          <select class="form-control" formControlName="authenticationType">
-            <option value=""><b>Select Authentication Type</b></option>
+          <select [(ngModel)]="selectedAuthType" class="form-control" formControlName="authenticationType">
+           
             <option value="NO_AUTH">NO_AUTH</option>
             <option value="API_KEY">API_KEY</option>
             <option value="BEARER_TOKEN">BEARER_TOKEN</option>
@@ -117,18 +113,68 @@
         </div>
       </div>
 
+      <!-- Based auth type selection (API KEY) -->
+
+      <div *ngIf="selectedAuthType === 'API_KEY'" class="form-group">
+        <label class="p-1" for="authenticationTypeAPIkey"><b>ADD API KEY</b></label>
+        <div formArrayName="authenticationTypeAPIkey">
+          <div *ngFor="let userFormGroup of userFormParams.controls; let i = index" formGroupName="{{i}}"
+            class="margin-top" style="padding-bottom: 0.25rem; padding-top: .25rem;">
+            <div class="row" style="padding-bottom: 0.25rem;">
+              <div class="col-md-6">
+                <input type="text" placeholder="type" class="form-control" formControlName="key" />
+              </div>
+              <div class="col-md-6">
+                <input type="text" placeholder="value" class="form-control" formControlName="value" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+       <!-- Based auth type selection (JWT Bearer Token) -->
+
+       <div *ngIf="selectedAuthType === 'JWT_BEARER'" class="form-group">
+        <label class="p-1" for="jwt"><b>JWT Bearer Token</b></label>
+        <input type="text" class="form-control" id="jwt" formControlName="jwt">
+
+      </div>
+
+       <div *ngIf="selectedAuthType === 'BASIC_AUTH'" class="form-group">
+        <label class="p-1" for="params"><b>ADD Basic Auth</b></label>
+        <div formArrayName="params">
+          <div *ngFor="let userFormGroup of userFormParams.controls; let i = index" formGroupName="{{i}}"
+            class="margin-top" style="padding-bottom: 0.25rem; padding-top: .25rem;">
+            <div class="row" style="padding-bottom: 0.25rem;">
+              <div class="col-md-6">
+                <input type="text" placeholder="type" class="form-control" formControlName="key" />
+              </div>
+              <div class="col-md-6">
+                <input type="text" placeholder="value" class="form-control" formControlName="value" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- Based auth type selection (JWT Bearer Token) -->
+
 
       <!-- Request Body Type -->
       <div class="form-group">
         <label class="p-1" for="requestBodyType"><b>Request Body Type</b></label>
         <div>
-          <select class="form-control" formControlName="requestBodyType">
-            <option value=""><b>Select Request Body Type</b></option>
+          <select [(ngModel)]="selectedInputType" class="form-control" formControlName="requestBodyType">
+
+            <!-- <option value="Select Request Body Type"><b>Select Request Body Type</b></option> -->
             <option value="NONE">NONE</option>
             <option value="RAW">RAW</option>
             <option value="FORM_DATA">FORM_DATA</option>
             <option value="FORM_ENCODED">FORM_ENCODED</option>
-            <option value="BASIC_AUTH">BASIC_AUTH</option>
           </select>
         </div>
       </div>
@@ -145,9 +191,10 @@
       </div> -->
 
 
-      <br>
+     
 
-      <div class="form-group">
+      <!-- RAW BODY DATA TYPE -->
+      <div *ngIf="selectedInputType === 'RAW'">
         <label class="p-1" for="params"><b>Header Body</b></label>
         <div>
           <div class="ngx-codemirror mb-2">
@@ -162,12 +209,39 @@
           </div>
         </div>
       </div>
-      <br>
-      <div class="form-group">
+
+     
+
+      <!-- FORM BODY DATA TYPE -->
+      <div *ngIf="selectedInputType === 'FORM_DATA'" class="form-group">
         <label class="p-1" for="forms"><b>Form</b></label>
         <div formArrayName="forms">
           <div *ngFor="let userFormGroup of userFormForms.controls; let i = index" formGroupName="{{i}}"
-               class="margin-top" style="padding-bottom: 0.25rem; padding-top: .25rem;">
+            class="margin-top" style="padding-bottom: 0.25rem; padding-top: .25rem;">
+            <div class="row" style="padding-bottom: 0.25rem;">
+              <div class="col-md-6">
+                <input type="text" placeholder="Key" class="form-control" formControlName="key" />
+              </div>
+              <div class="col-md-6">
+                <input type="text" placeholder="value" class="form-control" formControlName="value" />
+              </div>
+            </div>
+            <!-- add and remove buttons -->
+            <div role="group" style="padding-bottom: 0.15rem; padding-top: .15rem;">
+              <a class="fButton" (click)="addForms()"><fa-icon [icon]="faPlusSquare"></fa-icon> Add</a>
+              <a (click)="removeForms(i)" class="fButton"><fa-icon [icon]="faSquareMinus"></fa-icon> Remove</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+  
+      <!-- FORM ENCODED -->
+      <div *ngIf="selectedInputType === 'FORM_ENCODED'" class="form-group">
+        <label class="p-1" for="forms"><b>Form Encoded</b></label>
+        <div formArrayName="forms">
+          <div *ngFor="let userFormGroup of userFormForms.controls; let i = index" formGroupName="{{i}}"
+            class="margin-top" style="padding-bottom: 0.25rem; padding-top: .25rem;">
             <div class="row" style="padding-bottom: 0.25rem;">
               <div class="col-md-6">
                 <input type="text" placeholder="Key" class="form-control" formControlName="key" />
@@ -186,6 +260,8 @@
         </div>
       </div>
       <br>
+
+
 
 
       <label class="p-1" for="gropupId"><b>Group ID</b></label>
