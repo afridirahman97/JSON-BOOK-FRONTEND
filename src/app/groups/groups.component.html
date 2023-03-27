@@ -4,21 +4,23 @@
   <div class="d-flex  row justify-content-md-center" style="margin-right: 1px;">
     <div class="col-sm-2 d-flex justify-content-start nopadding">
       <header>
-      <h2>Groups</h2>
-    </header>
-       <!-- <h2><fa-icon [icon]="faPlusSquare"></fa-icon></h2>  -->
+        <h2>Groups</h2>
+      </header>
+      <!-- <h2><fa-icon [icon]="faPlusSquare"></fa-icon></h2>  -->
     </div>
     <div class="col-sm-8 d-flex">
       <div class="input-group mb-1 justify-content-center nopadding" style="height:4px;">
-        <input type="text" name="groupNameSearch" class="form-control" id="groupNameSearch"  [(ngModel)]="searchQuery" placeholder="Search Group ..." (input)="filterTable()">
+        <input type="text" name="groupNameSearch" class="form-control" id="groupNameSearch" [(ngModel)]="searchQuery"
+          placeholder="Search Group ..." (input)="filterTable()">
         <!-- <div class="input-group-append">
           <button  class="navButton btn btn-info" style="margin-left:5px;"> <fa-icon [icon]="faMagnifyingGlass"></fa-icon> Group </button>
         </div> -->
       </div>
-       <!-- <h2><fa-icon [icon]="faPlusSquare"></fa-icon></h2>  -->
+      <!-- <h2><fa-icon [icon]="faPlusSquare"></fa-icon></h2>  -->
     </div>
     <div class="col-sm-2 d-flex justify-content-end">
-      <button (click) = "performCreate()" class="navButton btn btn-info"> <fa-icon [icon]="faPlusSquare"></fa-icon> Group </button>
+      <button (click)="performCreate()" class="navButton btn btn-info"> <fa-icon [icon]="faPlusSquare"></fa-icon> Group
+      </button>
     </div>
   </div>
 </div>
@@ -37,19 +39,20 @@
         <th>Group Name</th>
         <th style="text-align: right;">Actions</th>
       </tr>
-      <tr *ngFor= "let data of filteredTableData">
+      <tr *ngFor="let data of filteredTableData">
         <!-- <td>{{data.groupId}}</td> -->
         <td>{{data.groupName}}</td>
-      
+
         <td style="text-align: right;">
           <button (click)="performShare(data.groupId)" class="btn btn-outline-dark tabButtonPadding ">Share Group</button>
           <button (click)="performEdit(data.groupId)" class="btn btn-outline-warning tabButtonPadding ">Edit</button>
-          <button (click)="performView(data.groupId,data.groupName)" class="btn btn-outline-success tabButtonPadding">View</button>
-          <button (click)="performDelete(data.groupId,data.groupName)" class="btn btn-outline-danger tabButtonPadding">Delete</button>     
-        </td> 
+          <button (click)="performView(data.groupId,data.groupName)"
+            class="btn btn-outline-success tabButtonPadding">View</button>
+          <button (click)="performDelete(data.groupId,data.groupName)"
+            class="btn btn-outline-danger tabButtonPadding">Delete</button>
+        </td>
       </tr>
- 
+
     </table>
   </div>
 </div>
-

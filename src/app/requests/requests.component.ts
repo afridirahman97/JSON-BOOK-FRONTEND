@@ -14,8 +14,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./requests.component.css']
 })
 export class RequestsComponent {
-
-
+  searchQuery: string = "";
+  filteredTableData: any;
 
   stringifyParam(requestHeader: any) {
     let header = JSON.stringify(JSON.parse(requestHeader), null, 4)
@@ -42,6 +42,7 @@ export class RequestsComponent {
     this.data.getRequest().subscribe(data => {
       //console.warn(data)
       this.rows = data
+      this.filteredTableData = data
       console.log(this.rows)
       //this.test = Object.assign({}, ...this.rows);
       //this.test = JSON.stringify(this.rows.requestParam, null, 4)
@@ -82,6 +83,14 @@ export class RequestsComponent {
       });
       console.log(data);
     })
+  }
+
+  filterTable() {
+    this.filteredTableData = this.rows.filter((row: { requestName: string; }) =>
+      row.requestName.toLowerCase().includes(this.searchQuery.toLowerCase())
+
+    );
+    console.log(this.filteredTableData)
   }
 
 

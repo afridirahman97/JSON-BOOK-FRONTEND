@@ -1,17 +1,26 @@
 <!-- heading for request table name and create request button -->
 <div class="container htmlBody" style="padding-top: 18px;">
-  <div class="row d-flex justify-content-" style="padding-bottom: 5px;">
-    <div class="col md-10 nopadding" style="margin: 0 rem;">
+  <div class="d-flex  row justify-content-md-center" style="padding-bottom: 5px;">
+    <div class="col-sm-2 d-flex justify-content-start nopadding" style="margin: 0 rem;">
       <header>
         <h2>Request Table</h2>
       </header>
     </div>
-    <div class="col-1 md col-md-2 d-flex justify-content-end" style="margin-right: 0.5rem;">
-      <button (click)="performCreate()" class="crtReqButton btn btn-info"> <fa-icon [icon]="faPlusSquare"></fa-icon>
-        Request </button>
-      <!-- <button class="crtReqButton btn btn-info">Create Request</button> -->
+    <div class="col-sm-8 d-flex">
+      <div class="input-group mb-1 justify-content-center nopadding" style="height:4px;">
+        <input type="text" name="groupNameSearch" class="form-control" id="groupNameSearch" [(ngModel)]="searchQuery"
+          placeholder="Search Request ..." (input)="filterTable()">
+        <!-- <div class="input-group-append">
+          <button  class="navButton btn btn-info" style="margin-left:5px;"> <fa-icon [icon]="faMagnifyingGlass"></fa-icon> Group </button>
+        </div> -->
+      </div>
+      <!-- <h2><fa-icon [icon]="faPlusSquare"></fa-icon></h2>  -->
     </div>
-  </div>
+    <div class="col-sm-2 d-flex justify-content-end">
+      <button (click)="performCreate()" class="navButton btn btn-info"> <fa-icon [icon]="faPlusSquare"></fa-icon> Request
+      </button>
+    </div>
+</div>
 </div>
 
 <!-- viewing request information into a table -->
@@ -27,7 +36,7 @@
           </th>
         </tr>
         <!-- data -->
-        <tr *ngFor="let data of rows">
+        <tr *ngFor="let data of filteredTableData">
           <td style="text-align: center;">{{data.requestName}}</td>
           <td style="text-align: center;">{{data.url}}</td>
           <td>
@@ -41,15 +50,15 @@
           <td class="text-truncate" title="{{data.requestBodyRaw}}">{{data.requestBodyRaw}}</td>
 
           <!-- <td >{{data.reqBody}}</td> -->
-          <td style="text-align: center;">
-
-            <button (click)="viewResponses(data.requestId)" class="btn btn-outline-success tabButtonPadding"><fa-icon
+          <td style="text-align: left">
+            <div class="btn-group">
+              <button (click)="viewResponses(data.requestId)" type="button"  class= "cButton" style="margin-right: 6px;"><fa-icon
                 [icon]="faeye"></fa-icon>
-              View Responses</button>
-            <br>
-            <button (click)="createRequest(data.requestId)" class="btn btn-outline-success tabButtonPadding"><fa-icon
-                [icon]="faPlusSquare"></fa-icon>Create New Response</button>
-
+              View</button>
+            
+            <button (click)="createRequest(data.requestId)" class= "cButton" type="button" ><fa-icon
+                [icon]="faPlusSquare"></fa-icon> Execute</button>
+            </div>
           </td>
         </tr>
       </table>
