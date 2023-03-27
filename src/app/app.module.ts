@@ -26,6 +26,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { HomeComponent } from './home/home.component';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { ToastrModule } from 'ngx-toastr';
+import { SharedDataService } from './shared-data-service.service';
 
 
 
@@ -62,7 +63,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 
   ],
-  providers: [],
+  providers: [SharedDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

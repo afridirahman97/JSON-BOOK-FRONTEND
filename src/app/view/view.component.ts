@@ -6,6 +6,7 @@ import { RequestDataService } from '../request-data.service';
 import { RequestComponent } from '../request/request.component';
 // importing font-awesome emoji
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { SharedDataService } from '../shared-data-service.service';
 
 @Component({
   selector: 'app-view',
@@ -24,7 +25,7 @@ export class ViewComponent implements OnInit {
     let params = JSON.stringify(JSON.parse(requestParam), null, 4)
     return params;
   }
-
+  Groupdata: any;
   topSection: "topSection" = "topSection";
   groupId: any;
   groupName: any;
@@ -33,16 +34,28 @@ export class ViewComponent implements OnInit {
   faPlusSquare = faPlusSquare;
 
 
-  constructor(private route: ActivatedRoute, private router: Router, private location: Location, private data: RequestDataService) {
+  constructor(
+    private route: ActivatedRoute, 
+    private router: Router, 
+    private location: Location, 
+    private data: RequestDataService,
+    private sharedData: SharedDataService
+    ) {
 
 
   }
 
   headers = ["Request Name", "Header", "Request Body", "Response Body", "URL"];
 
-
+  userFlow = history.state.data;
 
   ngOnInit(): void {
+    this.sharedData.currentRowData.subscribe((data) => {
+      this.Groupdata = data;
+      console.log(this.Groupdata)
+    });
+
+
     this.groupId = this.route.snapshot.paramMap.get('id');
     console.log(this.groupId);
     this.data.getRequestById(this.groupId).subscribe(data => {
@@ -53,6 +66,7 @@ export class ViewComponent implements OnInit {
         this.displayElement = true
       }
       console.log(this.displayElement)
+      console.log(data);
       this.rows = data;
       this.groupName = this.rows[0].groups.groupName
 

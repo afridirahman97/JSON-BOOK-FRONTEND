@@ -23,3 +23,14 @@ table {
     float: right
     
 }
+
+
+header h2 {
+    
+  font-weight: 600;
+  background-image: linear-gradient(to left, #40513B, #609966);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+
+}

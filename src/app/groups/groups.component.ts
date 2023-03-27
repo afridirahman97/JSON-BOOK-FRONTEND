@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 //importing necessary font awesome emojis for group component
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { SharedDataService } from '../shared-data-service.service';
 
 
 @Component({
@@ -27,7 +28,11 @@ export class GroupsComponent {
 
 
 
-  constructor(private router: Router, private data: GroupDataService, private del: DeleteGroupService) {
+  constructor(
+    private router: Router,
+    private data: GroupDataService,
+    private del: DeleteGroupService,
+    private sharedData: SharedDataService) {
     this.data.getData().subscribe(data => {
       //console.warn(data)
       this.rows = data
@@ -63,6 +68,7 @@ export class GroupsComponent {
       }
     };*/
     this.router.navigate(['/groups/view/' + id])
+    this.sharedData.updateRowData(name)
   }
 
 
