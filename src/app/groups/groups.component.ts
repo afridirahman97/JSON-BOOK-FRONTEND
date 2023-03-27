@@ -35,7 +35,7 @@ export class GroupsComponent {
      
       this.rows = data;
       // this.group_name = this.rows.groupName
-      console.log(this.rows)
+      // console.log(this.rows)
       // console.log("data" + data)
       // console.log(typeof this.rows)
       // console.log("search value: " + this.groupNameSearch)
@@ -125,12 +125,11 @@ export class GroupsComponent {
       const row = this.rows[k];
       console.log("from row: "+row.groupName)
       if (row.groupName == this.groupNameSearch){
-        // this.search_data =  row;
-        // const search_data = this.rows[k]
-        // console.log("Hola: "+search_data)
-        // console.log("gjkfr: "+ search_data[0])
-        this.rows = row;
-        this.router.navigate(['/groups/'])
+        const search_data = this.rows[k]
+        console.log("Hola: "+search_data)
+        console.log("gjkfr: "+ search_data[0])
+        // this.rows = row;
+        // this.router.navigate(['/groups/'])
       }
       // console.log(k + " value of k");
       console.log(row.groupName);
