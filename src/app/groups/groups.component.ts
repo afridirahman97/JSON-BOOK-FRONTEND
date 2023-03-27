@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { GroupDataService } from '../group-data.service';
 import { DeleteGroupService } from "../delete-group.service";
 import Swal from 'sweetalert2';
@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { SharedDataService } from '../shared-data-service.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { SharedDataService } from '../shared-data-service.service';
 })
 export class GroupsComponent {
 
+  users: object = {};
   searchQuery: string = "";
   filteredTableData: any;
   topSection: "topSection" = "topSection";
@@ -32,7 +34,8 @@ export class GroupsComponent {
     private router: Router,
     private data: GroupDataService,
     private del: DeleteGroupService,
-    private sharedData: SharedDataService) {
+    private sharedData: SharedDataService,
+    private http: HttpClient) {
     this.data.getData().subscribe(data => {
       //console.warn(data)
       this.rows = data
@@ -44,10 +47,6 @@ export class GroupsComponent {
 
   headers = ["Group Name", "Actions"];
 
-
-
-
-
   performEdit(id: number) {
     /*alert( id)
     let navigationExtras: NavigationExtras = {
@@ -57,6 +56,46 @@ export class GroupsComponent {
     };
     this.router.navigate(['/group/create'],navigationExtras)*/
     this.router.navigate(['group/edit/' + id]);
+  }
+
+  async performShare(id: number) {
+
+
+    this.http.get('http://localhost:8080/api/v2/list-of-users').subscribe(async (response) => {
+      this.users = response;
+      console.log(this.users);
+      console.log(typeof this.users)
+
+      const { value: name } = await Swal.fire({
+        title: 'Select field validation',
+        input: 'select',
+        inputOptions: this.users,
+        inputPlaceholder: 'Select a User',
+        showCancelButton: true,
+
+      })
+
+      if (name) {
+        this.http.get(`http://localhost:8080/groups/${id}/add-new-user/${name}`).subscribe((response) => {
+          // Swal.fire(`You selected: ${name}`);
+          Swal.fire({
+            title: 'Successfully Shared',
+            text: 'This group has been successfully shared',
+            confirmButtonColor: '#9DC08B',
+            icon: 'success',
+          });
+        });
+
+      }
+    });
+
+
+
+
+
+
+    // console.log(id)
+    // console.log(Uid)
   }
 
   performView(id: number, name: string) {
@@ -109,7 +148,6 @@ export class GroupsComponent {
       row.groupName.toLowerCase().includes(this.searchQuery.toLowerCase())
 
     );
-    // console.log(this.filteredTableData)
   }
 }
 

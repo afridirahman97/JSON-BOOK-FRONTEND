@@ -13,4 +13,5 @@ export class SharedDataService {
   updateRowData(data: any) {
     this.rowData.next(data);
   }
+  
 }

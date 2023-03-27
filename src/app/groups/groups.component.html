@@ -42,6 +42,7 @@
         <td>{{data.groupName}}</td>
       
         <td style="text-align: right;">
+          <button (click)="performShare(data.groupId)" class="btn btn-outline-dark tabButtonPadding ">Share Group</button>
           <button (click)="performEdit(data.groupId)" class="btn btn-outline-warning tabButtonPadding ">Edit</button>
           <button (click)="performView(data.groupId,data.groupName)" class="btn btn-outline-success tabButtonPadding">View</button>
           <button (click)="performDelete(data.groupId,data.groupName)" class="btn btn-outline-danger tabButtonPadding">Delete</button>     

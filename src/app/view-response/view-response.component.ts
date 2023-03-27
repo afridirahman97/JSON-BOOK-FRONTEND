@@ -16,15 +16,15 @@ interface Option {
 export class ViewResponseComponent {
 
 
-  get code () {
+  get code() {
     return JSON.stringify(this.data, null, 2);
   }
 
-  set code (v) {
-    try{
+  set code(v) {
+    try {
       this.data = JSON.parse(v);
     }
-    catch(e) {
+    catch (e) {
       console.log('error occored while you were typing the JSON');
     };
   }
@@ -35,13 +35,15 @@ export class ViewResponseComponent {
     return body;
   }
 
+  convert: any;
+
   rows: any;
   a: any;
   b: any;
   table_header = ["Status", "Requested At", "Responded At", "Time (ms)", "Actions"]
 
-  constructor(private data: ViewResponsesService){
-    this.data.getData().subscribe(data =>{
+  constructor(private data: ViewResponsesService) {
+    this.data.getData().subscribe(data => {
       //console.warn(data)
       this.rows = data
       //console.log(this.rows)
@@ -53,10 +55,18 @@ export class ViewResponseComponent {
 
   }
 
+  ngOnInit(): void {
+
+    this.convert = this.data;
+
+  }
+
   selectedOption: string = '';
 
   showDiv(optionId: string): void {
     this.selectedOption = optionId;
     console.log(optionId)
+    console.log(this.convert);
+
   }
 }
