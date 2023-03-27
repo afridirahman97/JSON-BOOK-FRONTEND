@@ -1,13 +1,12 @@
-import { Component, Type } from '@angular/core';
-import {NavigationExtras, Router} from '@angular/router';
+import { Component } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { GroupDataService } from '../group-data.service';
-import {DeleteGroupService} from "../delete-group.service";
-import { FormGroup, FormControl } from '@angular/forms';
+import { DeleteGroupService } from "../delete-group.service";
 import Swal from 'sweetalert2';
 //importing necessary font awesome emojis for group component
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'; 
-import { faPlusSquare, faMagnifyingGlass, faEye } from '@fortawesome/free-solid-svg-icons'; 
-import { Pass } from 'codemirror';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { SharedDataService } from '../shared-data-service.service';
 
 
 @Component({
@@ -17,48 +16,39 @@ import { Pass } from 'codemirror';
 })
 export class GroupsComponent {
 
-   groupNameSearch : string = '';
-   topSection: "topSection" = "topSection";
-   tabButtonPadding: "tabButtonPadding" = "tabButtonPadding";
-   navButton: "navButton" = "navButton";
-   htmlBody: "htmlBody" = "htmlBody";
-   rows: any;
-   faCoffee = faCoffee;
-   faPlusSquare = faPlusSquare;
-   faMagnifyingGlass = faMagnifyingGlass;
-   group_name : string = "";
-  //  search_data : constant;
+  searchQuery: string = "";
+  filteredTableData: any;
+  topSection: "topSection" = "topSection";
+  tabButtonPadding: "tabButtonPadding" = "tabButtonPadding";
+  navButton: "navButton" = "navButton";
+  htmlBody: "htmlBody" = "htmlBody";
+  rows: any;
+  faCoffee = faCoffee;
+  faPlusSquare = faPlusSquare;
 
-  constructor(private router: Router, private data: GroupDataService,private del:DeleteGroupService) {
-    this.data.getData().subscribe(data =>{
+
+
+  constructor(
+    private router: Router,
+    private data: GroupDataService,
+    private del: DeleteGroupService,
+    private sharedData: SharedDataService) {
+    this.data.getData().subscribe(data => {
       //console.warn(data)
-     
-      this.rows = data;
-      // this.group_name = this.rows.groupName
-      // console.log(this.rows)
-      // console.log("data" + data)
-      // console.log(typeof this.rows)
-      // console.log("search value: " + this.groupNameSearch)
-      
-      // for (const k in this.rows) {
-      //   const v = this.rows[k];
-      //   console.log(v.groupName);
-      // }
+      this.rows = data
+      this.filteredTableData = data
+      //console.log(this.rows)
 
-      // console.log("search results from constructot: " + this.groupNameSearch)
-      
     })
-
-  
   }
 
   headers = ["Group Name", "Actions"];
-  
 
 
 
 
-  performEdit(id: number){
+
+  performEdit(id: number) {
     /*alert( id)
     let navigationExtras: NavigationExtras = {
       queryParams: {
@@ -66,10 +56,10 @@ export class GroupsComponent {
       }
     };
     this.router.navigate(['/group/create'],navigationExtras)*/
-    this.router.navigate(['group/edit/'+id]);
+    this.router.navigate(['group/edit/' + id]);
   }
 
-  performView(id: number, name: string){
+  performView(id: number, name: string) {
     //this.router.navigate(['/groups/'+id])
     /*let navigationExtras: NavigationExtras = {
       queryParams: {
@@ -77,11 +67,12 @@ export class GroupsComponent {
         groupName:name
       }
     };*/
-    this.router.navigate(['/groups/view/'+id])
+    this.router.navigate(['/groups/view/' + id])
+    this.sharedData.updateRowData(name)
   }
 
 
-  performDelete(id: number,name:String){
+  performDelete(id: number, name: String) {
     Swal.fire({
       title: 'Are you sure?',
       text: 'Are you sure, you want to delete this group ?',
@@ -94,11 +85,11 @@ export class GroupsComponent {
       if (result.value) {
         this.del.deleteData(id)
         Swal.fire({
-          title:'Removed',
-          text:'This has been deleted successfully',
+          title: 'Removed',
+          text: 'This has been deleted successfully',
           confirmButtonColor: '#9DC08B',
-          icon : 'success',
-        }).then(()=>{
+          icon: 'success',
+        }).then(() => {
           location.reload();
         });
 
@@ -113,28 +104,12 @@ export class GroupsComponent {
     this.router.navigate(['/group/create'])
   }
 
-  performSearch(){
-    if(this.groupNameSearch != ""){
-      console.log(this.groupNameSearch)
-    }else{
-      console.log("you did't search any group !")
-    }
+  filterTable() {
+    this.filteredTableData = this.rows.filter((row: { groupName: string; }) =>
+      row.groupName.toLowerCase().includes(this.searchQuery.toLowerCase())
 
-    this.data.getData()
-    for (const k in this.rows) {
-      const row = this.rows[k];
-      console.log("from row: "+row.groupName)
-      if (row.groupName == this.groupNameSearch){
-        const search_data = this.rows[k]
-        console.log("Hola: "+search_data)
-        console.log("gjkfr: "+ search_data[0])
-        // this.rows = row;
-        // this.router.navigate(['/groups/'])
-      }
-      // console.log(k + " value of k");
-      console.log(row.groupName);
-    }
-    
+    );
+    // console.log(this.filteredTableData)
   }
 }
 

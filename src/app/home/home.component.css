@@ -1,7 +1,7 @@
 .card-custom-wide {
   overflow: hidden;
   border: 0;
-  width: 105%;
+  width: 100%;
   box-shadow: 0 0 15px rgba(10, 10, 10, 0.3);
 }
 

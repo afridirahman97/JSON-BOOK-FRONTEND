@@ -9,9 +9,6 @@ import { faSquareMinus } from '@fortawesome/free-solid-svg-icons';
 import Swal from "sweetalert2";
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ZonedDateTime, DateTimeFormatter } from '@js-joda/core';
-//import 'codemirror/theme/abbott.css'
-// importing ajv to validate JSON Schema
-import Ajv from "ajv";
 
 
 const defaults = {
@@ -34,6 +31,8 @@ interface MyMap2 {
 })
 export class CreateRequestComponent implements OnInit {
 
+  selectedInputType: string = 'NONE';
+  selectedAuthType: string = 'NO_AUTH';
   readOnly = false;
   //mode: keyof typeof defaults = 'markdown';
   options = {
@@ -51,12 +50,15 @@ export class CreateRequestComponent implements OnInit {
   mappedHeader: any;
   headerFormatted: any;
   paramsFormatted: any;
+  apikeyFormatted : any;
   private formsFormatted: any;
 
   //for maping header values
   myMap: MyMap = {};
   myMap2: MyMap2 = {};
   myMap3: MyMap = {};
+
+  myMap4: MyMap = {}; //auth api key
 
 
 
@@ -91,15 +93,34 @@ export class CreateRequestComponent implements OnInit {
           value: new FormControl('')
         })
       ]),
-      createdAt : new FormControl(''),
-      updatedAt : new FormControl(''),
-      authenticationType : new FormControl(''),
-      requestBodyType : new FormControl(''),
+      createdAt: new FormControl(''),
+      updatedAt: new FormControl(''),
+      authenticationType: new FormControl(''),
+
+      authenticationTypeAPIkey: new FormArray([
+        new FormGroup({
+          key: new FormControl(''),
+          value: new FormControl('')
+        })
+      ]),
+
+      authenticationTypeBasicAuth: new FormArray([
+        new FormGroup({
+          key: new FormControl(''),
+          value: new FormControl('')
+        })
+      ]),
+
+      requestBodyType: new FormControl(''),
       reqBody: new FormControl(''),
       resBody: new FormControl(''),
     });
   }
 
+
+  get userFormAuthAPI() {
+    return this.form.get('authenticationTypeAPIkey') as FormArray
+  }
 
   get userFormParams() {
     return this.form.get('params') as FormArray
@@ -157,8 +178,12 @@ export class CreateRequestComponent implements OnInit {
   }
 
   removeParams(index: number) {
-    const control = <FormArray>this.form.controls['params'];
-    control.removeAt(index);
+    if (index > 0) {
+      const control = <FormArray>this.form.controls['params'];
+      control.removeAt(index);
+    } else {
+      // do nothing
+    }
   }
   addForms() {
     const control = <FormArray>this.form.controls['forms'];
@@ -171,8 +196,19 @@ export class CreateRequestComponent implements OnInit {
   }
 
   removeForms(index: number) {
-    const control = <FormArray>this.form.controls['forms'];
-    control.removeAt(index);
+    if (index > 0) {
+      const control = <FormArray>this.form.controls['forms'];
+      control.removeAt(index);
+    } else {
+      Swal.fire({
+        title: 'Stop',
+        text: 'Must have atleast One Form Value',
+        confirmButtonColor: '#9DC08B',
+        icon: 'warning',
+
+      })
+
+    }
   }
 
 
@@ -219,6 +255,16 @@ export class CreateRequestComponent implements OnInit {
     });
 
 
+    //formatting api key 
+    var collectAPIKEY = this.form.get('authenticationTypeAPIkey') as FormArray;
+    this.apikeyFormatted = collectAPIKEY.value;
+    const apikeyFormattedString: string = JSON.stringify(this.apikeyFormatted);
+    const forAPIKEY: { key: string, value: string }[] = JSON.parse(apikeyFormattedString);
+    forAPIKEY.forEach(item => {
+      this.myMap4[item.key] = item.value;
+    });
+
+
     let request = {
       requestName: formData.name,
       requestHeader: JSON.stringify(this.myMap),
@@ -226,16 +272,19 @@ export class CreateRequestComponent implements OnInit {
       requestMethod: formData.method,
       url: formData.url,
       authenticationType: formData.authenticationType,
-      createdAt : formattedDateTime.toString(),
-      updatedAt : formattedDateTime.toString(),
+      createdAt: formattedDateTime.toString(),
+      updatedAt: formattedDateTime.toString(),
       requestBodyType: formData.requestBodyType,
       requestBodyRaw: formData.reqBody,
       id: formData.id,
       groups: groupEntity
     };
-    let requestFormDto={
-      requests:request,
-      forms:JSON.stringify(this.myMap3)
+    let requestFormDto = {
+      requests: request,
+      forms: JSON.stringify(this.myMap3)
+    }
+    let apikey = {
+      apikey : JSON.stringify(this.myMap4)
     }
     console.log(requestFormDto);
 

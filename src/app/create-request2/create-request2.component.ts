@@ -31,6 +31,8 @@ interface MyMap2 {
   styleUrls: ['./create-request2.component.css']
 })
 export class CreateRequest2Component implements OnInit{
+  selectedInputType: string = 'NONE';
+  selectedAuthType: string = 'NO_AUTH';
   form: FormGroup;
   groupId:any;
   readOnly = false;
@@ -49,13 +51,14 @@ export class CreateRequest2Component implements OnInit{
   mappedHeader: any;
   headerFormatted: any;
   paramsFormatted: any;
-  formsFormatted: any;
-
+  // formsFormatted: any;
+  apikeyFormatted : any;
+  private formsFormatted: any;
     //for maping header values
     myMap: MyMap = {};
     myMap2: MyMap2 = {};
     myMap3: MyMap = {};
-
+    myMap4: MyMap = {}; //auth api key
 
 
 
@@ -92,23 +95,42 @@ export class CreateRequest2Component implements OnInit{
           createdAt : new FormControl(''),
           updatedAt : new FormControl(''),
           authenticationType : new FormControl(''),
+
+          authenticationTypeAPIkey: new FormArray([
+            new FormGroup({
+              key: new FormControl(''),
+              value: new FormControl('')
+            })
+          ]),
+
+          authenticationTypeBasicAuth: new FormArray([
+            new FormGroup({
+              key: new FormControl(''),
+              value: new FormControl('')
+            })
+          ]),
+
           requestBodyType : new FormControl(''),
           reqBody: new FormControl(''),
           resBody: new FormControl(''),
         });
       }
 
-  ngOnInit(): void {
-    this.groupId = this.route.snapshot.paramMap.get('id');
-    console.log(this.groupId)
+  // ngOnInit(): void {
+  //   this.groupId = this.route.snapshot.paramMap.get('id');
+  //   console.log(this.groupId)
 
-    this.route.queryParams.subscribe(params => {
-      this.group = params;
-    });
+  //   this.route.queryParams.subscribe(params => {
+  //     this.group = params;
+  //   });
 
-    this.groupID.getData().subscribe(ids => {
-      this.ids = ids;
-    });
+  //   this.groupID.getData().subscribe(ids => {
+  //     this.ids = ids;
+  //   });
+  // }
+
+  get userFormAuthAPI() {
+    return this.form.get('authenticationTypeAPIkey') as FormArray
   }
 
   get userFormParams() {
@@ -216,17 +238,35 @@ export class CreateRequest2Component implements OnInit{
       this.myMap3[item.key] = item.value;
     });
 
+     //formatting headers
+     var collectHeader = this.form.get('header') as FormArray;
+     this.headerFormatted = collectHeader.value;
+     const headerFormattedString: string = JSON.stringify(this.headerFormatted);
+     const forHeader: { key: string, value: string }[] = JSON.parse(headerFormattedString);
+     forHeader.forEach(item => {
+       this.myMap[item.key] = item.value;
+     });
+    
+     
+     //formatting api key 
+    var collectAPIKEY = this.form.get('authenticationTypeAPIkey') as FormArray;
+    this.apikeyFormatted = collectAPIKEY.value;
+    const apikeyFormattedString: string = JSON.stringify(this.apikeyFormatted);
+    const forAPIKEY: { key: string, value: string }[] = JSON.parse(apikeyFormattedString);
+    forAPIKEY.forEach(item => {
+      this.myMap4[item.key] = item.value;
+    });
 
     //formatting params
-    var collectHeader = this.form.get('header') as FormArray;
-    this.headerFormatted = collectHeader.value;
-    //console.log(this.headerFormatted)
+    // var collectHeader = this.form.get('header') as FormArray;
+    // this.headerFormatted = collectHeader.value;
+    // //console.log(this.headerFormatted)
 
-    const headerFormattedString: string = JSON.stringify(this.headerFormatted);
-    const forHeader: { key: string, value: string }[] = JSON.parse(headerFormattedString);
-    forHeader.forEach(item => {
-      this.myMap[item.key] = item.value;
-    });
+    // const headerFormattedString: string = JSON.stringify(this.headerFormatted);
+    // const forHeader: { key: string, value: string }[] = JSON.parse(headerFormattedString);
+    // forHeader.forEach(item => {
+    //   this.myMap[item.key] = item.value;
+    // });
 
 
     let request = {
@@ -247,6 +287,9 @@ export class CreateRequest2Component implements OnInit{
     let requestFormDto={
       requests:request,
       forms:JSON.stringify(this.myMap3)
+    }
+    let apikey = {
+      apikey : JSON.stringify(this.myMap4)
     }
     console.log(requestFormDto);
 
@@ -282,14 +325,21 @@ export class CreateRequest2Component implements OnInit{
     );
   }
 
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.group = params;
+    });
 
-  selectedTeam = '';
-  onSelected(value: string): void {
-    this.selectedTeam = value;
-    console.log(this.selectedTeam)
+    this.groupID.getData().subscribe(ids => {
+      this.ids = ids;
+    });
+
   }
 
-
-
+  selectedId = '';
+  onSelected(value: string): void {
+    this.selectedId = value;
+    console.log(this.selectedId)
+  }
 
 }

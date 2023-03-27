@@ -42,3 +42,16 @@ header h2 {
   margin-left: 10px;
   margin-right: 10px;
 }
+
+.crtReqButton{
+  background-color: #9DC08B;
+  margin: .15rem;
+  border-color: #9DC08B;
+}
+
+/* customize button color when active */
+.crtReqButton:active{
+
+  background-color: rgb(103, 104, 100);
+  border-color: rgb(103, 104, 100);;
+  }

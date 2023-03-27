@@ -20,11 +20,11 @@
   <div class="row justify-content-md-center ">
     <div class="col md-11 nopadding">
       <header>
-        <h2>Viewing Group Information :</h2>
+        <h2>Viewing Request Information :</h2>
       </header>
     </div>
     <div class="col-1 md justify-content-end">
-      <button (click) = "performCreate()" class="cButton btn btn-info"> <fa-icon [icon]="faPlusSquare"></fa-icon> Request </button>
+      <button (click) = "performCreate()" class="crtReqButton btn btn-info"> <fa-icon [icon]="faPlusSquare"></fa-icon> Request </button>
 
     </div>
   </div>
@@ -32,10 +32,10 @@
   <div class="row">
     <div class="col-md-12 justify-content-center border bg-light mt-5">
       <div>
-        <h2>Group Name: {{groupName}}</h2>
+        <h2>Group Name: {{Groupdata}}</h2>
       </div>
       <div>
-        <h2>All Requests for {{groupName}}</h2>
+        <h2>All Requests for {{Groupdata}}</h2>
       </div>
 
       <div class="container">

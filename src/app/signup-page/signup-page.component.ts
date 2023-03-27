@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AppComponent } from '../app.component';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup-page',
@@ -13,7 +13,12 @@ import { AppComponent } from '../app.component';
 export class SignupPageComponent {
 
   public signUpForm !: FormGroup
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private appComponent: AppComponent) { }
+  constructor(
+    private formBuilder: FormBuilder, 
+    private http: HttpClient, 
+    private router: Router, 
+    private appComponent: AppComponent,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -33,12 +38,13 @@ export class SignupPageComponent {
     this.http.post<any>("http://localhost:8080/api/v2/register",this.signUpForm.value)
     .subscribe(res=>{
       console.log(res)
-      alert('SIGNIN SUCCESFUL');
+      //alert('SIGNIN SUCCESFUL');
+      this.toastr.success('You can log in now', 'Account Successfully Created');
       this.signUpForm.reset()
       this.router.navigate(["login"])
     },err=>{
       console.log(err)
-      alert("Something went wrong")
+      this.toastr.error('Try Again', err.error.description);
     })
   }
 
