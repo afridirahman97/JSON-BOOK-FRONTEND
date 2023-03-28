@@ -4,7 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { GroupDataService } from "../group-data.service";
 import { DeleteGroupService } from "../delete-group.service";
 // importing font-awesome emoji
-import { faPlusSquare,faEye } from '@fortawesome/free-solid-svg-icons';
+import { faPlusSquare, faEye } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
 
 
@@ -28,12 +28,12 @@ export class RequestsComponent {
   }
 
 
-
+  //headers = ["Name", "URL", "Header", "Request Method", "Request Params", "Request Body", "Actions"]; Don't cut this line
   topSection: "topSection" = "topSection";
-  headers = ["Name", "URL", "Header", "Request Method", "Request Params", "Request Body", "Actions"];
+  headers = ["Name", "URL", "Request Method", "Request Body", "Actions"];
   rows: any;
   faPlusSquare = faPlusSquare;
-  faeye=faEye;
+  faeye = faEye;
 
   test: any;
 
@@ -63,10 +63,10 @@ export class RequestsComponent {
   viewResponses(id: number) {
     this.router.navigate(['requests/responses/' + id])
   }
-  createRequest(id:number){
-    this.data.createResponse(id).subscribe(data=>{
+  createRequest(id: number) {
+    this.data.createResponse(id).subscribe(data => {
       console.log(data);
-      let response=JSON.stringify(data, (key, value) => {
+      let response = JSON.stringify(data, (key, value) => {
         if (typeof value === 'string' && value.length > 50) {
           return value.slice(0, 50) + '...';
         }
@@ -74,7 +74,7 @@ export class RequestsComponent {
       });
       Swal.fire({
         title: 'Success',
-        text:"Completed",
+        text: "Completed",
         confirmButtonColor: '#9DC08B',
         icon: 'success',
 

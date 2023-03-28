@@ -39,13 +39,13 @@
         <tr *ngFor="let data of filteredTableData">
           <td style="text-align: center;">{{data.requestName}}</td>
           <td style="text-align: center;">{{data.url}}</td>
-          <td>
+          <!-- <td>
             <pre>{{ stringifyHeader(data.requestHeader)}}</pre>
-          </td>
+          </td> -->
           <td style="text-align: center;">{{data.requestMethod}}</td>
-          <td>
+          <!-- <td>
             <pre>{{ stringifyParam(data.requestParam) }}</pre>
-          </td>
+          </td> -->
           <!-- <td> {{ stringify(data.requestParam) }}</td> -->
           <td class="text-truncate" title="{{data.requestBodyRaw}}">{{data.requestBodyRaw}}</td>
 
