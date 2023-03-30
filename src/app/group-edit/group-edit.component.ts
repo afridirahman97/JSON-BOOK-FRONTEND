@@ -12,6 +12,8 @@ import Swal from 'sweetalert2';
 export class GroupEditComponent implements  OnInit{
   groupId:number| null;
   form: FormGroup;
+  data : object | undefined;
+
   constructor(private route: ActivatedRoute,private http: HttpClient,private router: Router) {
     this.groupId=null;
     this.form = new FormGroup({
@@ -20,9 +22,20 @@ export class GroupEditComponent implements  OnInit{
 
   }
   ngOnInit(): void {
-    console.log(this.groupId);
+    
     this.groupId=Number(this.route.snapshot.paramMap.get('id'));
+    //console.log("here", this.groupId);
+
+    this.http.get<any>(`http://localhost:8080/groups/id/${this.groupId}`).subscribe(data => {
+      // Populate the form fields with the existing data
+      this.data = data;
+      this.form.patchValue(data);
+    });
+
+
   }
+
+
   onSubmit() {
     const formData = this.form.value;
     let group={
