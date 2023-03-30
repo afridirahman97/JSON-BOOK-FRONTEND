@@ -4,7 +4,7 @@ import { GroupDataService } from '../group-data.service';
 import { DeleteGroupService } from "../delete-group.service";
 import Swal from 'sweetalert2';
 //importing necessary font awesome emojis for group component
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faCoffee, faL } from '@fortawesome/free-solid-svg-icons';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { SharedDataService } from '../shared-data-service.service';
 import { HttpClient } from '@angular/common/http';
@@ -27,6 +27,8 @@ export class GroupsComponent {
   rows: any;
   faCoffee = faCoffee;
   faPlusSquare = faPlusSquare;
+  role: any;
+  AdminHere: Boolean = false;
 
 
 
@@ -46,6 +48,17 @@ export class GroupsComponent {
   }
 
   headers = ["Group Name", "Actions"];
+
+  ngOnInit(): void {
+    this.role = localStorage.getItem('userRole')
+    console.log(this.role)
+    if (this.role === "ADMIN") {
+      this.AdminHere = true;
+    } else {
+      // do nothing 
+    }
+
+  }
 
   performEdit(id: number) {
     /*alert( id)

@@ -1,5 +1,12 @@
 <!-- heading for table name and create button -->
 <!-- <hr> -->
+
+<!-- <div *ngIf="isLoggedIn; else loginMessage">
+  <p>Welcome, {{ username }}!</p>
+  <button (click)="logout()">Logout</button>
+</div> -->
+
+
 <div class="container htmlBody" style="padding-top: 18px; padding-bottom: 5px;">
   <div class="d-flex  row justify-content-md-center" style="margin-right: 1px;">
     <div class="col-sm-2 d-flex justify-content-start nopadding">
@@ -44,7 +51,7 @@
         <td>{{data.groupName}}</td>
 
         <td style="text-align: right;">
-          <button (click)="performShare(data.groupId)" class="btn btn-outline-dark tabButtonPadding ">Share Group</button>
+          <button *ngIf="AdminHere" (click)="performShare(data.groupId)" class="btn btn-outline-dark tabButtonPadding ">Share Group</button>
           <button (click)="performEdit(data.groupId)" class="btn btn-outline-warning tabButtonPadding ">Edit</button>
           <button (click)="performView(data.groupId,data.groupName)"
             class="btn btn-outline-success tabButtonPadding">View</button>

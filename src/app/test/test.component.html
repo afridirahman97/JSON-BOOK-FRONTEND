@@ -1,17 +1,14 @@
-<table>
-  <tr *ngFor="let option of options">
-    <td (click)="showDiv(option.id)">{{ option.name }}</td>
-  </tr>
-</table>
-
-<!-- <ng-container *ngFor="let option of options">
-  <div *ngFor="let option of options" [id]="option.id" *ngIf="selectedOption === option.id">
-    {{ option.content }}
+<div class="form-group row">
+  <label class="col-sm-2 col-form-label">Left Select</label>
+  <div class="col-sm-4">
+    <select class="form-control" [(ngModel)]="selectedLeftOption" (ngModelChange)="onLeftOptionChange($event)">
+      <option *ngFor="let option of leftOptions" [value]="option">{{ option }}</option>
+    </select>
   </div>
-</ng-container> -->
-
-<ng-container *ngFor="let option of options">
-  <div [id]="option.id" *ngIf="selectedOption === option.id">
-    {{ option.content }}
+  <label class="col-sm-2 col-form-label">Right Select</label>
+  <div class="col-sm-4">
+    <select class="form-control" formControlName="rightSelect">
+      <option *ngFor="let option of rightOptions" [value]="option">{{ option }}</option>
+    </select>
   </div>
-</ng-container>
+</div>

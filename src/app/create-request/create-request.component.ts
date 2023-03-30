@@ -31,6 +31,7 @@ interface MyMap2 {
 })
 export class CreateRequestComponent implements OnInit {
 
+  //selectedLeftOption = 'Accept';
   selectedInputType: string = 'NONE';
   selectedAuthType: string = 'NO_AUTH';
   readOnly = false;
@@ -53,11 +54,14 @@ export class CreateRequestComponent implements OnInit {
   apikeyFormatted : any;
   private formsFormatted: any;
 
+  selectedLeftOption: string = "Accept";
+  leftOptions = ['Accept', 'Accept-Encoding', 'Accept-Language', 'Connection'];
+  rightOptions : any;
+
   //for maping header values
   myMap: MyMap = {};
   myMap2: MyMap2 = {};
   myMap3: MyMap = {};
-
   myMap4: MyMap = {}; //auth api key
 
 
@@ -336,6 +340,22 @@ export class CreateRequestComponent implements OnInit {
   onSelected(value: string): void {
     this.selectedId = value;
     console.log(this.selectedId)
+  }
+
+  onLeftOptionChange(option: string) {
+    // Clear the right select options
+    this.rightOptions = [];
+
+    // Load new options based on the selection in the left select input
+    if (option === 'Accept') {
+      this.rightOptions = ['application/json', 'application/xml', 'text/plain', 'text/html', 'image/jpeg', 'image/png', 'application/pdf', 'application/vnd.ms-excel'];
+    } else if (option === 'Accept-Encoding') {
+      this.rightOptions = ['deflate'];
+    } else if (option === 'Accept-Language') {
+      this.rightOptions = ['en', 'fr', 'es', 'de', 'zh'];
+    } else if (option === 'Connection'){
+      this.rightOptions = ['keep-alive', 'close'];
+    }
   }
 
 

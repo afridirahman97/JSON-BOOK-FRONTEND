@@ -46,7 +46,7 @@
           <div *ngFor="let userFormGroup of userFormGroups.controls; let i = index" formGroupName="{{i}}"
             class="margin-top">
             <div class="row" style="padding-bottom: 0.25rem; padding-top: .25rem;">
-              <div class="col-md-6">
+              <!-- <div class="col-md-6">
                 <select class="form-control" formControlName="key">
                   <option value=""><b>Select Type</b></option>
                   <option value="Accept">Accept</option>
@@ -58,10 +58,20 @@
                   <option value="Origin">Origin</option>
                   <option value="Referer">Referer</option>
                 </select>
+              </div> -->
+              <div class="col-md-6">
+                <select class="form-control" formControlName="key" [(ngModel)]="selectedLeftOption" (ngModelChange)="onLeftOptionChange($event)">
+                  <option *ngFor="let option of leftOptions" [value]="option">{{ option }}</option>
+                </select>
+
               </div>
 
+
+
               <div class="col-md-6">
-                <input type="text" placeholder="value" class="form-control" formControlName="value" />
+                <select class="form-control" formControlName="rightSelect">
+                  <option *ngFor="let option of rightOptions" [value]="option">{{ option }}</option>
+                </select>
               </div>
             </div>
 
