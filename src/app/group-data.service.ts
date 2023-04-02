@@ -11,7 +11,7 @@ export class GroupDataService {
   constructor(private http: HttpClient) { }
 
 
-  getData(searchKeyword: string = "") {
+  getData() {
     this.token = localStorage.getItem('accessToken')
     const httpOptions = {
       headers: new HttpHeaders({
@@ -22,15 +22,21 @@ export class GroupDataService {
 
     let id = localStorage.getItem('id')
     let url = `http://localhost:8080/groups/${id}`;
-    // ?searchKey= + searchKeyword
-    // + " ?searchKey=" + searchKeyword;  it can be used if we search from backend 
     return this.http.get(url, httpOptions);
 
   }
   getRequest() {
+    this.token = localStorage.getItem('accessToken')
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': this.token,
+        'Content-Type': 'application/json'
+      })
+    };
+
     let id = localStorage.getItem('id')
     let url = "http://localhost:8080/groups/requests/" + id;
-    return this.http.get(url);
+    return this.http.get(url, httpOptions);
 
   }
   getRequestById(groupId: number) {

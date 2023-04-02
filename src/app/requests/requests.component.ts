@@ -34,7 +34,6 @@ export class RequestsComponent {
   rows: any;
   faPlusSquare = faPlusSquare;
   faeye = faEye;
-
   test: any;
 
 
@@ -44,10 +43,6 @@ export class RequestsComponent {
       this.rows = data
       this.filteredTableData = data
       console.log(this.rows)
-      //this.test = Object.assign({}, ...this.rows);
-      //this.test = JSON.stringify(this.rows.requestParam, null, 4)
-      //console.log(this.test)
-      //console.log(this.rows)
     })
   }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 @Injectable({
@@ -7,14 +7,24 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RequestDataService {
 
-  constructor(private http:HttpClient) {}
+  token: any;
 
-    getData(){
-      let url="http://localhost:8080/requests/"
-      return this.http.get(url);
-   }
-  getRequestById(groupId:number){
-    let url="http://localhost:8080/requests/group/"+groupId.toString();
+  constructor(private http: HttpClient) { }
+
+  getData() {
+    this.token = localStorage.getItem('accessToken')
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': this.token,
+        'Content-Type': 'application/json'
+      })
+    };
+    
+    let url = "http://localhost:8080/requests/"
+    return this.http.get(url, httpOptions);
+  }
+  getRequestById(groupId: number) {
+    let url = "http://localhost:8080/requests/group/" + groupId.toString();
 
     return this.http.get(url);
 

@@ -33,7 +33,7 @@ export class RequestComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    console.log("request")
+
     this.route.queryParams.subscribe(params => {
       this.group = params;
       console.log(this.group);
