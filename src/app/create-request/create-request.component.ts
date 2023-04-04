@@ -51,12 +51,22 @@ export class CreateRequestComponent implements OnInit {
   mappedHeader: any;
   headerFormatted: any;
   paramsFormatted: any;
-  apikeyFormatted : any;
+  apikeyFormatted: any;
   private formsFormatted: any;
 
   selectedLeftOption: string = "Accept";
   leftOptions = ['Accept', 'Accept-Encoding', 'Accept-Language', 'Connection'];
-  rightOptions : any;
+  rightOptions: any;
+
+
+  // pairs = [{ left: 0, right: '', rightOptions: [''] }];
+  // leftOptions = ['Accept', 'AcceptEncoding', 'AcceptLanguage', 'Connection'];
+  rightOptionMap: { [key: string]: string[] } = {
+    Accept: ['application/json', 'application/xml', 'text/plain', 'text/html', 'image/jpeg', 'image/png', 'application/pdf', 'application/vnd.ms-excel'],
+    AcceptEncoding: ['deflate'],
+    AcceptLanguage: ['en', 'fr', 'es', 'de', 'zh'],
+    Connection: ['keep-alive', 'close']
+  };
 
   //for maping header values
   myMap: MyMap = {};
@@ -134,6 +144,10 @@ export class CreateRequestComponent implements OnInit {
   }
 
   get userFormGroups() {
+    return this.form.get('header') as FormArray
+  }
+
+  get pairs() {
     return this.form.get('header') as FormArray
   }
 
@@ -288,7 +302,7 @@ export class CreateRequestComponent implements OnInit {
       forms: JSON.stringify(this.myMap3)
     }
     let apikey = {
-      apikey : JSON.stringify(this.myMap4)
+      apikey: JSON.stringify(this.myMap4)
     }
     console.log(requestFormDto);
 
@@ -342,9 +356,10 @@ export class CreateRequestComponent implements OnInit {
     console.log(this.selectedId)
   }
 
-  onLeftOptionChange(option: string) {
+  onLeftOptionChange(option: string, index: number) {
     // Clear the right select options
     this.rightOptions = [];
+    console.log(index)
 
     // Load new options based on the selection in the left select input
     if (option === 'Accept') {
@@ -353,10 +368,25 @@ export class CreateRequestComponent implements OnInit {
       this.rightOptions = ['deflate'];
     } else if (option === 'Accept-Language') {
       this.rightOptions = ['en', 'fr', 'es', 'de', 'zh'];
-    } else if (option === 'Connection'){
+    } else if (option === 'Connection') {
       this.rightOptions = ['keep-alive', 'close'];
     }
   }
+
+  addPair() {
+    this.pairs.push({ left: 0, right: '', rightOptions: [] });
+  }
+
+  // removePair(index: number) {
+  //   this.pairs.splice(index, 1);
+  // }
+
+  // updateRightOptions(index: number) {
+  //   const leftValue = this.pairs[index].left;
+  //   console.log(this.rightOptionMap[leftValue])
+  //   //this.pairs[index].rightOptions = this.rightOptionMap[leftValue];
+  //   this.pairs[index].rightOptions = this.rightOptionMap[leftValue];
+  // }
 
 
 }

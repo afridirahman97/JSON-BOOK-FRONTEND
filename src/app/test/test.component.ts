@@ -1,43 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
-
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.css']
 })
-export class TestComponent implements OnInit {
-  formGroup: FormGroup | undefined;
-  selectedLeftOption: string | undefined;
-  leftOptions = ['Option 1', 'Option 2', 'Option 3'];
-  rightOptions : any;
-  
+export class TestComponent {
 
-  constructor(private formBuilder: FormBuilder) { }
+  //s: string[] = []
 
-  ngOnInit() {
-    this.formGroup = this.formBuilder.group({
-      leftSelect: '',
-      rightSelect: ''
-    });
+  pairs = [{left: 0, right: '', rightOptions: ['']}];
+  leftOptions = ['Accept', 'AcceptEncoding', 'AcceptLanguage', 'Connection'];
+  rightOptionMap: { [key: string]: string[] } = {
+    Accept: ['application/json', 'application/xml', 'text/plain', 'text/html', 'image/jpeg', 'image/png', 'application/pdf', 'application/vnd.ms-excel'],
+    AcceptEncoding: ['deflate'],
+    AcceptLanguage: ['en', 'fr', 'es', 'de', 'zh'],
+    Connection:['keep-alive', 'close']
+  };
+
+  addPair() {
+    this.pairs.push({left: 0, right: '', rightOptions: []});
   }
 
-  onLeftOptionChange(option: string) {
-    // Clear the right select options
-    this.rightOptions = [];
-
-    // Load new options based on the selection in the left select input
-    if (option === 'Option 1') {
-      this.rightOptions = ['application/json', 'application/xml', 'text/plain', 'text/html', 'image/jpeg', 'image/png', 'application/pdf', 'application/vnd.ms-excel'];
-    } else if (option === 'Option 2') {
-      this.rightOptions = ['gzip', 'deflate', 'br'];
-    } else if (option === 'Option 3') {
-      this.rightOptions = ['en', 'fr', 'es', 'de', 'zh'];
-    }
+  removePair(index: number) {
+    this.pairs.splice(index, 1);
   }
 
-  a= ['keep-alive', 'close']
- 
+  updateRightOptions(index: number) {
+    const leftValue = this.pairs[index].left;
+    console.log(this.rightOptionMap[leftValue])
+    //this.pairs[index].rightOptions = this.rightOptionMap[leftValue];
+   this.pairs[index].rightOptions = this.rightOptionMap[leftValue];
+  }
 }
-

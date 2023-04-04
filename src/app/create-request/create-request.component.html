@@ -46,21 +46,10 @@
           <div *ngFor="let userFormGroup of userFormGroups.controls; let i = index" formGroupName="{{i}}"
             class="margin-top">
             <div class="row" style="padding-bottom: 0.25rem; padding-top: .25rem;">
-              <!-- <div class="col-md-6">
-                <select class="form-control" formControlName="key">
-                  <option value=""><b>Select Type</b></option>
-                  <option value="Accept">Accept</option>
-                  <option value="Accept-Encoding">Accept-Encoding</option>
-                  <option value="Accept-Language">Accept-Language</option>
-                  <option value="Connection">Connection</option>
 
-                  <option value="Host">Host</option>
-                  <option value="Origin">Origin</option>
-                  <option value="Referer">Referer</option>
-                </select>
-              </div> -->
               <div class="col-md-6">
-                <select class="form-control" formControlName="key" [(ngModel)]="selectedLeftOption" (ngModelChange)="onLeftOptionChange($event)">
+                <select class="form-control" formControlName="key" [(ngModel)]="selectedLeftOption"
+                  (ngModelChange)="onLeftOptionChange($event, i)">
                   <option *ngFor="let option of leftOptions" [value]="option">{{ option }}</option>
                 </select>
 
@@ -69,7 +58,7 @@
 
 
               <div class="col-md-6">
-                <select class="form-control" formControlName="rightSelect">
+                <select class="form-control" formControlName="value">
                   <option *ngFor="let option of rightOptions" [value]="option">{{ option }}</option>
                 </select>
               </div>
@@ -82,6 +71,40 @@
           </div>
         </div>
       </div>
+
+
+      <!-- New Proper Header -->
+      <!-- <div class="form-group" style="padding-bottom: 0.5rem;">
+        <label class="p-1" for="header"><b>Header</b></label>
+        <div formArrayName="header">
+          <div *ngFor="let pair of pairs.controls; let i = index" formGroupName="{{i}}" class="margin-top">
+
+            <div class="col-md-6">
+              <select class="form-control" formControlName="key" [(ngModel)]="pair.left"
+                (ngModelChange)="updateRightOptions(i)">
+                <option *ngFor="let option of leftOptions" [value]="option">{{option}}</option>
+              </select>
+            </div>
+
+
+            <div class="col-md-6">
+              <select class="form-control" formControlName="value" [(ngModel)]="pair.right">
+                <option *ngFor="let option of pair.rightOptions" [value]="option">{{option}}</option>
+              </select>
+            </div>
+
+
+            <a (click)="removePair(i)">Remove</a>
+          </div>
+        </div>
+        <a (click)="addPair()">Add Pair</a>
+
+
+      </div> -->
+
+
+
+
 
       <!-- params -->
       <div class="form-group">
@@ -112,7 +135,7 @@
         <label class="p-1" for="authenticationType"><b>Authentication Type</b></label>
         <div>
           <select [(ngModel)]="selectedAuthType" class="form-control" formControlName="authenticationType">
-           
+
             <option value="NO_AUTH">NO_AUTH</option>
             <option value="API_KEY">API_KEY</option>
             <option value="BEARER_TOKEN">BEARER_TOKEN</option>
@@ -144,15 +167,15 @@
       </div>
 
 
-       <!-- Based auth type selection (JWT Bearer Token) -->
+      <!-- Based auth type selection (JWT Bearer Token) -->
 
-       <div *ngIf="selectedAuthType === 'JWT_BEARER'" class="form-group">
+      <div *ngIf="selectedAuthType === 'JWT_BEARER'" class="form-group">
         <label class="p-1" for="jwt"><b>JWT Bearer Token</b></label>
         <input type="text" class="form-control" id="jwt" formControlName="jwt">
 
       </div>
 
-       <div *ngIf="selectedAuthType === 'BASIC_AUTH'" class="form-group">
+      <div *ngIf="selectedAuthType === 'BASIC_AUTH'" class="form-group">
         <label class="p-1" for="params"><b>ADD Basic Auth</b></label>
         <div formArrayName="params">
           <div *ngFor="let userFormGroup of userFormParams.controls; let i = index" formGroupName="{{i}}"
@@ -201,7 +224,7 @@
       </div> -->
 
 
-     
+
 
       <!-- RAW BODY DATA TYPE -->
       <div *ngIf="selectedInputType === 'RAW'">
@@ -220,7 +243,7 @@
         </div>
       </div>
 
-     
+
 
       <!-- FORM BODY DATA TYPE -->
       <div *ngIf="selectedInputType === 'FORM_DATA'" class="form-group">
@@ -245,7 +268,7 @@
 
         </div>
       </div>
-  
+
       <!-- FORM ENCODED -->
       <div *ngIf="selectedInputType === 'FORM_ENCODED'" class="form-group">
         <label class="p-1" for="forms"><b>Form Encoded</b></label>

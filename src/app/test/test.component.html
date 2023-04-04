@@ -1,14 +1,10 @@
-<div class="form-group row">
-  <label class="col-sm-2 col-form-label">Left Select</label>
-  <div class="col-sm-4">
-    <select class="form-control" [(ngModel)]="selectedLeftOption" (ngModelChange)="onLeftOptionChange($event)">
-      <option *ngFor="let option of leftOptions" [value]="option">{{ option }}</option>
-    </select>
-  </div>
-  <label class="col-sm-2 col-form-label">Right Select</label>
-  <div class="col-sm-4">
-    <select class="form-control" formControlName="rightSelect">
-      <option *ngFor="let option of rightOptions" [value]="option">{{ option }}</option>
-    </select>
-  </div>
+<div *ngFor="let pair of pairs; let i=index">
+  <select [(ngModel)]="pair.left" (change)="updateRightOptions(i)">
+    <option *ngFor="let option of leftOptions" [value]="option">{{option}}</option>
+  </select>
+  <select [(ngModel)]="pair.right">
+    <option *ngFor="let option of pair.rightOptions" [value]="option">{{option}}</option>
+  </select>
+  <button (click)="removePair(i)" [disabled]="pairs.length === 1">Remove</button>
 </div>
+<button (click)="addPair()">Add Pair</button>

@@ -7,7 +7,7 @@ import { RequestsComponent } from './requests/requests.component';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewComponent } from './view/view.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GroupCreateComponent } from './group-create/group-create.component';
 import { CreateRequestComponent } from './create-request/create-request.component';
 // import {ReactiveFormsModule} from '@angular/forms'
@@ -27,7 +27,7 @@ import { HomeComponent } from './home/home.component';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedDataService } from './shared-data-service.service';
-
+import { AuthInterceptor } from './auth.interceptor';
 
 
 
@@ -63,7 +63,16 @@ import { SharedDataService } from './shared-data-service.service';
 
 
   ],
-  providers: [SharedDataService],
+  providers: [SharedDataService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
+
+
+
