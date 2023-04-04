@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import { faCoffee, faL } from '@fortawesome/free-solid-svg-icons';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { SharedDataService } from '../shared-data-service.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 
 
 @Component({
@@ -29,8 +29,7 @@ export class GroupsComponent {
   faPlusSquare = faPlusSquare;
   role: any;
   AdminHere: Boolean = false;
-
-
+  token: any;
 
   constructor(
     private router: Router,
@@ -73,8 +72,15 @@ export class GroupsComponent {
 
   async performShare(id: number) {
 
+    this.token = localStorage.getItem('accessToken')
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': this.token,
+        'Content-Type': 'application/json'
+      })
+    };
 
-    this.http.get('http://localhost:8080/api/v2/list-of-users').subscribe(async (response) => {
+    this.http.get('http://localhost:8080/api/v2/list-of-users', httpOptions).subscribe(async (response) => {
       this.users = response;
       console.log(this.users);
       console.log(typeof this.users)
@@ -89,7 +95,14 @@ export class GroupsComponent {
       })
 
       if (name) {
-        this.http.get(`http://localhost:8080/groups/${id}/add-new-user/${name}`).subscribe((response) => {
+        this.token = localStorage.getItem('accessToken')
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Authorization': this.token,
+            'Content-Type': 'application/json'
+          })
+        };
+        this.http.get(`http://localhost:8080/groups/${id}/add-new-user/${name}`, httpOptions).subscribe((response) => {
           // Swal.fire(`You selected: ${name}`);
           Swal.fire({
             title: 'Successfully Shared',

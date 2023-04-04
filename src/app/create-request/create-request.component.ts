@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders} from "@angular/common/http";
 import { GroupDataService } from '../group-data.service';
 // importing font-awesome emoji
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
@@ -31,6 +31,7 @@ interface MyMap2 {
 })
 export class CreateRequestComponent implements OnInit {
 
+  token: any;
   //selectedLeftOption = 'Accept';
   selectedInputType: string = 'NONE';
   selectedAuthType: string = 'NO_AUTH';
@@ -223,6 +224,14 @@ export class CreateRequestComponent implements OnInit {
     const formatter = DateTimeFormatter.ofPattern('yyyy-MM-dd\'T\'HH:mm:ssXXX');
     const formattedDateTime = now.format(formatter);
 
+    this.token = localStorage.getItem('accessToken')
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': this.token,
+        'Content-Type': 'application/json'
+      })
+    };
+
     let groupEntity = {
       groupId: +(this.selectedId)
     }
@@ -297,7 +306,7 @@ export class CreateRequestComponent implements OnInit {
 
 
 
-    this.http.post(url, requestFormDto).subscribe(
+    this.http.post(url, requestFormDto, httpOptions).subscribe(
       () => {
         console.log('Form data posted successfully!');
         this.form.reset();

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient,  HttpHeaders} from "@angular/common/http";
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,6 +13,7 @@ export class GroupEditComponent implements  OnInit{
   groupId:number| null;
   form: FormGroup;
   data : object | undefined;
+  token: any;
 
   constructor(private route: ActivatedRoute,private http: HttpClient,private router: Router) {
     this.groupId=null;
@@ -44,6 +45,13 @@ export class GroupEditComponent implements  OnInit{
     }
     console.log(group);
     console.log(formData);
+    this.token = localStorage.getItem('accessToken')
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': this.token,
+        'Content-Type': 'application/json'
+      })
+    };
 
     if( formData.groupName === "" ){
       Swal.fire({
@@ -55,7 +63,7 @@ export class GroupEditComponent implements  OnInit{
     }
     else {
       let url='http://localhost:8080/groups';
-      this.http.put(url, group).subscribe(
+      this.http.put(url, group, httpOptions).subscribe(
         () => {
           console.log('Form data posted successfully!');
           this.form.reset();

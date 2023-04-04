@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders} from "@angular/common/http";
 import { GroupDataService } from '../group-data.service';
 // importing font-awesome emoji
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
@@ -53,6 +53,7 @@ export class CreateRequest2Component implements OnInit{
   paramsFormatted: any;
   // formsFormatted: any;
   apikeyFormatted : any;
+  token: any;
   private formsFormatted: any;
     //for maping header values
     myMap: MyMap = {};
@@ -294,11 +295,19 @@ export class CreateRequest2Component implements OnInit{
     console.log(requestFormDto);
 
     console.log(this.group);
+    this.token = localStorage.getItem('accessToken')
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': this.token,
+        'Content-Type': 'application/json'
+      })
+    };
+
     let url = 'http://localhost:8080/requests/dto';
 
 
 
-    this.http.post(url, requestFormDto).subscribe(
+    this.http.post(url, requestFormDto, httpOptions).subscribe(
       () => {
         console.log('Form data posted successfully!');
         this.form.reset();

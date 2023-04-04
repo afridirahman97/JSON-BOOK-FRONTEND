@@ -40,14 +40,30 @@ export class GroupDataService {
 
   }
   getRequestById(groupId: number) {
+    this.token = localStorage.getItem('accessToken')
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': this.token,
+        'Content-Type': 'application/json'
+      })
+    };
+
     let url = "http://localhost:8080/requests/" + groupId.toString();
-    return this.http.get(url);
+    return this.http.get(url, httpOptions);
 
   }
   createResponse(requestId: number) {
+    this.token = localStorage.getItem('accessToken')
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': this.token,
+        'Content-Type': 'application/json'
+      })
+    };
+
     let url = "http://localhost:8080/requests/create-response/" + requestId.toString();
 
-    return this.http.get(url);
+    return this.http.get(url, httpOptions);
   }
 
 
